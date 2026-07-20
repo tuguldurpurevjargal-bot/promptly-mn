@@ -49,37 +49,6 @@ const learningPath = [
   },
 ];
 
-const journey = [
-  {
-    step: "Үнэгүй контент",
-    desc: "Facebook, YouTube Shorts, Instagram, Threads, LinkedIn дээрх өдөр тутмын зөвлөгөө, кейс study, хэрэгслийн танилцуулга.",
-  },
-  {
-    step: "Newsletter",
-    desc: "Долоо хоног бүр и-мэйлээр ирэх шинээр гарсан AI хэрэгслүүд, арга техник, Монголд хэрэглэх боломж.",
-  },
-  {
-    step: "Webinar",
-    desc: "Live хичээлээс тактик, жишээ, асуулт хариулт авна. Богино хугацаанд конкрет чадвар суулгаж өгнө.",
-  },
-  {
-    step: "Course",
-    desc: "Бүтэн сургалтын хөтөлбөр — видео, дадлага даалгавар, шалгалт, сертификат.",
-  },
-  {
-    step: "Consulting",
-    desc: "Танай баг, компанийн хэрэгцээнд зориулсан AI зөвлөгөө, стратеги, хэрэгжүүлэх төлөвлөгөө.",
-  },
-  {
-    step: "AI implementation",
-    desc: "Сонгосон AI шийдлийг танай системд хэрэгжүүлж, ажилчдыг сургаж, үр дүнг хэмжинэ.",
-  },
-  {
-    step: "Monthly retainers",
-    desc: "Урт хугацаанд дэмжлэг үзүүлж, шинэ хэрэгслүүд гарч буй үед танай багийг тогтмол шинэчилж, хөгжүүлж байна.",
-  },
-];
-
 const platforms = [
   { name: "Facebook", priority: "Primary" },
   { name: "YouTube Shorts", priority: "Primary" },
@@ -116,9 +85,6 @@ export default function Home() {
             </Link>
             <Link href="#path" className="text-sm text-white/70 hover:text-white">
               Learning path
-            </Link>
-            <Link href="#journey" className="text-sm text-white/70 hover:text-white">
-              How it works
             </Link>
             <Link href="#contact" className="text-sm text-white/70 hover:text-white">
               Contact
@@ -244,44 +210,6 @@ export default function Home() {
                   </button>
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="journey" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-16 text-center">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
-                How it works
-              </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Үнэгүй контентээс бизнесийн хэрэгжилт хүртэл.
-              </h2>
-            </div>
-
-            <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[#00F0FF] via-[#4FFFB0] to-[#00F0FF]/20 md:left-1/2" />
-              <div className="space-y-6">
-                {journey.map((item, index) => (
-                  <div
-                    key={item.step}
-                    className={`relative flex items-center gap-6 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
-                  >
-                    <div className="hidden w-1/2 md:block" />
-                    <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#071414] text-xs font-semibold text-white ring-2 ring-[#4FFFB0]"
-                    >
-                      {index + 1}
-                    </div>
-                    <div className="flex-1 rounded-2xl bg-[#0f1f1f] p-5"
-                    >
-                      <h3 className="font-[family-name:var(--font-arimo)] text-lg font-semibold">{item.step}</h3>
-                      <p className="mt-1 text-sm text-white/65">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
