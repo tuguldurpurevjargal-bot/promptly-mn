@@ -1,58 +1,51 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a1a1a;
+  --background: #071414;
   --foreground: #ffffff;
+  --surface: #0f1f1f;
+  --surface-elevated: #162727;
   --accent: #00E5D4;
   --accent-start: #00F0FF;
-  --accent-mid: #00E5D4;
   --accent-end: #4FFFB0;
-  --text-secondary: rgba(255, 255, 255, 0.72);
-  --text-dark: #0a1a1a;
-  --text-dark-secondary: #5C6B6B;
-  --surface: rgba(255, 255, 255, 0.08);
-  --surface-solid: #ffffff;
-  --border: rgba(255, 255, 255, 0.14);
-  --border-dark: #E8F0F0;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.78);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --border: rgba(255, 255, 255, 0.12);
+  --font-heading: var(--font-arimo);
+  --font-body: var(--font-roboto);
+  --font-mono: var(--font-roboto);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-accent: var(--accent);
   --color-accent-start: var(--accent-start);
-  --color-accent-mid: var(--accent-mid);
   --color-accent-end: var(--accent-end);
+  --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-text-dark: var(--text-dark);
-  --color-text-dark-secondary: var(--text-dark-secondary);
-  --color-surface: var(--surface);
-  --color-surface-solid: var(--surface-solid);
+  --color-text-muted: var(--text-muted);
   --color-border: var(--border);
-  --color-border-dark: var(--border-dark);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
 }
 
 ::selection {
   background: rgba(0, 229, 212, 0.3);
   color: white;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, var(--accent-start), var(--accent-mid) 50%, var(--accent-end));
-}
-
-.gradient-bg-soft {
-  background: linear-gradient(160deg, var(--accent-start) 0%, var(--accent-mid) 40%, var(--accent-end) 100%);
 }
 
 .gradient-text {
@@ -62,16 +55,22 @@ body {
   background-clip: text;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-mid) 50%, var(--accent-end));
 }
 
-.glass-dark {
-  background: rgba(10, 26, 26, 0.06);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(10, 26, 26, 0.08);
+.gradient-ring {
+  position: relative;
+}
+
+.gradient-ring::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  z-index: -1;
+  opacity: 0.4;
 }
 
 a:focus-visible,
