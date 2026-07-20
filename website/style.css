@@ -1,0 +1,435 @@
+/* Forma & Spazio — type foundry website */
+/* Designed with deliberate typographic choices and generous spacing */
+
+:root {
+  --color-bg: #F8F7F4;
+  --color-text: #111111;
+  --color-text-secondary: #6A6A6A;
+  --color-accent: #FF3B00;
+  --color-muted: #E0DED8;
+  --color-paper: #FFFFFF;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 10rem;
+  --radius: 2px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(248, 247, 244, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: var(--color-muted);
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--space-xl) var(--space-lg);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.hero-word {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+}
+
+.hero-line {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4.5rem, 16vw, 14rem);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.hero-line--alt {
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: clamp(3.5rem, 12vw, 10rem);
+  margin-left: clamp(0.5rem, 4vw, 3rem);
+  line-height: 0.75;
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 420px;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-muted);
+}
+
+.hero-caption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.hero-statement {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 34ch;
+}
+
+.hero-rule {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: var(--color-muted);
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Specimens */
+.specimens {
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-text);
+  margin-bottom: var(--space-2xl);
+}
+
+.section-label,
+.section-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.specimen {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  padding: var(--space-2xl) 0;
+  border-bottom: 1px solid var(--color-muted);
+}
+
+.specimen:first-of-type {
+  border-top: 1px solid var(--color-muted);
+}
+
+.specimen-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.specimen-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: var(--space-xs) 0 0;
+}
+
+.specimen-sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.specimen-glyphs {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 14vw, 11rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  color: var(--color-text);
+  display: block;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.specimen:hover .specimen-glyphs {
+  color: var(--color-accent);
+  transform: translateX(12px);
+}
+
+.specimen-desc {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.specimen {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.specimen.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Philosophy */
+.philosophy {
+  padding: var(--space-3xl) var(--space-lg);
+  background: var(--color-paper);
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.philosophy-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.philosophy-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  max-width: 18ch;
+}
+
+.philosophy-body p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 55ch;
+  margin: 0 0 var(--space-md);
+}
+
+.philosophy-quote {
+  margin: var(--space-xl) 0 0;
+  padding: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+  border-left: 3px solid var(--color-accent);
+}
+
+.philosophy-quote p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--color-text);
+  margin: 0;
+  max-width: 32ch;
+}
+
+/* Footer */
+.site-footer {
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-brand p,
+.footer-colophon p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  color: rgba(248, 247, 244, 0.65);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+.footer-copyright {
+  margin-top: var(--space-md) !important;
+  font-family: var(--font-mono);
+  font-size: 0.75rem !important;
+  letter-spacing: 0.04em;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: end;
+  }
+
+  .hero-meta {
+    border-top: none;
+    padding-top: 0;
+    padding-left: var(--space-xl);
+    border-left: 1px solid var(--color-muted);
+  }
+
+  .specimen {
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr 1.2fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1.5fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

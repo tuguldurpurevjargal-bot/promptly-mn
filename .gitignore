@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Large cloned repositories
+antigravity-awesome-skills/
+get-shit-done/
+graphify/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
