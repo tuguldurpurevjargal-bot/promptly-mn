@@ -11,8 +11,8 @@ export const translations = {
     },
     hero: {
       badge: "Монголын AI боловсролын нийгэмлэг",
-      headline: "AI",
-      headlineHighlight: "бүхэнд.",
+      headline: "Хүн бүрт",
+      headlineHighlight: "AI.",
       subheadline:
         "AI-г хүн бүрт ойлгомжтой, өдөр тутмын ажилдаа хэрэглэхэд бэлэн болгоё. Боловсрол, хэрэгсэл, нийгэмлэг — гурван талаас дэмжнэ.",
       ctaPrimary: "Newsletter бүртгүүлэх",
