@@ -1,317 +1,322 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const webinars = [
-  {
-    id: "prompt-engineering",
-    title: "Prompt Engineering for Operators",
-    date: "Aug 12",
-    time: "11:00 AM ET",
-    duration: "90 min",
-    level: "Beginner",
-    description:
-      "Write prompts that return consistent, reusable output. Templates, chain-of-thought, and failure recovery.",
-  },
-  {
-    id: "workflow-design",
-    title: "AI Workflow Design",
-    date: "Aug 19",
-    time: "11:00 AM ET",
-    duration: "2 hrs",
-    level: "Intermediate",
-    description:
-      "Map real work to AI-native flows. Routing, context windows, feedback loops, and quality gates.",
-  },
-  {
-    id: "team-optimization",
-    title: "Team AI Optimization",
-    date: "Sep 2",
-    time: "11:00 AM ET",
-    duration: "2.5 hrs",
-    level: "Advanced",
-    description:
-      "Benchmark usage, cut waste, standardize prompts, and build an internal AI playbook your team follows.",
-  },
+const platforms = [
+  { name: "Facebook", priority: 1 },
+  { name: "Instagram", priority: 2 },
+  { name: "Threads", priority: 2 },
+  { name: "LinkedIn", priority: 2 },
+  { name: "YouTube Shorts", priority: 1 },
+  { name: "YouTube Longform", priority: 2 },
 ];
 
-const steps = [
-  {
-    number: "01",
-    title: "Diagnose",
-    body: "Find where time leaks and AI hesitancy live in your workflow.",
-  },
-  {
-    number: "02",
-    title: "Optimize",
-    body: "Replace ad-hoc prompting with repeatable templates and decision rules.",
-  },
-  {
-    number: "03",
-    title: "Scale",
-    body: "Train the habit, measure quality, and lock in the gains.",
-  },
+const funnel = [
+  { step: "Free content", desc: "Social posts, clips, and free resources." },
+  { step: "Newsletter", desc: "Weekly AI insights delivered to your inbox." },
+  { step: "Webinar", desc: "Live sessions that teach practical skills." },
+  { step: "Course", desc: "Structured learning paths for every level." },
+  { step: "Consulting", desc: "Hands-on guidance for your team." },
+  { step: "AI implementation", desc: "End-to-end integration into your workflows." },
+  { step: "Monthly retainers", desc: "Ongoing support as you scale." },
 ];
 
-const testimonials = [
+const products = [
   {
-    quote:
-      "We stopped treating AI like a search bar and started treating it like a teammate. The workflow module alone paid for the quarter.",
-    author: "Elena Voss",
-    role: "Operations Lead",
+    level: "Анхан шат",
+    subtitle: "Beginner",
+    desc: "AI-ийн үндэс, ойлголт, өдөр тутмын хэрэглээ.",
+    topics: ["AI basics", "Daily AI use", "Prompting fundamentals"],
+    available: true,
   },
   {
-    quote:
-      "Finally, AI training that isn't hype. Concrete frameworks, live critique, and no filler.",
-    author: "Marcus Chen",
-    role: "Engineering Manager",
+    level: "Дунд шат",
+    subtitle: "Intermediate",
+    desc: "Ажлын бүтээмж, workflow, automation, prompt engineering.",
+    topics: ["Workflow design", "Automation", "Prompt engineering"],
+    available: true,
+  },
+  {
+    level: "Ахисан шат",
+    subtitle: "Advanced",
+    desc: "AI систем, агент, optimization, бизнесийн хэрэгжилт.",
+    topics: ["AI systems", "Agents", "Business optimization"],
+    available: false,
   },
 ];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1">
-      <header className="sticky top-0 z-50 border-b border-[#E8F0F0] bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+      <div className="pointer-events-none fixed inset-0 -z-10 gradient-bg-soft" />
+      <div className="pointer-events-none fixed -right-40 -top-40 h-[60vw] w-[60vw] rounded-full bg-[#00F0FF]/20 blur-[120px]" />
+      <div className="pointer-events-none fixed -bottom-40 -left-40 h-[60vw] w-[60vw] rounded-full bg-[#4FFFB0]/20 blur-[120px]" />
+
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a1a1a]/70 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <Image
               src="/logo.svg"
               alt="Promptly"
-              width={32}
-              height={32}
-              className="h-8 w-8"
+              width={36}
+              height={36}
+              className="h-9 w-9"
               priority
             />
-            <span className="text-lg font-semibold tracking-tight">Promptly</span>
+            <span className="text-xl font-semibold tracking-tight text-white">Promptly</span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-            <Link href="#webinars" className="text-sm text-[#5C6B6B] hover:text-[#0A1A1A]">
-              Webinars
+            <Link href="#mission" className="text-sm text-white/70 hover:text-white">
+              Mission
             </Link>
-            <Link href="#approach" className="text-sm text-[#5C6B6B] hover:text-[#0A1A1A]">
-              Approach
+            <Link href="#funnel" className="text-sm text-white/70 hover:text-white">
+              Funnel
             </Link>
-            <Link href="#about" className="text-sm text-[#5C6B6B] hover:text-[#0A1A1A]">
-              About
+            <Link href="#products" className="text-sm text-white/70 hover:text-white">
+              Courses
+            </Link>
+            <Link href="#contact" className="text-sm text-white/70 hover:text-white">
+              Contact
             </Link>
           </nav>
 
           <Link
-            href="#webinars"
-            className="gradient-bg rounded-full px-5 py-2.5 text-sm font-medium text-[#0A1A1A] shadow-sm shadow-cyan-500/10 transition-opacity hover:opacity-90"
+            href="#contact"
+            className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0a1a1a] transition-transform hover:scale-105"
           >
-            Reserve a seat
+            Join waitlist
           </Link>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="px-6 pb-24 pt-20 md:pt-28">
+        <section className="relative px-6 pb-32 pt-24 md:pt-36">
           <div className="mx-auto max-w-5xl text-center">
-            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-[#E8F0F0] bg-[#F7FAFA] px-3 py-1 text-xs font-medium text-[#5C6B6B]">
-              <span className="h-2 w-2 rounded-full bg-[#00E5D4]"></span>
-              Live webinars starting August 2026
+            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[#4FFFB0]"></span>
+              Mongolia's AI education community
             </div>
 
-            <h1 className="mx-auto max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
-              Use AI like a{" "}
-              <span className="gradient-text">system,</span>{" "}
-              not a shortcut.
+            <h1 className="mx-auto max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl">
+              AI сурмаар байвал,{" "}
+              <span className="text-white/80">цааш ахих.</span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#5C6B6B]">
-              Practical webinars for teams who want to cut busywork, sharpen decisions, and make AI a reliable operating advantage.
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
+              Make artificial intelligence practical, understandable, and accessible for everyone through education, tools, and community.
             </p>
 
-            <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+            <form className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
               <input
                 type="email"
-                placeholder="Work email"
-                className="flex-1 rounded-full border border-[#E8F0F0] bg-[#F7FAFA] px-5 py-3 text-sm outline-none transition-colors placeholder:text-[#5C6B6B] focus:border-[#00E5D4]"
+                placeholder="И-мэйл хаяг"
+                className="flex-1 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white outline-none backdrop-blur-md transition-colors placeholder:text-white/50 focus:border-white/40"
               />
               <button
                 type="submit"
-                className="gradient-bg rounded-full px-6 py-3 text-sm font-medium text-[#0A1A1A] transition-opacity hover:opacity-90"
+                className="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#0a1a1a] transition-transform hover:scale-105"
               >
-                Get early access
+                Нэгдэх
               </button>
             </form>
 
-            <p className="mt-4 text-xs text-[#5C6B6B]">
-              No spam. Next webinar: Aug 12.
+            <p className="mt-4 text-sm text-white/50">
+              No spam. Unsubscribe anytime.
             </p>
           </div>
         </section>
 
-        <section className="border-y border-[#E8F0F0] bg-[#F7FAFA] px-6 py-10">
-          <div className="mx-auto max-w-5xl">
-            <p className="mb-6 text-center text-xs font-medium uppercase tracking-widest text-[#5C6B6B]">
-              Trusted by teams at
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-50">
-              {["Linear", "Notion", "Figma", "Vercel", "Anthropic"].map((name) => (
-                <span key={name} className="text-sm font-semibold tracking-tight">
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="text-xs font-medium uppercase tracking-widest text-[#5C6B6B]">The problem</span>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-              Most teams use AI like a faster search engine.
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#5C6B6B]">
-              They copy prompts from social media, get inconsistent results, and quietly give up. The missing piece isn't better tools — it's a clear operating system for how AI fits into real work.
-            </p>
-          </div>
-        </section>
-
-        <section id="webinars" className="bg-[#F7FAFA] px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-16 text-center">
-              <span className="text-xs font-medium uppercase tracking-widest text-[#5C6B6B]">Upcoming webinars</span>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Pick a starting point.
+        <section id="mission" className="px-6 py-24 md:py-32">
+          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
+            <div className="glass rounded-3xl p-8 md:p-12">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+                Vision
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+                EMPOWER EVERYONE
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-[#5C6B6B]">
-                Small live sessions, limited seats, direct access to the instructor.
+              <p className="mt-6 text-lg leading-relaxed text-white/70">
+                Become the most trusted AI education brand in Mongolia.
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
-              {webinars.map((webinar) => (
-                <article
-                  key={webinar.id}
-                  className="group flex flex-col rounded-2xl border border-[#E8F0F0] bg-white p-6 transition-shadow hover:shadow-lg hover:shadow-cyan-500/5"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-[#5C6B6B]">
-                      {webinar.level}
-                    </span>
-                    <span className="gradient-text text-xs font-semibold">
-                      Live
-                    </span>
-                  </div>
+            <div className="glass rounded-3xl p-8 md:p-12">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
+                Mission
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+                Make AI practical
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-white/70">
+                Make artificial intelligence practical, understandable, and accessible for everyone through education, tools, and community.
+              </p>
+            </div>
+          </div>
+        </section>
 
-                  <h3 className="mt-5 text-xl font-semibold leading-tight">
-                    {webinar.title}
-                  </h3>
+        <section id="funnel" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-16 text-center">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+                The journey
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+                From free content to full implementation.
+              </h2>
+            </div>
 
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[#5C6B6B]">
-                    {webinar.description}
-                  </p>
-
-                  <div className="mt-6 border-t border-[#E8F0F0] pt-5">
-                    <div className="flex items-center gap-3 text-xs font-medium text-[#5C6B6B]">
-                      <span>{webinar.date}</span>
-                      <span className="h-1 w-1 rounded-full bg-[#5C6B6B]"></span>
-                      <span>{webinar.time}</span>
-                      <span className="h-1 w-1 rounded-full bg-[#5C6B6B]"></span>
-                      <span>{webinar.duration}</span>
+            <div className="relative">
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-white/20 md:left-1/2" />
+              <div className="space-y-8">
+                {funnel.map((item, index) => (
+                  <div
+                    key={item.step}
+                    className={`relative flex items-center gap-6 ${
+                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
+                  >
+                    <div className="hidden w-1/2 md:block" />
+                    <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-[#0a1a1a] text-xs font-semibold text-white">
+                      {index + 1}
                     </div>
-
-                    <button className="mt-4 w-full rounded-full bg-[#0A1A1A] py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1a2a2a]">
-                      Reserve seat — $149
-                    </button>
+                    <div className="glass flex-1 rounded-2xl p-5"
+                    >
+                      <h3 className="text-lg font-semibold">{item.step}</h3>
+                      <p className="mt-1 text-sm text-white/60">{item.desc}</p>
+                    </div>
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-16 text-center">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
+                3 Products
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+                Learn at your level.
+              </h2>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {products.map((product) => (
+                <article
+                  key={product.level}
+                  className="glass relative flex flex-col rounded-3xl p-8 transition-transform hover:-translate-y-1"
+                >
+                  {!product.available && (
+                    <span className="absolute -top-3 right-6 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#0a1a1a]">
+                      Coming soon
+                    </span>
+                  )}
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+                    {product.subtitle}
+                  </span>
+                  <h3 className="mt-2 text-2xl font-semibold">{product.level}</h3>
+                  <p className="mt-4 flex-1 text-white/70">{product.desc}</p>
+                  <ul className="mt-6 space-y-2">
+                    {product.topics.map((topic) => (
+                      <li key={topic} className="flex items-center gap-2 text-sm text-white/60">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF]" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    disabled={!product.available}
+                    className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition-colors ${
+                      product.available
+                        ? "bg-white text-[#0a1a1a] hover:bg-white/90"
+                        : "cursor-not-allowed border border-white/20 bg-white/5 text-white/40"
+                    }`}
+                  >
+                    {product.available ? "Start learning" : "Notify me"}
+                  </button>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="approach" className="px-6 py-24 md:py-32">
+        <section id="platform" className="px-6 py-24 md:py-32">
           <div className="mx-auto max-w-5xl">
-            <div className="mb-16 text-center">
-              <span className="text-xs font-medium uppercase tracking-widest text-[#5C6B6B]">Our approach</span>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Three moves. Real results.
+            <div className="mb-12 text-center">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+                Platform
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+                Find us everywhere you learn.
               </h2>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
-              {steps.map((step) => (
-                <div key={step.number} className="text-center">
-                  <span className="gradient-text font-mono text-sm font-medium">
-                    {step.number}
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+              {platforms.map((platform) => (
+                <div
+                  key={platform.name}
+                  className="glass flex flex-col items-center justify-center rounded-2xl p-6 text-center transition-colors hover:bg-white/10"
+                >
+                  <span className="text-base font-semibold">{platform.name}</span>
+                  <span className="mt-1 text-xs text-white/50">
+                    {platform.priority === 1 ? "Primary" : "Secondary"}
                   </span>
-                  <h3 className="mt-4 text-xl font-semibold">{step.title}</h3>
-                  <p className="mx-auto mt-3 max-w-xs text-[#5C6B6B]">{step.body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="about" className="gradient-bg px-6 py-24 text-[#0A1A1A] md:py-32">
-          <div className="mx-auto max-w-5xl">
-            <div className="grid gap-12 md:grid-cols-2">
-              {testimonials.map((t) => (
-                <blockquote key={t.author} className="flex flex-col justify-between rounded-2xl border border-white/30 bg-white/40 p-8 backdrop-blur-sm"
-                >
-                  <p className="text-xl font-medium leading-snug tracking-tight md:text-2xl">
-                    “{t.quote}”
-                  </p>
-                  <footer className="mt-8">
-                    <strong className="block text-sm font-semibold">{t.author}</strong>
-                    <span className="text-sm opacity-70">{t.role}</span>
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-2xl rounded-3xl border border-[#E8F0F0] bg-[#F7FAFA] p-8 text-center md:p-14">
+        <section id="contact" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-2xl rounded-3xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-xl md:p-14">
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Ready to make AI predictable?
+              AI-тай хамт өсөөрэй.
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-lg text-[#5C6B6B]">
-              Join a live webinar. Leave with prompts, workflows, and a plan your team can run this week.
+            <p className="mx-auto mt-4 max-w-lg text-lg text-white/70">
+              Join the waitlist for early access to webinars, courses, and community updates.
             </p>
             <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
               <input
                 type="email"
-                placeholder="Work email"
-                className="flex-1 rounded-full border border-[#E8F0F0] bg-white px-5 py-3 text-sm outline-none transition-colors placeholder:text-[#5C6B6B] focus:border-[#00E5D4]"
+                placeholder="И-мэйл хаяг"
+                className="flex-1 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white outline-none backdrop-blur-md transition-colors placeholder:text-white/50 focus:border-white/40"
               />
               <button
                 type="submit"
-                className="gradient-bg rounded-full px-6 py-3 text-sm font-medium text-[#0A1A1A] transition-opacity hover:opacity-90"
+                className="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#0a1a1a] transition-transform hover:scale-105"
               >
-                Get early access
+                Join waitlist
               </button>
             </form>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-[#E8F0F0] bg-white px-6 py-12">
-        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+      <footer className="border-t border-white/10 bg-[#0a1a1a]/50 px-6 py-12">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div className="flex items-center gap-2.5">
             <Image
               src="/logo.svg"
               alt="Promptly"
-              width={28}
-              height={28}
-              className="h-7 w-7"
+              width={32}
+              height={32}
+              className="h-8 w-8"
             />
-            <span className="text-lg font-semibold">Promptly</span>
+            <span className="text-xl font-semibold">Promptly</span>
           </div>
 
-          <div className="flex gap-8 text-sm text-[#5C6B6B]">
-            <Link href="#" className="hover:text-[#0A1A1A]">Privacy</Link>
-            <Link href="#" className="hover:text-[#0A1A1A]">Terms</Link>
-            <Link href="mailto:hello@promptly.mn" className="hover:text-[#0A1A1A]">hello@promptly.mn</Link>
+          <div className="flex flex-wrap gap-6 text-sm text-white/60">
+            {platforms.map((p) => (
+              <Link key={p.name} href="#" className="hover:text-white">
+                {p.name}
+              </Link>
+            ))}
           </div>
 
-          <p className="text-sm text-[#5C6B6B]">
-            © 2026 Promptly
+          <p className="text-sm text-white/40">
+            © 2026 Promptly. All rights reserved.
           </p>
         </div>
       </footer>

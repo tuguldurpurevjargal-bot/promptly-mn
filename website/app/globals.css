@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #0A1A1A;
+  --background: #0a1a1a;
+  --foreground: #ffffff;
   --accent: #00E5D4;
   --accent-start: #00F0FF;
+  --accent-mid: #00E5D4;
   --accent-end: #4FFFB0;
-  --text-secondary: #5C6B6B;
-  --surface: #F7FAFA;
-  --border: #E8F0F0;
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-dark: #0a1a1a;
+  --text-dark-secondary: #5C6B6B;
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-solid: #ffffff;
+  --border: rgba(255, 255, 255, 0.14);
+  --border-dark: #E8F0F0;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -18,10 +23,15 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-start: var(--accent-start);
+  --color-accent-mid: var(--accent-mid);
   --color-accent-end: var(--accent-end);
   --color-text-secondary: var(--text-secondary);
+  --color-text-dark: var(--text-dark);
+  --color-text-dark-secondary: var(--text-dark-secondary);
   --color-surface: var(--surface);
+  --color-surface-solid: var(--surface-solid);
   --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -33,7 +43,16 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 229, 212, 0.2);
+  background: rgba(0, 229, 212, 0.3);
+  color: white;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-mid) 50%, var(--accent-end));
+}
+
+.gradient-bg-soft {
+  background: linear-gradient(160deg, var(--accent-start) 0%, var(--accent-mid) 40%, var(--accent-end) 100%);
 }
 
 .gradient-text {
@@ -43,18 +62,22 @@ body {
   background-clip: text;
 }
 
-.gradient-bg {
-  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.gradient-border {
-  border-image: linear-gradient(135deg, var(--accent-start), var(--accent-end)) 1;
+.glass-dark {
+  background: rgba(10, 26, 26, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(10, 26, 26, 0.08);
 }
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-end);
   outline-offset: 2px;
 }
 
