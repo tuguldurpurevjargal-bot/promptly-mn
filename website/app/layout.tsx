@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Promptly — AI Efficiency Webinars for Teams",
   description:
-    "Live webinars and practical training that turn AI from a novelty into a reliable operating advantage. Learn prompting, workflow design, and AI optimization from experts.",
+    "Live webinars and practical training that turn AI from a novelty into a reliable operating advantage.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#F8F7F5] text-[#0A0A0B]">
+      <body className="min-h-full flex flex-col bg-white text-[#0A1A1A]">
         {children}
       </body>
     </html>

@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8F7F5;
-  --foreground: #0A0A0B;
-  --accent: #2563FF;
-  --accent-warm: #FF4D00;
-  --text-secondary: #57585C;
-  --surface: #FFFFFF;
-  --muted: #E8E7E4;
+  --background: #FFFFFF;
+  --foreground: #0A1A1A;
+  --accent: #00E5D4;
+  --accent-start: #00F0FF;
+  --accent-end: #4FFFB0;
+  --text-secondary: #5C6B6B;
+  --surface: #F7FAFA;
+  --border: #E8F0F0;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --color-accent-warm: var(--accent-warm);
+  --color-accent-start: var(--accent-start);
+  --color-accent-end: var(--accent-end);
   --color-text-secondary: var(--text-secondary);
   --color-surface: var(--surface);
-  --color-muted: var(--muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -29,10 +33,24 @@ body {
 }
 
 ::selection {
-  background: rgba(37, 99, 255, 0.18);
+  background: rgba(0, 229, 212, 0.2);
 }
 
-/* Focus styles */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+}
+
+.gradient-border {
+  border-image: linear-gradient(135deg, var(--accent-start), var(--accent-end)) 1;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
@@ -40,7 +58,6 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-/* Smooth reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
