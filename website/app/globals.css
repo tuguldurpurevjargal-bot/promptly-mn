@@ -1,20 +1,36 @@
 @import "tailwindcss";
 
 :root {
+  --background: #F8FDFB;
+  --foreground: #0a1a1a;
+  --surface: #ffffff;
+  --surface-elevated: #f0f9f6;
+  --accent: #00C8B8;
+  --accent-start: #00E5D4;
+  --accent-mid: #00E5D4;
+  --accent-end: #4FFFB0;
+  --text-primary: #0a1a1a;
+  --text-secondary: #3a5a56;
+  --text-muted: #6b8b86;
+  --border: rgba(0, 229, 212, 0.25);
+  --font-heading: var(--font-arimo);
+  --font-body: var(--font-roboto);
+  --font-mono: var(--font-roboto);
+}
+
+.dark {
   --background: #071414;
   --foreground: #ffffff;
   --surface: #0f1f1f;
   --surface-elevated: #162727;
   --accent: #00E5D4;
   --accent-start: #00F0FF;
+  --accent-mid: #00E5D4;
   --accent-end: #4FFFB0;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.78);
   --text-muted: rgba(255, 255, 255, 0.55);
   --border: rgba(255, 255, 255, 0.12);
-  --font-heading: var(--font-arimo);
-  --font-body: var(--font-roboto);
-  --font-mono: var(--font-roboto);
 }
 
 @theme inline {
@@ -24,6 +40,7 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-accent: var(--accent);
   --color-accent-start: var(--accent-start);
+  --color-accent-mid: var(--accent-mid);
   --color-accent-end: var(--accent-end);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -45,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ::selection {
   background: rgba(0, 229, 212, 0.3);
-  color: white;
+  color: inherit;
 }
 
 .gradient-text {
@@ -59,18 +76,12 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--accent-start), var(--accent-mid) 50%, var(--accent-end));
 }
 
-.gradient-ring {
-  position: relative;
+.gradient-bg-soft {
+  background: linear-gradient(160deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 229, 212, 0.15) 40%, rgba(79, 255, 176, 0.15) 100%);
 }
 
-.gradient-ring::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-  z-index: -1;
-  opacity: 0.4;
+.dark .gradient-bg-soft {
+  background: linear-gradient(160deg, rgba(0, 240, 255, 0.08) 0%, rgba(0, 229, 212, 0.08) 40%, rgba(79, 255, 176, 0.08) 100%);
 }
 
 a:focus-visible,

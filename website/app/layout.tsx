@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Arimo, Roboto } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./providers";
+import { LanguageProvider } from "./i18n/context";
 
 const arimo = Arimo({
   variable: "--font-arimo",
@@ -28,10 +30,15 @@ export default function RootLayout({
   return (
     <html
       lang="mn"
+      suppressHydrationWarning
       className={`${arimo.variable} ${roboto.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#071414] text-white">
-        {children}
+      <body className="min-h-full flex flex-col bg-white text-[#0a1a1a] dark:bg-[#071414] dark:text-white">
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
