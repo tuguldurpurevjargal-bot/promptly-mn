@@ -1,47 +1,92 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const platforms = [
-  { name: "Facebook", priority: 1 },
-  { name: "Instagram", priority: 2 },
-  { name: "Threads", priority: 2 },
-  { name: "LinkedIn", priority: 2 },
-  { name: "YouTube Shorts", priority: 1 },
-  { name: "YouTube Longform", priority: 2 },
+const audiences = [
+  {
+    title: "Хувь хүмүүс",
+    desc: "AI-г өдөр тутмын ажилдаа хэрэглэж, цагаа хэмнэж, бүтээмжээ дээшлүүлэхийг хүсэж буй хэн бүхэн.",
+  },
+  {
+    title: "Багууд",
+    desc: "Ажлын процесоо автоматжуулж, хурдан шийдвэр гаргах дадал суулгахыг зорьж буй баг, хэсэг.",
+  },
+  {
+    title: "Бизнесүүд",
+    desc: "AI-г бизнесийн үйл ажиллагаандаа нэвтрүүлж, өрсөлдөх чадвараа нэмэгдүүлэхийг хүсэж буй компани.",
+  },
 ];
 
-const funnel = [
-  { step: "Free content", desc: "Social posts, clips, and free resources." },
-  { step: "Newsletter", desc: "Weekly AI insights delivered to your inbox." },
-  { step: "Webinar", desc: "Live sessions that teach practical skills." },
-  { step: "Course", desc: "Structured learning paths for every level." },
-  { step: "Consulting", desc: "Hands-on guidance for your team." },
-  { step: "AI implementation", desc: "End-to-end integration into your workflows." },
-  { step: "Monthly retainers", desc: "Ongoing support as you scale." },
-];
-
-const products = [
+const learningPath = [
   {
     level: "Анхан шат",
     subtitle: "Beginner",
-    desc: "AI-ийн үндэс, ойлголт, өдөр тутмын хэрэглээ.",
-    topics: ["AI basics", "Daily AI use", "Prompting fundamentals"],
+    tagline: "AI-ийн үндэс, ойлголт, өдөр тутмын хэрэглээ",
+    description:
+      "Хэрхэн AI-тай зөв харилцах, ашгийн хэрэглээ, өдөр бүр хэрэглэж болох хэрэгслүүдийг энгийнээр ойлгоно.",
+    topics: ["AI гэж юу вэ?", "Prompt бичих үндэс", "Өдөр тутмын хэрэглээ", "Хамгийн сайн үнэгүй хэрэгслүүд"],
+    cta: "Эхлэх",
     available: true,
   },
   {
     level: "Дунд шат",
     subtitle: "Intermediate",
-    desc: "Ажлын бүтээмж, workflow, automation, prompt engineering.",
-    topics: ["Workflow design", "Automation", "Prompt engineering"],
+    tagline: "Ажлын бүтээмж, workflow, automation, prompt engineering",
+    description:
+      "Өөрийн ажлын урсгалыг тодорхойлж, AI-г түүнд хэрхэн хэвшүүлэх, автоматжуулах, илүү сайн prompt бичихийг сурна.",
+    topics: ["Workflow optimization", "Automation", "Prompt engineering", "Багийн хэрэглээ"],
+    cta: "Дэлгэрэнгүй",
     available: true,
   },
   {
     level: "Ахисан шат",
     subtitle: "Advanced",
-    desc: "AI систем, агент, optimization, бизнесийн хэрэгжилт.",
-    topics: ["AI systems", "Agents", "Business optimization"],
+    tagline: "AI систем, агент, optimization, бизнесийн хэрэгжилт",
+    description:
+      "Бизнесийн нарийн үйл ажиллагаанд AI систем болон агентуудыг нэвтрүүлж, хэмжигдэхүйц үр дүнг бий болгох.",
+    topics: ["AI systems design", "AI agents", "Business optimization", "Implementation strategy"],
+    cta: "Coming soon",
     available: false,
   },
+];
+
+const journey = [
+  {
+    step: "Үнэгүй контент",
+    desc: "Facebook, YouTube Shorts, Instagram, Threads, LinkedIn дээрх өдөр тутмын зөвлөгөө, кейс study, хэрэгслийн танилцуулга.",
+  },
+  {
+    step: "Newsletter",
+    desc: "Долоо хоног бүр и-мэйлээр ирэх шинээр гарсан AI хэрэгслүүд, арга техник, Монголд хэрэглэх боломж.",
+  },
+  {
+    step: "Webinar",
+    desc: "Live хичээлээс тактик, жишээ, асуулт хариулт авна. Богино хугацаанд конкрет чадвар суулгаж өгнө.",
+  },
+  {
+    step: "Course",
+    desc: "Бүтэн сургалтын хөтөлбөр — видео, дадлага даалгавар, шалгалт, сертификат.",
+  },
+  {
+    step: "Consulting",
+    desc: "Танай баг, компанийн хэрэгцээнд зориулсан AI зөвлөгөө, стратеги, хэрэгжүүлэх төлөвлөгөө.",
+  },
+  {
+    step: "AI implementation",
+    desc: "Сонгосон AI шийдлийг танай системд хэрэгжүүлж, ажилчдыг сургаж, үр дүнг хэмжинэ.",
+  },
+  {
+    step: "Monthly retainers",
+    desc: "Урт хугацаанд дэмжлэг үзүүлж, шинэ хэрэгслүүд гарч буй үед танай багийг тогтмол шинэчилж, хөгжүүлж байна.",
+  },
+];
+
+const platforms = [
+  { name: "Facebook", priority: "Primary" },
+  { name: "YouTube Shorts", priority: "Primary" },
+  { name: "Instagram", priority: "Secondary" },
+  { name: "Threads", priority: "Secondary" },
+  { name: "LinkedIn", priority: "Secondary" },
+  { name: "YouTube Longform", priority: "Secondary" },
 ];
 
 export default function Home() {
@@ -66,14 +111,14 @@ export default function Home() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-            <Link href="#mission" className="text-sm text-white/70 hover:text-white">
-              Mission
+            <Link href="#why" className="text-sm text-white/70 hover:text-white">
+              Why Promptly
             </Link>
-            <Link href="#funnel" className="text-sm text-white/70 hover:text-white">
-              Funnel
+            <Link href="#path" className="text-sm text-white/70 hover:text-white">
+              Learning path
             </Link>
-            <Link href="#products" className="text-sm text-white/70 hover:text-white">
-              Courses
+            <Link href="#journey" className="text-sm text-white/70 hover:text-white">
+              How it works
             </Link>
             <Link href="#contact" className="text-sm text-white/70 hover:text-white">
               Contact
@@ -84,7 +129,7 @@ export default function Home() {
             href="#contact"
             className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#071414] transition-transform hover:scale-105"
           >
-            Join waitlist
+            Newsletter
           </Link>
         </div>
       </header>
@@ -94,7 +139,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl text-center">
             <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/90">
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#4FFFB0]"></span>
-              Mongolia's AI education community
+              Монголын AI боловсролын нийгэмлэг
             </div>
 
             <h1 className="font-[family-name:var(--font-arimo)] mx-auto max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl">
@@ -103,72 +148,121 @@ export default function Home() {
             </h1>
 
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/80 md:text-xl">
-              Make artificial intelligence practical, understandable, and accessible for everyone through education, tools, and community.
+              AI-г хүн бүрт ойлгомжтой, өдөр тутмын ажилдаа хэрэглэхэд бэлэн болгоё. Боловсрол, хэрэгсэл, нийгэмлэг — гурван талаас дэмжнэ.
             </p>
 
-            <form className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="И-мэйл хаяг"
-                className="flex-1 rounded-full border border-white/20 bg-white/5 px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-white/50 focus:border-[#4FFFB0]/50"
-              />
-              <button
-                type="submit"
+            <div className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
+              <Link
+                href="#contact"
                 className="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#071414] transition-transform hover:scale-105"
               >
-                Нэгдэх
-              </button>
-            </form>
-
-            <p className="mt-4 text-sm text-white/55">
-              No spam. Unsubscribe anytime.
-            </p>
+                Newsletter бүртгүүлэх
+              </Link>
+              <Link
+                href="#path"
+                className="rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Сургалтууд үзэх
+              </Link>
+            </div>
           </div>
         </section>
 
-        <section id="mission" className="px-6 py-24 md:py-32">
-          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
-            <div className="rounded-3xl bg-[#0f1f1f] p-8 md:p-12">
+        <section id="why" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-16 text-center">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
-                Vision
+                Vision & Mission
               </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
                 EMPOWER EVERYONE
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-white/80">
-                Become the most trusted AI education brand in Mongolia.
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+                Монгол дахь хамгийн итгэл үнэмшилтэй AI боловсролын брэнд болох зорилгын дор, бид AI-г хүн бүрт хүртээмжтэй, ойлгомжтой, хэрэглээнд ойр болгохыг эрхэмлэнэ.
               </p>
             </div>
 
-            <div className="rounded-3xl bg-[#0f1f1f] p-8 md:p-12">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
-                Mission
-              </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-                Make AI practical
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-white/80">
-                Make artificial intelligence practical, understandable, and accessible for everyone through education, tools, and community.
-              </p>
+            <div className="grid gap-6 md:grid-cols-3">
+              {audiences.map((audience) => (
+                <div key={audience.title} className="rounded-3xl bg-[#0f1f1f] p-8"
+                >
+                  <h3 className="font-[family-name:var(--font-arimo)] text-xl font-semibold">
+                    {audience.title}
+                  </h3>
+                  <p className="mt-3 text-white/75">{audience.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section id="funnel" className="px-6 py-24 md:py-32">
+        <section id="path" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-16 text-center">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
+                3-р түвшин
+              </span>
+              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+                Таны түвшинд тохирсон сургалт.
+              </h2>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {learningPath.map((product) => (
+                <article
+                  key={product.level}
+                  className="relative flex flex-col rounded-3xl bg-[#0f1f1f] p-8 transition-transform hover:-translate-y-1"
+                >
+                  {!product.available && (
+                    <span className="absolute -top-3 right-6 rounded-full bg-[#162727] px-3 py-1 text-xs font-semibold text-white/90">
+                      Coming soon
+                    </span>
+                  )}
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+                    {product.subtitle}
+                  </span>
+                  <h3 className="font-[family-name:var(--font-arimo)] mt-2 text-2xl font-semibold">{product.level}</h3>
+                  <p className="mt-2 text-sm font-medium text-white/90">{product.tagline}</p>
+                  <p className="mt-4 flex-1 text-white/70">{product.description}</p>
+                  <ul className="mt-6 space-y-2">
+                    {product.topics.map((topic) => (
+                      <li key={topic} className="flex items-center gap-2 text-sm text-white/60">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF]" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    disabled={!product.available}
+                    className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition-colors ${
+                      product.available
+                        ? "bg-white text-[#071414] hover:bg-white/90"
+                        : "cursor-not-allowed border border-white/15 bg-transparent text-white/45"
+                    }`}
+                  >
+                    {product.available ? product.cta : "Coming soon"}
+                  </button>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="journey" className="px-6 py-24 md:py-32">
           <div className="mx-auto max-w-4xl">
             <div className="mb-16 text-center">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
-                The journey
+                How it works
               </span>
               <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                From free content to full implementation.
+                Үнэгүй контентээс бизнесийн хэрэгжилт хүртэл.
               </h2>
             </div>
 
             <div className="relative">
               <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[#00F0FF] via-[#4FFFB0] to-[#00F0FF]/20 md:left-1/2" />
               <div className="space-y-6">
-                {funnel.map((item, index) => (
+                {journey.map((item, index) => (
                   <div
                     key={item.step}
                     className={`relative flex items-center gap-6 ${
@@ -192,66 +286,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="products" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-16 text-center">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
-                3 Products
-              </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Learn at your level.
-              </h2>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              {products.map((product) => (
-                <article
-                  key={product.level}
-                  className="relative flex flex-col rounded-3xl bg-[#0f1f1f] p-8 transition-transform hover:-translate-y-1"
-                >
-                  {!product.available && (
-                    <span className="absolute -top-3 right-6 rounded-full bg-[#162727] px-3 py-1 text-xs font-semibold text-white/90">
-                      Coming soon
-                    </span>
-                  )}
-                  <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
-                    {product.subtitle}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-arimo)] mt-2 text-2xl font-semibold">{product.level}</h3>
-                  <p className="mt-4 flex-1 text-white/75">{product.desc}</p>
-                  <ul className="mt-6 space-y-2">
-                    {product.topics.map((topic) => (
-                      <li key={topic} className="flex items-center gap-2 text-sm text-white/65">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF]" />
-                        {topic}
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    disabled={!product.available}
-                    className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition-colors ${
-                      product.available
-                        ? "bg-white text-[#071414] hover:bg-white/90"
-                        : "cursor-not-allowed border border-white/15 bg-transparent text-white/45"
-                    }`}
-                  >
-                    {product.available ? "Start learning" : "Notify me"}
-                  </button>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="platform" className="px-6 py-24 md:py-32">
           <div className="mx-auto max-w-5xl">
             <div className="mb-12 text-center">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#00F0FF]">
                 Platform
               </span>
               <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-                Find us everywhere you learn.
+                Биднийг хаанаас дагах вэ?
               </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-white/70">
+                Үнэгүй контентоо голчлон Facebook болон YouTube Shorts дээр, нэмэлтээр Instagram, Threads, LinkedIn, YouTube Longform дээр түгээдэг.
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -262,7 +308,7 @@ export default function Home() {
                 >
                   <span className="font-[family-name:var(--font-arimo)] text-base font-semibold">{platform.name}</span>
                   <span className="mt-1 text-xs text-white/50">
-                    {platform.priority === 1 ? "Primary" : "Secondary"}
+                    {platform.priority}
                   </span>
                 </div>
               ))}
@@ -272,11 +318,14 @@ export default function Home() {
 
         <section id="contact" className="px-6 py-24 md:py-32">
           <div className="mx-auto max-w-2xl rounded-3xl bg-[#0f1f1f] p-8 text-center md:p-14">
-            <h2 className="font-[family-name:var(--font-arimo)] text-3xl font-semibold tracking-tight md:text-4xl">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#4FFFB0]">
+              Newsletter
+            </span>
+            <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
               AI-тай хамт өсөөрэй.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg text-white/75">
-              Join the waitlist for early access to webinars, courses, and community updates.
+              Долоо хоног бүр шинэ AI хэрэгсэл, арга техник, Монголд хэрэглэх боломжийн талаар и-мэйлээр хүргэнэ.
             </p>
             <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
               <input
@@ -288,9 +337,12 @@ export default function Home() {
                 type="submit"
                 className="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#071414] transition-transform hover:scale-105"
               >
-                Join waitlist
+                Бүртгүүлэх
               </button>
             </form>
+            <p className="mt-4 text-sm text-white/50">
+              Spam авахгүй. Бүртгэлээ хүссэн үедээ цуцлана.
+            </p>
           </div>
         </section>
       </main>
