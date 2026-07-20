@@ -37,7 +37,7 @@ export default function Home() {
 
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         <section className="relative px-4 sm:px-6 pb-20 pt-20 sm:pb-28 sm:pt-24 md:pt-36">
           <div className="mx-auto max-w-5xl text-center">
             <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-[#00E5D4]/30 bg-white/60 px-4 py-1.5 text-xs font-medium text-[#0a1a1a] backdrop-blur-md dark:border-white/20 dark:bg-white/10 dark:text-white/90">
@@ -85,18 +85,18 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6">
               {audiences.map((audience) => {
                 const data = t.audiences[audience.key];
                 return (
                   <div
                     key={audience.key}
-                    className="rounded-3xl bg-white p-6 shadow-sm shadow-[#00E5D4]/5 dark:bg-[#0f1f1f] sm:p-8"
+                    className="rounded-3xl bg-white p-3 shadow-sm shadow-[#00E5D4]/5 dark:bg-[#0f1f1f] sm:p-6 md:p-8"
                   >
-                    <h3 className="font-[family-name:var(--font-arimo)] text-xl font-semibold text-[#0a1a1a] dark:text-white">
+                    <h3 className="font-[family-name:var(--font-arimo)] text-sm font-semibold text-[#0a1a1a] sm:text-xl dark:text-white">
                       {data.title}
                     </h3>
-                    <p className="mt-3 text-[#3a5a56] dark:text-white/75">{data.desc}</p>
+                    <p className="mt-2 text-xs text-[#3a5a56] sm:mt-3 sm:text-base dark:text-white/75">{data.desc}</p>
                   </div>
                 );
               })}
@@ -115,32 +115,32 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6">
               {courses.map((course) => {
                 const data = t.path[course.key];
                 return (
                   <article
                     key={course.key}
-                    className="relative flex flex-col rounded-3xl bg-white p-6 shadow-sm shadow-[#00E5D4]/5 transition-transform hover:-translate-y-1 dark:bg-[#0f1f1f] sm:p-8"
+                    className="relative flex flex-col rounded-3xl bg-white p-3 shadow-sm shadow-[#00E5D4]/5 transition-transform hover:-translate-y-1 dark:bg-[#0f1f1f] sm:p-6 md:p-8"
                   >
                     {course.key === "advanced" && (
                       <span className="absolute -top-3 right-6 rounded-full bg-[#f0f9f6] px-3 py-1 text-xs font-semibold text-[#0a1a1a] dark:bg-[#162727] dark:text-white/90">
                         {data.soon}
                       </span>
                     )}
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#4FFFB0]">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#4FFFB0] sm:text-xs">
                       {data.subtitle}
                     </span>
-                    <h3 className="font-[family-name:var(--font-arimo)] mt-2 text-2xl font-semibold text-[#0a1a1a] dark:text-white">
+                    <h3 className="font-[family-name:var(--font-arimo)] mt-1 text-lg font-semibold text-[#0a1a1a] sm:mt-2 sm:text-2xl dark:text-white">
                       {data.level}
                     </h3>
-                    <p className="mt-2 text-sm font-medium text-[#0a1a1a]/90 dark:text-white/90">{data.tagline}</p>
-                    <p className="mt-4 flex-1 text-[#3a5a56] dark:text-white/70">{data.description}</p>
-                    <ul className="mt-6 space-y-2">
+                    <p className="mt-1 text-xs font-medium text-[#0a1a1a]/90 dark:text-white/90 sm:text-sm">{data.tagline}</p>
+                    <p className="mt-2 flex-1 text-xs text-[#3a5a56] dark:text-white/70 sm:text-base">{data.description}</p>
+                    <ul className="mt-4 space-y-1 sm:mt-6 sm:space-y-2">
                       {data.topics.map((topic) => (
                         <li
                           key={topic}
-                          className="flex items-center gap-2 text-sm text-[#6b8b86] dark:text-white/60"
+                          className="flex items-center gap-2 text-xs text-[#6b8b86] dark:text-white/60 sm:text-sm"
                         >
                           <span className="h-1.5 w-1.5 rounded-full bg-[#00E5D4]" />
                           {topic}
@@ -149,7 +149,7 @@ export default function Home() {
                     </ul>
                     <button
                       disabled={course.key === "advanced"}
-                      className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition-colors ${
+                      className={`mt-6 w-full rounded-full py-2.5 text-xs font-semibold transition-colors sm:mt-8 sm:py-3 sm:text-sm ${
                         course.key !== "advanced"
                           ? "bg-[#0a1a1a] text-white hover:bg-[#1a2a2a] dark:bg-white dark:text-[#071414] dark:hover:bg-white/90"
                           : "cursor-not-allowed border border-[#0a1a1a]/15 bg-transparent text-[#0a1a1a]/45 dark:border-white/15 dark:text-white/45"
