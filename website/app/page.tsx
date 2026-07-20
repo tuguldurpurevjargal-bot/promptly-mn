@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useLanguage } from "@/app/i18n/context";
 import { Header } from "@/app/components/header";
 
@@ -16,6 +17,11 @@ const platforms = [
 
 export default function Home() {
   const { t } = useLanguage();
+  const [expandedCourses, setExpandedCourses] = useState<Record<string, boolean>>({});
+
+  const toggleCourse = (key: string) => {
+    setExpandedCourses((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const audiences = [
     { key: "individuals" as const },
@@ -118,45 +124,61 @@ export default function Home() {
             <div className="grid grid-cols-3 gap-3 sm:gap-6">
               {courses.map((course) => {
                 const data = t.path[course.key];
+                const isExpanded = !!expandedCourses[course.key];
+                const isAdvanced = course.key === "advanced";
                 return (
                   <article
                     key={course.key}
                     className="relative flex flex-col rounded-3xl bg-white p-3 shadow-sm shadow-[#00E5D4]/5 transition-transform hover:-translate-y-1 dark:bg-[#0f1f1f] sm:p-6 md:p-8"
                   >
-                    {course.key === "advanced" && (
-                      <span className="absolute -top-3 right-6 rounded-full bg-[#f0f9f6] px-3 py-1 text-xs font-semibold text-[#0a1a1a] dark:bg-[#162727] dark:text-white/90">
+                    {isAdvanced && (
+                      <span className="absolute -top-3 right-2 rounded-full bg-[#f0f9f6] px-2 py-1 text-[10px] font-semibold text-[#0a1a1a] dark:bg-[#162727] dark:text-white/90 sm:right-6 sm:px-3 sm:text-xs">
                         {data.soon}
                       </span>
                     )}
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#4FFFB0] sm:text-xs">
                       {data.subtitle}
                     </span>
-                    <h3 className="font-[family-name:var(--font-arimo)] mt-1 text-lg font-semibold text-[#0a1a1a] sm:mt-2 sm:text-2xl dark:text-white">
+                    <h3 className="font-[family-name:var(--font-arimo)] mt-1 text-base font-semibold text-[#0a1a1a] sm:mt-2 sm:text-2xl dark:text-white">
                       {data.level}
                     </h3>
-                    <p className="mt-1 text-xs font-medium text-[#0a1a1a]/90 dark:text-white/90 sm:text-sm">{data.tagline}</p>
-                    <p className="mt-2 flex-1 text-xs text-[#3a5a56] dark:text-white/70 sm:text-base">{data.description}</p>
-                    <ul className="mt-4 space-y-1 sm:mt-6 sm:space-y-2">
-                      {data.topics.map((topic) => (
-                        <li
-                          key={topic}
-                          className="flex items-center gap-2 text-xs text-[#6b8b86] dark:text-white/60 sm:text-sm"
+
+                    {!isExpanded && (
+                      <div className="mt-2 flex flex-1 flex-col justify-end sm:hidden">
+                        <button
+                          onClick={() => toggleCourse(course.key)}
+                          className="w-full rounded-full border border-[#00E5D4]/30 bg-[#00E5D4]/5 px-2 py-2 text-[10px] font-semibold text-[#0a1a1a] transition-colors hover:bg-[#00E5D4]/10 dark:border-white/20 dark:bg-white/5 dark:text-white"
                         >
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#00E5D4]" />
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      disabled={course.key === "advanced"}
-                      className={`mt-6 w-full rounded-full py-2.5 text-xs font-semibold transition-colors sm:mt-8 sm:py-3 sm:text-sm ${
-                        course.key !== "advanced"
-                          ? "bg-[#0a1a1a] text-white hover:bg-[#1a2a2a] dark:bg-white dark:text-[#071414] dark:hover:bg-white/90"
-                          : "cursor-not-allowed border border-[#0a1a1a]/15 bg-transparent text-[#0a1a1a]/45 dark:border-white/15 dark:text-white/45"
-                      }`}
-                    >
-                      {course.key !== "advanced" ? data.cta : data.soon}
-                    </button>
+                          {t.path.seeMore}
+                        </button>
+                      </div>
+                    )}
+
+                    <div className={`${isExpanded ? "block" : "hidden"} sm:block`}>
+                      <p className="mt-1 text-xs font-medium text-[#0a1a1a]/90 dark:text-white/90 sm:text-sm">{data.tagline}</p>
+                      <p className="mt-2 flex-1 text-xs text-[#3a5a56] dark:text-white/70 sm:text-base">{data.description}</p>
+                      <ul className="mt-4 space-y-1 sm:mt-6 sm:space-y-2">
+                        {data.topics.map((topic) => (
+                          <li
+                            key={topic}
+                            className="flex items-center gap-2 text-xs text-[#6b8b86] dark:text-white/60 sm:text-sm"
+                          >
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#00E5D4]" />
+                            {topic}
+                          </li>
+                        ))}
+                      </ul>
+                      <button
+                        disabled={isAdvanced}
+                        className={`mt-6 w-full rounded-full py-2.5 text-xs font-semibold transition-colors sm:mt-8 sm:py-3 sm:text-sm ${
+                          !isAdvanced
+                            ? "bg-[#0a1a1a] text-white hover:bg-[#1a2a2a] dark:bg-white dark:text-[#071414] dark:hover:bg-white/90"
+                            : "cursor-not-allowed border border-[#0a1a1a]/15 bg-transparent text-[#0a1a1a]/45 dark:border-white/15 dark:text-white/45"
+                        }`}
+                      >
+                        {!isAdvanced ? data.cta : data.soon}
+                      </button>
+                    </div>
                   </article>
                 );
               })}

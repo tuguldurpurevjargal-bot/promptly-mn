@@ -41,6 +41,7 @@ export const translations = {
     path: {
       label: "3-р түвшин",
       title: "Таны түвшинд тохирсон сургалт.",
+      seeMore: "Дэлгэрэнгүй",
       beginner: {
         level: "Анхан шат",
         subtitle: "Beginner",
@@ -138,6 +139,7 @@ export const translations = {
     path: {
       label: "3 Levels",
       title: "Training at your level.",
+      seeMore: "See more",
       beginner: {
         level: "Beginner",
         subtitle: "Beginner",
