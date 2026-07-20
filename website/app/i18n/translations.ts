@@ -11,8 +11,8 @@ export const translations = {
     },
     hero: {
       badge: "Монголын AI боловсролын нийгэмлэг",
-      headline: "AI сурмаар байвал,",
-      headlineHighlight: "цааш ахих.",
+      headline: "AI",
+      headlineHighlight: "бүхэнд.",
       subheadline:
         "AI-г хүн бүрт ойлгомжтой, өдөр тутмын ажилдаа хэрэглэхэд бэлэн болгоё. Боловсрол, хэрэгсэл, нийгэмлэг — гурван талаас дэмжнэ.",
       ctaPrimary: "Newsletter бүртгүүлэх",
@@ -108,8 +108,8 @@ export const translations = {
     },
     hero: {
       badge: "Mongolia's AI education community",
-      headline: "If you want to learn AI,",
-      headlineHighlight: "move forward.",
+      headline: "AI for",
+      headlineHighlight: "everyone.",
       subheadline:
         "Make AI understandable and ready for everyday work. Education, tools, and community — supporting you from all sides.",
       ctaPrimary: "Join newsletter",
