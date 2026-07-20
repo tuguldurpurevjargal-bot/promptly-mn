@@ -38,14 +38,14 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative px-6 pb-28 pt-24 md:pt-36">
+        <section className="relative px-4 sm:px-6 pb-20 pt-20 sm:pb-28 sm:pt-24 md:pt-36">
           <div className="mx-auto max-w-5xl text-center">
             <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-[#00E5D4]/30 bg-white/60 px-4 py-1.5 text-xs font-medium text-[#0a1a1a] backdrop-blur-md dark:border-white/20 dark:bg-white/10 dark:text-white/90">
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#00E5D4]"></span>
               {t.hero.badge}
             </div>
 
-            <h1 className="font-[family-name:var(--font-arimo)] mx-auto max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-[#0a1a1a] md:text-7xl dark:text-white">
+            <h1 className="font-[family-name:var(--font-arimo)] mx-auto max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight text-[#0a1a1a] sm:text-5xl md:text-7xl dark:text-white">
               {t.hero.headline}{" "}
               <span className="gradient-text">{t.hero.headlineHighlight}</span>
             </h1>
@@ -54,7 +54,7 @@ export default function Home() {
               {t.hero.subheadline}
             </p>
 
-            <div className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
+            <div className="mx-auto mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row">
               <Link
                 href="#contact"
                 className="rounded-full bg-[#0a1a1a] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-[#071414]"
@@ -71,13 +71,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="why" className="px-6 py-24 md:py-32">
+        <section id="why" className="px-4 sm:px-6 py-16 sm:py-24 md:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#4FFFB0]">
                 {t.mission.label}
               </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight text-[#0a1a1a] md:text-5xl dark:text-white">
+              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-2xl font-semibold tracking-tight text-[#0a1a1a] sm:text-3xl md:text-5xl dark:text-white">
                 {t.mission.title}
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#3a5a56] dark:text-white/80">
@@ -91,7 +91,7 @@ export default function Home() {
                 return (
                   <div
                     key={audience.key}
-                    className="rounded-3xl bg-white p-8 shadow-sm shadow-[#00E5D4]/5 dark:bg-[#0f1f1f]"
+                    className="rounded-3xl bg-white p-6 shadow-sm shadow-[#00E5D4]/5 dark:bg-[#0f1f1f] sm:p-8"
                   >
                     <h3 className="font-[family-name:var(--font-arimo)] text-xl font-semibold text-[#0a1a1a] dark:text-white">
                       {data.title}
@@ -104,13 +104,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="path" className="px-6 py-24 md:py-32">
+        <section id="path" className="px-4 sm:px-6 py-16 sm:py-24 md:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#00F0FF]">
                 {t.path.label}
               </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight text-[#0a1a1a] md:text-5xl dark:text-white">
+              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-2xl font-semibold tracking-tight text-[#0a1a1a] sm:text-3xl md:text-5xl dark:text-white">
                 {t.path.title}
               </h2>
             </div>
@@ -121,7 +121,7 @@ export default function Home() {
                 return (
                   <article
                     key={course.key}
-                    className="relative flex flex-col rounded-3xl bg-white p-8 shadow-sm shadow-[#00E5D4]/5 transition-transform hover:-translate-y-1 dark:bg-[#0f1f1f]"
+                    className="relative flex flex-col rounded-3xl bg-white p-6 shadow-sm shadow-[#00E5D4]/5 transition-transform hover:-translate-y-1 dark:bg-[#0f1f1f] sm:p-8"
                   >
                     {course.key === "advanced" && (
                       <span className="absolute -top-3 right-6 rounded-full bg-[#f0f9f6] px-3 py-1 text-xs font-semibold text-[#0a1a1a] dark:bg-[#162727] dark:text-white/90">
@@ -164,13 +164,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="platform" className="px-6 py-24 md:py-32">
+        <section id="platform" className="px-4 sm:px-6 py-16 sm:py-24 md:py-32">
           <div className="mx-auto max-w-5xl">
             <div className="mb-12 text-center">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#00F0FF]">
                 {t.platform.label}
               </span>
-              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-3xl font-semibold tracking-tight text-[#0a1a1a] md:text-4xl dark:text-white">
+              <h2 className="font-[family-name:var(--font-arimo)] mt-4 text-2xl font-semibold tracking-tight text-[#0a1a1a] sm:text-3xl md:text-4xl dark:text-white">
                 {t.platform.title}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-[#3a5a56] dark:text-white/70">
@@ -182,7 +182,7 @@ export default function Home() {
               {platforms.map((platform) => (
                 <div
                   key={platform.name}
-                  className="flex flex-col items-center justify-center rounded-2xl bg-white p-6 text-center shadow-sm shadow-[#00E5D4]/5 transition-colors hover:bg-[#f0f9f6] dark:bg-[#0f1f1f] dark:hover:bg-[#162727]"
+                  className="flex flex-col items-center justify-center rounded-2xl bg-white p-5 text-center shadow-sm shadow-[#00E5D4]/5 transition-colors hover:bg-[#f0f9f6] dark:bg-[#0f1f1f] dark:hover:bg-[#162727] sm:p-6"
                 >
                   <span className="font-[family-name:var(--font-arimo)] text-base font-semibold text-[#0a1a1a] dark:text-white">
                     {platform.name}
@@ -196,8 +196,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-2xl rounded-3xl bg-white p-8 text-center shadow-sm shadow-[#00E5D4]/5 md:p-14 dark:bg-[#0f1f1f]"
+        <section id="contact" className="px-4 sm:px-6 py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-2xl rounded-3xl bg-white p-6 text-center shadow-sm shadow-[#00E5D4]/5 sm:p-8 md:p-14 dark:bg-[#0f1f1f]"
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-[#00B8A8] dark:text-[#4FFFB0]">
               {t.newsletter.label}
@@ -208,7 +208,7 @@ export default function Home() {
             <p className="mx-auto mt-4 max-w-lg text-lg text-[#3a5a56] dark:text-white/75">
               {t.newsletter.description}
             </p>
-            <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+            <form className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 placeholder={t.newsletter.placeholder}
@@ -228,7 +228,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-[#00E5D4]/15 bg-white px-6 py-12 dark:border-white/10 dark:bg-[#071414]">
+      <footer className="border-t border-[#00E5D4]/15 bg-white px-4 sm:px-6 py-10 dark:border-white/10 dark:bg-[#071414]">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div className="flex items-center gap-2.5">
             <Image
