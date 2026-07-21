@@ -1,15 +1,37 @@
+import { PixelFlower } from "./pixel-flower";
+
 export function MeadowField() {
   const poppies = [
-    [120, 190], [260, 230], [420, 180], [590, 240], [760, 195], [920, 235], [1080, 185],
-    [180, 260], [500, 270], [840, 265], [1020, 255],
+    { x: 120, y: 190, s: 7, cls: "anim-sway" },
+    { x: 260, y: 230, s: 9, cls: "anim-sway-d1" },
+    { x: 420, y: 180, s: 7, cls: "anim-sway-d2" },
+    { x: 590, y: 240, s: 9, cls: "anim-sway" },
+    { x: 760, y: 195, s: 7, cls: "anim-sway-d1" },
+    { x: 920, y: 235, s: 8, cls: "anim-sway-d2" },
+    { x: 1080, y: 185, s: 7, cls: "anim-sway" },
+    { x: 180, y: 260, s: 8, cls: "anim-sway-d1" },
+    { x: 500, y: 270, s: 7, cls: "anim-sway-d2" },
+    { x: 840, y: 265, s: 9, cls: "anim-sway" },
+    { x: 1020, y: 255, s: 7, cls: "anim-sway-d1" },
   ];
   const purples = [
-    [90, 240], [330, 210], [670, 225], [990, 215], [460, 250], [730, 250],
+    { x: 90, y: 240, cls: "anim-sway-d2" },
+    { x: 330, y: 210, cls: "anim-sway" },
+    { x: 670, y: 225, cls: "anim-sway-d1" },
+    { x: 990, y: 215, cls: "anim-sway-d2" },
+    { x: 460, y: 250, cls: "anim-sway" },
+    { x: 730, y: 250, cls: "anim-sway-d1" },
   ];
-  const stems = [
-    [120, 190], [260, 230], [420, 180], [590, 240], [760, 195], [920, 235], [1080, 185],
-    [180, 260], [500, 270], [840, 265], [1020, 255], [90, 240], [330, 210], [670, 225],
-    [990, 215], [460, 250], [730, 250],
+  const grass = [
+    [60, 285], [150, 295], [240, 288], [360, 300], [450, 290], [560, 298],
+    [640, 286], [740, 296], [830, 289], [950, 300], [1050, 292], [1150, 298],
+  ];
+  const pollen = [
+    { x: 200, y: 150, cls: "anim-pollen" },
+    { x: 550, y: 120, cls: "anim-pollen-d1" },
+    { x: 850, y: 170, cls: "anim-pollen-d2" },
+    { x: 350, y: 190, cls: "anim-pollen" },
+    { x: 1050, y: 140, cls: "anim-pollen-d1" },
   ];
 
   return (
@@ -45,48 +67,75 @@ export function MeadowField() {
         />
       </g>
 
-      {/* Stems */}
-      <g stroke="#4c6a38" strokeWidth="2.5" strokeLinecap="round" opacity="0.8">
-        {stems.map(([x, y], i) => (
-          <path key={i} d={`M${x} ${y + 55} C ${x - 4} ${y + 30}, ${x + 4} ${y + 15}, ${x} ${y}`} fill="none" />
-        ))}
-      </g>
+      {/* Swaying grass */}
+      {grass.map(([x, y], i) => (
+        <g
+          key={`g${i}`}
+          className={i % 3 === 0 ? "anim-sway" : i % 3 === 1 ? "anim-sway-d1" : "anim-sway-d2"}
+        >
+          <path
+            d={`M${x} ${y} q 3 -14 6 -18 M${x + 4} ${y} q 1 -10 -2 -16`}
+            fill="none"
+            stroke="#55763e"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
+        </g>
+      ))}
 
-      {/* Poppies */}
-      <g fill="#e0a437" opacity="0.95">
-        {poppies.map(([x, y], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r={7 + (i % 3) * 2} />
-            <circle cx={x} cy={y} r={2.5} fill="#7a4a12" />
-          </g>
-        ))}
-      </g>
+      {/* Poppies with stems — whole plant sways */}
+      {poppies.map((p, i) => (
+        <g key={`p${i}`} className={p.cls}>
+          <path
+            d={`M${p.x} ${p.y + 55} C ${p.x - 4} ${p.y + 30}, ${p.x + 4} ${p.y + 15}, ${p.x} ${p.y}`}
+            fill="none"
+            stroke="#4c6a38"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            opacity="0.85"
+          />
+          <circle cx={p.x} cy={p.y} r={p.s} fill="#e0a437" opacity="0.95" />
+          <circle cx={p.x} cy={p.y} r={2.5} fill="#7a4a12" />
+        </g>
+      ))}
 
       {/* Purple flowers */}
-      <g fill="#8f6db8" opacity="0.9">
-        {purples.map(([x, y], i) => (
-          <g key={i}>
-            {[0, 72, 144, 216, 288].map((a) => (
-              <circle
-                key={a}
-                cx={x + Math.cos((a * Math.PI) / 180) * 6}
-                cy={y + Math.sin((a * Math.PI) / 180) * 6}
-                r="3.2"
-              />
-            ))}
-            <circle cx={x} cy={y} r="2.4" fill="#5a3f7a" />
-          </g>
-        ))}
-      </g>
+      {purples.map((p, i) => (
+        <g key={`pu${i}`} className={p.cls}>
+          <path
+            d={`M${p.x} ${p.y + 50} C ${p.x - 4} ${p.y + 28}, ${p.x + 4} ${p.y + 14}, ${p.x} ${p.y}`}
+            fill="none"
+            stroke="#4c6a38"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            opacity="0.85"
+          />
+          {[0, 72, 144, 216, 288].map((a) => (
+            <circle
+              key={a}
+              cx={p.x + Math.cos((a * Math.PI) / 180) * 6}
+              cy={p.y + Math.sin((a * Math.PI) / 180) * 6}
+              r="3.2"
+              fill="#8f6db8"
+              opacity="0.9"
+            />
+          ))}
+          <circle cx={p.x} cy={p.y} r="2.4" fill="#5a3f7a" />
+        </g>
+      ))}
 
-      {/* Grass tufts */}
-      <g stroke="#55763e" strokeWidth="1.5" strokeLinecap="round" opacity="0.5">
-        {Array.from({ length: 40 }).map((_, i) => {
-          const x = (i * 97) % 1200;
-          const y = 250 + ((i * 53) % 60);
-          return <path key={i} d={`M${x} ${y} q 3 -14 6 -18 M${x + 4} ${y} q 1 -10 -2 -16`} fill="none" />;
-        })}
-      </g>
+      {/* Drifting pollen */}
+      {pollen.map((p, i) => (
+        <circle
+          key={`po${i}`}
+          cx={p.x}
+          cy={p.y}
+          r="2"
+          fill="#f5e9c8"
+          className={p.cls}
+        />
+      ))}
     </svg>
   );
 }

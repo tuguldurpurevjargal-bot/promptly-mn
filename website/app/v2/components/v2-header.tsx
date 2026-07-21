@@ -12,7 +12,7 @@ export function V2Header() {
   return (
     <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2">
       <div
-        className="journal-pill flex items-center justify-between gap-4 rounded-full border border-[#dee2de] bg-white/70 py-2 pl-5 pr-2 backdrop-blur-xl"
+        className="journal-pill anim-pill-in flex items-center justify-between gap-4 rounded-full border border-[#dee2de] bg-white/70 py-2 pl-5 pr-2 backdrop-blur-xl"
         style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 6px 0px" }}
       >
         <Link href="/v2" className="flex items-center gap-2" aria-label="Promptly v2">

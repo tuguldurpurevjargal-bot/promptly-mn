@@ -15,6 +15,7 @@ import { V2Header } from "./components/v2-header";
 import { V2Footer } from "./components/v2-footer";
 import { NightSkyline } from "./components/night-skyline";
 import { MeadowField } from "./components/meadow-field";
+import { PixelFlower } from "./components/pixel-flower";
 import { Reveal } from "./components/reveal";
 import { SectionHeading } from "@/app/components/section-heading";
 import { CourseCard, ExpertTeaser } from "@/app/components/course-card";
@@ -54,9 +55,15 @@ export default function JournalHomePage() {
         {/* Hero — 100vh illustrated skyline with frosted overlay */}
         <section className="relative flex min-h-screen items-end overflow-hidden">
           <NightSkyline />
+
+          {/* Floating pixel flower — deliberate game-art contrast */}
+          <div className="anim-bob pointer-events-none absolute right-[12%] top-[22%] z-10 hidden sm:block">
+            <PixelFlower className="h-24 w-16 drop-shadow-[0_8px_16px_rgba(0,0,0,0.35)]" />
+          </div>
+
           <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 pb-20 pt-40 sm:px-6">
             <div
-              className="max-w-xl rounded-3xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl sm:p-10"
+              className="anim-rise-in max-w-xl rounded-3xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl sm:p-10"
               style={{ boxShadow: "rgba(0, 0, 0, 0.06) 0px 2px 2px 0px" }}
             >
               <p className="text-[13px] font-medium tracking-[-0.01em] text-white/80">
@@ -96,8 +103,8 @@ export default function JournalHomePage() {
               <SectionHeading title={problem.headline} align="left" />
             </Reveal>
             <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {problem.cards.map((card) => (
-                <Reveal key={card.number}>
+              {problem.cards.map((card, index) => (
+                <Reveal key={card.number} delay={index * 120}>
                   <div className="card card-hover h-full p-6">
                     <span className="text-[13px] font-medium text-[#646464]">
                       {card.number}
@@ -131,8 +138,8 @@ export default function JournalHomePage() {
               />
             </Reveal>
             <div className="mt-12 grid gap-5 lg:grid-cols-2">
-              {availableCourses.map((course) => (
-                <Reveal key={course.slug}>
+              {availableCourses.map((course, index) => (
+                <Reveal key={course.slug} delay={index * 150}>
                   <CourseCard
                     course={{
                       ...course,
@@ -180,7 +187,7 @@ export default function JournalHomePage() {
             </Reveal>
             <div className="mx-auto mt-12 max-w-3xl">
               {howItWorks.steps.map((step, index) => (
-                <Reveal key={step.number}>
+                <Reveal key={step.number} delay={index * 100}>
                   <div className="flex gap-6 border-b border-[#dee2de] py-7 first:border-t">
                     <span className="serif text-[27px] leading-[1.1] text-[#b4b8b4]">
                       {step.number}
@@ -251,6 +258,9 @@ export default function JournalHomePage() {
         {/* Meadow divider */}
         <section className="relative h-64 overflow-hidden sm:h-80" aria-hidden="true">
           <MeadowField />
+          <div className="anim-bob pointer-events-none absolute bottom-6 right-[8%] hidden sm:block">
+            <PixelFlower className="h-20 w-14 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)]" />
+          </div>
         </section>
 
         {/* Founders */}
@@ -293,21 +303,54 @@ export default function JournalHomePage() {
         <section id="free-resource" className="px-4 pb-20 sm:px-6 sm:pb-24">
           <div className="mx-auto max-w-[1200px]">
             <Reveal>
-              <div className="rounded-3xl bg-[#0081c0] px-6 py-16 text-center sm:px-12 sm:py-20">
-                <FileText className="mx-auto h-9 w-9 text-white/90" />
-                <h2 className="serif mt-5 text-4xl leading-[1.1] tracking-[-0.02em] text-white sm:text-[48px]">
-                  {leadMagnet.headline}
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-[16px] leading-[1.5] text-white/85">
-                  {leadMagnet.description}
-                </p>
-                <div className="mx-auto mt-9 max-w-2xl rounded-2xl bg-white p-4 sm:p-5">
-                  <LeadForm
-                    cta={leadMagnet.cta}
-                    success={leadMagnet.success}
-                    namePlaceholder={leadMagnet.namePlaceholder}
-                    emailPlaceholder={leadMagnet.emailPlaceholder}
-                  />
+              <div className="relative overflow-hidden rounded-3xl bg-[#0081c0] px-6 py-16 text-center sm:px-12 sm:py-20">
+                {/* Painterly waves */}
+                <svg
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                  viewBox="0 0 1200 500"
+                  preserveAspectRatio="xMidYMid slice"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <filter id="lm-brush">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+                      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" />
+                    </filter>
+                  </defs>
+                  <g filter="url(#lm-brush)" fill="none" strokeLinecap="round">
+                    <path d="M-50 420 C 200 360, 400 450, 650 390 C 900 330, 1100 420, 1250 380" stroke="#5cb4dd" strokeWidth="34" opacity="0.4" />
+                    <path d="M-50 470 C 220 410, 460 490, 700 440 C 940 390, 1120 460, 1250 430" stroke="#8fcbe9" strokeWidth="22" opacity="0.3" />
+                    <path d="M-50 80 C 240 40, 480 110, 720 70 C 960 30, 1140 90, 1250 60" stroke="#4aa8d4" strokeWidth="26" opacity="0.25" />
+                  </g>
+                  {/* Floating light particles */}
+                  {[
+                    { x: 180, y: 120, d: "anim-pollen" },
+                    { x: 520, y: 90, d: "anim-pollen-d1" },
+                    { x: 860, y: 140, d: "anim-pollen-d2" },
+                    { x: 340, y: 200, d: "anim-pollen-d1" },
+                    { x: 1050, y: 110, d: "anim-pollen" },
+                    { x: 700, y: 220, d: "anim-pollen-d2" },
+                  ].map((p, i) => (
+                    <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#cfeafa" className={p.d} />
+                  ))}
+                </svg>
+
+                <div className="relative">
+                  <FileText className="mx-auto h-9 w-9 text-white/90" />
+                  <h2 className="serif mt-5 text-4xl leading-[1.1] tracking-[-0.02em] text-white sm:text-[48px]">
+                    {leadMagnet.headline}
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-xl text-[16px] leading-[1.5] text-white/85">
+                    {leadMagnet.description}
+                  </p>
+                  <div className="mx-auto mt-9 max-w-2xl rounded-2xl bg-white p-4 sm:p-5">
+                    <LeadForm
+                      cta={leadMagnet.cta}
+                      success={leadMagnet.success}
+                      namePlaceholder={leadMagnet.namePlaceholder}
+                      emailPlaceholder={leadMagnet.emailPlaceholder}
+                    />
+                  </div>
                 </div>
               </div>
             </Reveal>
