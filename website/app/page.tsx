@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/i18n/context";
 import { Header } from "@/app/components/header";
 import { ParticleSphere } from "@/app/components/particle-sphere";
 import { GeometricMolecule } from "@/app/components/geometric-molecule";
+import { VersionSwitcher } from "@/app/components/version-switcher";
 
 const platforms = [
   { name: "Facebook", priorityKey: "primary" as const },
@@ -305,6 +306,8 @@ export default function Home() {
           <p className="text-xs text-[#707777]">{t.footer.rights}</p>
         </div>
       </footer>
+
+      <VersionSwitcher to="/v2" label="v2 neon" variant="auros" />
     </div>
   );
 }
