@@ -355,6 +355,13 @@ export default function HomePage() {
       </main>
 
       <SiteFooter />
+
+      <Link
+        href="/v2"
+        className="fixed bottom-6 right-6 z-[60] rounded-full bg-[#101614] px-5 py-2.5 text-xs font-semibold text-white shadow-lg transition-transform hover:scale-105"
+      >
+        v2 — журнал →
+      </Link>
     </div>
   );
 }

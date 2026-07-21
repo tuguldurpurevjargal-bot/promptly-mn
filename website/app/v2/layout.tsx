@@ -1,8 +1,10 @@
-import { Geist_Mono } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+import "./journal.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geistmono",
-  subsets: ["latin"],
+const playfair = Playfair_Display({
+  variable: "--font-journal-serif",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500"],
 });
 
 export default function V2Layout({
@@ -10,5 +12,5 @@ export default function V2Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className={geistMono.variable}>{children}</div>;
+  return <div className={`journal ${playfair.variable}`}>{children}</div>;
 }

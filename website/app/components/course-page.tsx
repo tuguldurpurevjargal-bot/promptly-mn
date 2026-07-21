@@ -20,18 +20,18 @@ function MetaRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function CoursePage({ data }: { data: CoursePageData }) {
+export function CoursePage({ data, bare = false, basePath = "" }: { data: CoursePageData; bare?: boolean; basePath?: string }) {
   const availableCourses = courses.filter((c) => c.status === "available");
 
   if (data.waitlist) {
     return (
       <div className="flex min-h-screen flex-col bg-white">
-        <SiteHeader />
+        {!bare && <SiteHeader />}
         <main className="flex-1">
           <section className="px-4 pb-24 pt-32 sm:px-6 sm:pt-40">
             <div className="mx-auto max-w-[800px] text-center">
               <Link
-                href="/courses"
+                href={`${basePath}/courses`}
                 className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#101614]"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -73,14 +73,14 @@ export function CoursePage({ data }: { data: CoursePageData }) {
             </div>
           </section>
         </main>
-        <SiteFooter />
+        {!bare && <SiteFooter />}
       </div>
     );
   }
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <SiteHeader />
+      {!bare && <SiteHeader />}
       <main className="flex-1">
         {/* Course hero */}
         <section className="relative overflow-hidden px-4 pb-16 pt-32 sm:px-6 sm:pt-40">
@@ -90,7 +90,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
           />
           <div className="mx-auto max-w-[1200px]">
             <Link
-              href="/courses"
+              href={`${basePath}/courses`}
               className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#101614]"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -244,7 +244,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
           </div>
         </section>
       </main>
-      <SiteFooter />
+      {!bare && <SiteFooter />}
     </div>
   );
 }

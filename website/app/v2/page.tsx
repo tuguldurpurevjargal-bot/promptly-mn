@@ -1,186 +1,287 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, Terminal } from "lucide-react";
-import { useLanguage } from "@/app/i18n/context";
-import { LanguageToggle } from "@/app/components/language-toggle";
-import { ThemeToggle } from "@/app/components/theme-toggle";
-import { DataStream } from "@/app/components/data-stream";
-import { VersionSwitcher } from "@/app/components/version-switcher";
+import type { Metadata } from "next";
+import {
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  FileText,
+  ImageIcon,
+  Link2,
+  Sparkles,
+  User,
+} from "lucide-react";
+import { V2Header } from "./components/v2-header";
+import { V2Footer } from "./components/v2-footer";
+import { NightSkyline } from "./components/night-skyline";
+import { MeadowField } from "./components/meadow-field";
+import { Reveal } from "./components/reveal";
+import { SectionHeading } from "@/app/components/section-heading";
+import { CourseCard, ExpertTeaser } from "@/app/components/course-card";
+import { FaqAccordion } from "@/app/components/faq-accordion";
+import { CurriculumTabs } from "@/app/components/curriculum-tabs";
+import { LeadForm } from "@/app/components/lead-form";
+import { PlaceholderTag } from "@/app/components/placeholder-tag";
+import {
+  courses,
+  curriculum,
+  faq,
+  finalCta,
+  founders,
+  hero,
+  howItWorks,
+  leadMagnet,
+  outcomes,
+  problem,
+  proof,
+  resourcesPreview,
+  whyPromptly,
+} from "@/app/data/content";
 
-const platforms = [
-  "Facebook",
-  "YouTube Shorts",
-  "Instagram",
-  "Threads",
-  "LinkedIn",
-  "YouTube Longform",
-];
+export const metadata: Metadata = {
+  title: "Promptly — Хүн бүрт AI (v2)",
+};
 
-const audiences = [
-  { key: "individuals" as const },
-  { key: "teams" as const },
-  { key: "businesses" as const },
-];
-
-const courses = [
-  { key: "beginner" as const, cmd: "enroll --level=beginner" },
-  { key: "intermediate" as const, cmd: "enroll --level=intermediate" },
-  { key: "advanced" as const, cmd: "enroll --level=advanced" },
-];
-
-export default function HomeV2() {
-  const { t } = useLanguage();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navLinks = [
-    { href: "#why", label: t.nav.why },
-    { href: "#path", label: t.nav.path },
-    { href: "#platform", label: t.nav.platform },
-    { href: "#contact", label: t.nav.contact },
-  ];
+export default function JournalHomePage() {
+  const availableCourses = courses.filter((c) => c.status === "available");
+  const expertCourse = courses.find((c) => c.status === "coming_soon")!;
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-black text-white">
-      {/* Neon Header */}
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#303236] bg-black/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6">
-          <Link href="/v2" className="flex items-center gap-2.5">
-            <Image
-              src="/logo.svg"
-              alt="Promptly"
-              width={28}
-              height={28}
-              className="h-7 w-7"
-              priority
-            />
-            <span className="text-base font-medium tracking-tight text-white">
-              Promptly
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-[#797d86] transition-colors hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="hidden items-center gap-3 md:flex">
-            <LanguageToggle />
-            <ThemeToggle />
-            <Link
-              href="#contact"
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
-            >
-              {t.nav.cta}
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-2 md:hidden">
-            <LanguageToggle />
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-md border border-[#303236] bg-[#151617] text-white"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={`overflow-hidden border-b border-[#303236] bg-black transition-all duration-300 ease-in-out md:hidden ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-md px-4 py-3 text-sm text-[#797d86] transition-colors hover:bg-[#151617] hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-2 flex items-center justify-between rounded-md bg-[#151617] px-4 py-3">
-              <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-                theme
-              </span>
-              <ThemeToggle />
-            </div>
-            <Link
-              href="#contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-2 rounded-full bg-white px-4 py-3 text-center text-sm font-medium text-[#151617]"
-            >
-              {t.nav.cta}
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-[#fefffc]">
+      <V2Header />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-16 sm:px-6">
-          <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#34d59a]" />
-            {t.hero.badge}
-          </p>
-
-          <h1 className="mt-8 max-w-4xl text-center text-[clamp(2.75rem,8vw,5rem)] font-medium leading-[1] tracking-[-3.2px] text-white">
-            {t.hero.headline}{" "}
-            <span className="text-[#34d59a]">{t.hero.headlineHighlight}</span>
-          </h1>
-
-          <p className="mt-8 max-w-xl text-center text-base leading-[1.5] tracking-[-0.43px] text-[#797d86] md:text-lg">
-            {t.hero.subheadline}
-          </p>
-
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-            <Link
-              href="#contact"
-              className="rounded-full bg-white px-7 py-3 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
+        {/* Hero — 100vh illustrated skyline with frosted overlay */}
+        <section className="relative flex min-h-screen items-end overflow-hidden">
+          <NightSkyline />
+          <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 pb-20 pt-40 sm:px-6">
+            <div
+              className="max-w-xl rounded-3xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl sm:p-10"
+              style={{ boxShadow: "rgba(0, 0, 0, 0.06) 0px 2px 2px 0px" }}
             >
-              {t.hero.ctaPrimary}
-            </Link>
-            <Link
-              href="#path"
-              className="rounded-full border border-[#303236] px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/40"
-            >
-              {t.hero.ctaSecondary}
-            </Link>
-          </div>
-
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 opacity-80">
-            <DataStream />
+              <p className="text-[13px] font-medium tracking-[-0.01em] text-white/80">
+                {hero.eyebrow}
+              </p>
+              <h1 className="serif mt-4 text-[44px] leading-[1.1] tracking-[-0.02em] text-white sm:text-[54px]">
+                {hero.headline}
+              </h1>
+              <p className="mt-4 text-[16px] leading-[1.5] text-white/80">
+                {hero.description}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/v2/courses"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#41a1cf] bg-white/5 px-4 py-2.5 text-[15px] font-medium text-[#7ec3e8] backdrop-blur transition-colors hover:bg-[#41a1cf]/10"
+                >
+                  {hero.primaryCta.label}
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full border border-current">
+                    <ArrowRight className="h-2.5 w-2.5" />
+                  </span>
+                </Link>
+                <Link
+                  href="/v2#courses"
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/30 px-4 py-2.5 text-[15px] font-medium text-white/90 transition-colors hover:bg-white/10"
+                >
+                  {hero.secondaryCta.label}
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="px-4 py-24 sm:px-6">
+        {/* Problem */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-[1200px]">
-            <p className="text-center font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.stats.label}
-            </p>
-            <div className="mt-12 grid grid-cols-3 gap-6">
-              {t.stats.items.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-[family-name:var(--font-geistmono)] text-[clamp(2rem,6vw,4rem)] font-medium leading-none text-[#34d59a]">
-                    {stat.value}
+            <Reveal>
+              <SectionHeading title={problem.headline} align="left" />
+            </Reveal>
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {problem.cards.map((card) => (
+                <Reveal key={card.number}>
+                  <div className="card card-hover h-full p-6">
+                    <span className="text-[13px] font-medium text-[#646464]">
+                      {card.number}
+                    </span>
+                    <h3 className="mt-3 text-[27px] leading-[1.1] tracking-[-0.02em]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-3 text-[15px] leading-[1.5] text-[#646464]">
+                      {card.description}
+                    </p>
                   </div>
-                  <div className="mt-3 font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-wider text-[#797d86]">
-                    {stat.label}
+                </Reveal>
+              ))}
+            </div>
+            <Reveal>
+              <p className="serif mt-12 max-w-3xl text-[27px] leading-[1.3] tracking-[-0.02em] text-[#2c2c2c]">
+                {problem.transition}
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Courses */}
+        <section id="courses" className="border-t border-[#dee2de] bg-[#f9faf7] px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading
+                kicker="Сургалтууд"
+                title="Танд аль сургалт тохирох вэ?"
+                description="Өөрийн одоогийн мэдлэг, хэрэглээ болон зорилгод тохирох түвшнээ сонго."
+              />
+            </Reveal>
+            <div className="mt-12 grid gap-5 lg:grid-cols-2">
+              {availableCourses.map((course) => (
+                <Reveal key={course.slug}>
+                  <CourseCard
+                    course={{
+                      ...course,
+                      cta: { ...course.cta, target: `/v2${course.cta.target}` },
+                    }}
+                  />
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-5">
+              <Reveal>
+                <ExpertTeaser
+                  course={{
+                    ...expertCourse,
+                    cta: { ...expertCourse.cta, target: `/v2${expertCourse.cta.target}` },
+                  }}
+                />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Outcomes */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={outcomes.headline} />
+            </Reveal>
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {outcomes.items.map((item) => (
+                <div key={item} className="card card-hover flex items-start gap-3 p-5">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#41a1cf]" />
+                  <span className="text-[15px] leading-[1.5] text-[#444141]">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section className="border-t border-[#dee2de] bg-[#f9faf7] px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={howItWorks.headline} />
+            </Reveal>
+            <div className="mx-auto mt-12 max-w-3xl">
+              {howItWorks.steps.map((step, index) => (
+                <Reveal key={step.number}>
+                  <div className="flex gap-6 border-b border-[#dee2de] py-7 first:border-t">
+                    <span className="serif text-[27px] leading-[1.1] text-[#b4b8b4]">
+                      {step.number}
+                    </span>
+                    <div>
+                      <h3 className="text-[18px] font-medium tracking-[-0.01em] text-[#2c2c2c]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1.5 text-[15px] leading-[1.5] text-[#646464]">
+                        {step.description}
+                      </p>
+                    </div>
+                    {index < howItWorks.steps.length - 1 && <span className="sr-only">/</span>}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              {howItWorks.placeholders.map((p) => (
+                <div key={p.label} className="flex items-center gap-2 text-[13px]">
+                  <span className="text-[#646464]">{p.label}:</span>
+                  <PlaceholderTag value={p.value} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Curriculum */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={curriculum.headline} />
+            </Reveal>
+            <div className="mt-12">
+              <CurriculumTabs
+                tabs={curriculum.tabs.map((tab) => ({
+                  ...tab,
+                  target: `/v2${tab.target}`,
+                }))}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Why Promptly */}
+        <section id="why-promptly" className="border-t border-[#dee2de] bg-[#f9faf7] px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={whyPromptly.headline} />
+            </Reveal>
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {whyPromptly.items.map((item) => (
+                <div key={item.title} className="card card-hover p-6">
+                  <Sparkles className="h-5 w-5 text-[#41a1cf]" />
+                  <h3 className="mt-4 text-[18px] font-medium tracking-[-0.01em] text-[#2c2c2c]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-[1.5] text-[#646464]">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Meadow divider */}
+        <section className="relative h-64 overflow-hidden sm:h-80" aria-hidden="true">
+          <MeadowField />
+        </section>
+
+        {/* Founders */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading
+                title={founders.headline}
+                description={founders.description}
+              />
+            </Reveal>
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {founders.members.map((member) => (
+                <div key={member.name} className="card flex items-start gap-5 p-6 sm:p-8">
+                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-[#f9faf7]">
+                    <User className="h-8 w-8 text-[#b4b8b4]" />
+                  </div>
+                  <div>
+                    <h3 className="text-[18px] font-medium text-[#2c2c2c]">
+                      <PlaceholderTag value={member.name} />
+                    </h3>
+                    <p className="mt-1 text-[13px] text-[#41a1cf]">
+                      <PlaceholderTag value={member.role} />
+                    </p>
+                    <p className="mt-3 text-[15px] leading-[1.5] text-[#646464]">
+                      <PlaceholderTag value={member.bio} />
+                    </p>
+                    <p className="mt-3 flex items-center gap-2 text-[13px] text-[#646464]">
+                      <Link2 className="h-4 w-4" />
+                      <PlaceholderTag value={member.linkedin} />
+                    </p>
                   </div>
                 </div>
               ))}
@@ -188,199 +289,126 @@ export default function HomeV2() {
           </div>
         </section>
 
-        {/* Mission */}
-        <section id="why" className="px-4 py-24 sm:px-6 md:py-32">
-          <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-2 md:gap-20">
-            <div>
-              <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-                {t.mission.label}
-              </p>
-              <h2 className="mt-4 text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-                {t.mission.title}
-              </h2>
-              <p className="mt-6 max-w-[520px] text-base leading-[1.5] tracking-[-0.43px] text-[#797d86]">
-                {t.mission.description}
-              </p>
-            </div>
-
-            <ul className="flex flex-col justify-center gap-6">
-              {audiences.map((audience) => {
-                const data = t.audiences[audience.key];
-                return (
-                  <li key={audience.key} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#34d59a]" />
-                    <div>
-                      <h3 className="text-lg font-medium leading-[1.38] tracking-[-0.36px] text-white">
-                        {data.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-[1.5] tracking-[-0.7px] text-[#797d86]">
-                        {data.desc}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-
-        {/* Courses — terminal cards */}
-        <section id="path" className="px-4 py-24 sm:px-6 md:py-32">
+        {/* Lead magnet — Cerulean atmospheric card */}
+        <section id="free-resource" className="px-4 pb-20 sm:px-6 sm:pb-24">
           <div className="mx-auto max-w-[1200px]">
-            <p className="text-center font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.path.label}
-            </p>
-            <h2 className="mx-auto mt-4 max-w-3xl text-center text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.path.title}
-            </h2>
+            <Reveal>
+              <div className="rounded-3xl bg-[#0081c0] px-6 py-16 text-center sm:px-12 sm:py-20">
+                <FileText className="mx-auto h-9 w-9 text-white/90" />
+                <h2 className="serif mt-5 text-4xl leading-[1.1] tracking-[-0.02em] text-white sm:text-[48px]">
+                  {leadMagnet.headline}
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-[16px] leading-[1.5] text-white/85">
+                  {leadMagnet.description}
+                </p>
+                <div className="mx-auto mt-9 max-w-2xl rounded-2xl bg-white p-4 sm:p-5">
+                  <LeadForm
+                    cta={leadMagnet.cta}
+                    success={leadMagnet.success}
+                    namePlaceholder={leadMagnet.namePlaceholder}
+                    emailPlaceholder={leadMagnet.emailPlaceholder}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
-            <div className="mt-14 grid gap-4 md:grid-cols-3">
-              {courses.map((course) => {
-                const data = t.path[course.key];
-                const isAdvanced = course.key === "advanced";
-                return (
-                  <article
-                    key={course.key}
-                    className="flex flex-col rounded-md bg-[#151617] p-6"
-                  >
-                    <div className="flex items-center gap-2 border-b border-[#303236] pb-4">
-                      <Terminal className="h-3.5 w-3.5 text-[#34d59a]" />
-                      <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-                        promptly {course.cmd}
-                      </span>
-                    </div>
-
-                    <div className="mt-4 flex items-center gap-2">
-                      <h3 className="font-[family-name:var(--font-geistmono)] text-base font-medium text-white">
-                        {data.level}
-                      </h3>
-                      {isAdvanced && (
-                        <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#ff3621]">
-                          [soon]
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="mt-3 font-[family-name:var(--font-geistmono)] text-sm leading-[1.65] tracking-[-0.7px] text-[#797d86]">
-                      {data.description}
-                    </p>
-
-                    <ul className="mt-4 flex-1 space-y-2">
-                      {data.topics.map((topic) => (
-                        <li
-                          key={topic}
-                          className="font-[family-name:var(--font-geistmono)] text-xs leading-[1.65] tracking-[-0.7px] text-[#34d59a]"
-                        >
-                          <span className="text-[#797d86]">{"> "}</span>
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <button
-                      disabled={isAdvanced}
-                      className={`mt-6 w-full rounded-full py-2.5 text-sm font-medium transition-transform ${
-                        !isAdvanced
-                          ? "bg-white text-[#151617] hover:scale-[1.02]"
-                          : "cursor-not-allowed border border-[#303236] text-[#797d86]"
-                      }`}
-                    >
-                      {!isAdvanced ? data.cta : data.soon}
-                    </button>
-                  </article>
-                );
-              })}
+        {/* Resources preview */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={resourcesPreview.headline} />
+            </Reveal>
+            <div className="mt-12 grid gap-5 sm:grid-cols-3">
+              {resourcesPreview.items.map((item) => (
+                <div key={item.title} className="card card-hover overflow-hidden">
+                  <div className="flex h-40 items-center justify-center bg-[#f9faf7]">
+                    <ImageIcon className="h-8 w-8 text-[#b4b8b4]" />
+                  </div>
+                  <div className="p-5">
+                    <span className="text-[13px] font-medium text-[#41a1cf]">
+                      {item.type}
+                    </span>
+                    <h3 className="mt-2 text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-[#2c2c2c]">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href={resourcesPreview.primaryCta.target} className="btn-primary">
+                {resourcesPreview.primaryCta.label}
+              </Link>
+              <Link href="/v2/resources" className="btn-secondary">
+                {resourcesPreview.secondaryCta.label}
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Platforms — logo bar */}
-        <section id="platform" className="px-4 py-24 sm:px-6">
-          <div className="mx-auto max-w-[1200px] text-center">
-            <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.platform.label}
-            </p>
-            <h2 className="mx-auto mt-4 max-w-2xl text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.platform.title}
-            </h2>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-              {platforms.map((name) => (
+        {/* Proof — launch state */}
+        <section className="border-t border-[#dee2de] bg-[#f9faf7] px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <SectionHeading title={proof.headline} description={proof.launchNote} />
+            </Reveal>
+            <div className="mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-3">
+              {proof.launchOptions.map((option) => (
                 <span
-                  key={name}
-                  className="text-sm font-medium text-[#797d86] transition-colors hover:text-white"
+                  key={option}
+                  className="rounded-lg border border-[#dee2de] bg-white px-4 py-2 text-[15px] text-[#444141]"
                 >
-                  {name}
+                  {option}
                 </span>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Newsletter */}
-        <section id="contact" className="px-4 py-24 sm:px-6 md:py-32">
-          <div className="mx-auto max-w-[720px] rounded-md bg-[#151617] p-8 text-center sm:p-14">
-            <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.newsletter.label}
-            </p>
-            <h2 className="mt-4 text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.newsletter.title}
+        {/* FAQ */}
+        <section id="faq" className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[900px]">
+            <Reveal>
+              <SectionHeading title={faq.headline} />
+            </Reveal>
+            <div className="mt-12">
+              <FaqAccordion items={faq.items} />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="px-4 pb-24 sm:px-6">
+          <div className="mx-auto max-w-[1200px] rounded-3xl border border-[#dee2de] bg-white px-6 py-16 text-center sm:px-12">
+            <h2 className="serif mx-auto max-w-2xl text-4xl leading-[1.1] tracking-[-0.02em] text-[#2c2c2c] sm:text-[48px]">
+              {finalCta.headline}
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-[1.5] tracking-[-0.7px] text-[#797d86]">
-              {t.newsletter.description}
-            </p>
-            <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder={t.newsletter.placeholder}
-                className="flex-1 rounded-md border border-[#303236] bg-black px-5 py-3 font-[family-name:var(--font-geistmono)] text-sm text-white outline-none transition-colors placeholder:text-[#797d86] focus:border-[#34d59a]/60"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-white px-7 py-3 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/v2/courses/beginner"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#282834] bg-[#1f1f29] px-5 py-3 text-[15px] font-medium text-white transition-colors hover:bg-[#282834]"
               >
-                {t.newsletter.cta}
-              </button>
-            </form>
-            <p className="mt-5 font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-              {t.newsletter.disclaimer}
-            </p>
+                {finalCta.primaryCta.label}
+              </Link>
+              <Link href="/v2/courses/intermediate" className="btn-secondary">
+                {finalCta.secondaryCta.label}
+              </Link>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[#303236] px-4 py-10 sm:px-6">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <div className="flex items-center gap-2.5">
-            <Image
-              src="/logo.svg"
-              alt="Promptly"
-              width={24}
-              height={24}
-              className="h-6 w-6"
-            />
-            <span className="text-sm font-medium text-white">Promptly</span>
-          </div>
+      <V2Footer />
 
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {platforms.map((name) => (
-              <Link
-                key={name}
-                href="#"
-                className="text-xs text-[#797d86] transition-colors hover:text-white"
-              >
-                {name}
-              </Link>
-            ))}
-          </div>
-
-          <p className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-            {t.footer.rights}
-          </p>
-        </div>
-      </footer>
-
-      <VersionSwitcher to="/" label="v1 auros" variant="neon" />
+      {/* Version switcher */}
+      <Link
+        href="/"
+        className="fixed bottom-6 right-6 z-[60] rounded-full border border-[#282834] bg-white/80 px-5 py-2.5 text-[13px] font-medium text-[#282834] backdrop-blur-xl transition-colors hover:bg-white"
+      >
+        v1 →
+      </Link>
     </div>
   );
 }
