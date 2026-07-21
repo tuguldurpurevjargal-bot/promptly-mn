@@ -35,7 +35,7 @@ export function LeadForm({
 
   if (done) {
     return (
-      <div className="flex items-center justify-center gap-2 rounded-full border border-[#00b8a8]/30 bg-[#00e5d4]/10 px-6 py-4 text-sm font-medium text-[#0a1a1a]">
+      <div className="flex items-center justify-center gap-2 rounded-full border border-[#00b8a8]/30 bg-[#00e5d4]/10 px-6 py-4 text-sm font-medium text-[#101614]">
         <CheckCircle2 className="h-5 w-5 text-[#00b8a8]" />
         {success}
       </div>
@@ -50,7 +50,7 @@ export function LeadForm({
         onChange={(e) => setName(e.target.value)}
         placeholder={namePlaceholder}
         aria-label={namePlaceholder}
-        className="flex-1 rounded-full border border-[#e6eceb] bg-white px-5 py-3.5 text-sm text-[#0a1a1a] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]"
+        className="flex-1 rounded-full border border-[#e5ebe8] bg-white px-5 py-3.5 text-sm text-[#101614] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]"
       />
       <input
         type="email"
@@ -58,7 +58,7 @@ export function LeadForm({
         onChange={(e) => setEmail(e.target.value)}
         placeholder={emailPlaceholder}
         aria-label={emailPlaceholder}
-        className="flex-1 rounded-full border border-[#e6eceb] bg-white px-5 py-3.5 text-sm text-[#0a1a1a] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]"
+        className="flex-1 rounded-full border border-[#e5ebe8] bg-white px-5 py-3.5 text-sm text-[#101614] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]"
       />
       <button type="submit" className="btn-primary whitespace-nowrap">
         {cta}

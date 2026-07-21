@@ -12,7 +12,7 @@ export function FaqAccordion({
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-[#e6eceb] rounded-2xl border border-[#e6eceb] bg-white">
+    <div className="divide-y divide-[#e5ebe8] rounded-2xl border border-[#e5ebe8] bg-white">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const isPlaceholder = item.answer.startsWith("[");
@@ -23,7 +23,7 @@ export function FaqAccordion({
               className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
               aria-expanded={isOpen}
             >
-              <span className="font-medium text-[#0a1a1a]">{item.question}</span>
+              <span className="font-medium text-[#101614]">{item.question}</span>
               <ChevronDown
                 className={`h-5 w-5 flex-shrink-0 text-[#6b8b86] transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
@@ -36,7 +36,7 @@ export function FaqAccordion({
               }`}
             >
               <div className="overflow-hidden">
-                <p className="px-6 pb-5 text-sm leading-relaxed text-[#40514e]">
+                <p className="px-6 pb-5 text-sm leading-relaxed text-[#4a5a55]">
                   {isPlaceholder ? (
                     <PlaceholderTag value={item.answer} />
                   ) : (

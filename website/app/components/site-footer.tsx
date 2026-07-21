@@ -4,7 +4,7 @@ import { footerCols, site } from "@/app/data/content";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#e6eceb] bg-[#f4f7f6]">
+    <footer className="border-t border-[#e5ebe8] bg-[#f5f7f6]">
       <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
@@ -16,7 +16,7 @@ export function SiteFooter() {
                 height={28}
                 className="h-7 w-7"
               />
-              <span className="text-lg font-semibold text-[#0a1a1a]">Promptly</span>
+              <span className="text-lg font-semibold text-[#101614]">Promptly</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#6b8b86]">
               {site.mission}
@@ -33,7 +33,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.target}
-                      className="text-sm text-[#40514e] transition-colors hover:text-[#0a1a1a]"
+                      className="text-sm text-[#4a5a55] transition-colors hover:text-[#101614]"
                     >
                       {link.label}
                     </Link>
@@ -44,7 +44,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-[#e6eceb] pt-8">
+        <div className="mt-12 border-t border-[#e5ebe8] pt-8">
           <p className="text-sm text-[#6b8b86]">
             © 2026 Promptly. All rights reserved.
           </p>

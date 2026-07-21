@@ -34,14 +34,14 @@ export default function ResourcesPage() {
             <div className="grid gap-5 sm:grid-cols-3">
               {resourcesPreview.items.map((item) => (
                 <div key={item.title} className="card overflow-hidden">
-                  <div className="flex h-44 items-center justify-center bg-[#f4f7f6]">
+                  <div className="flex h-44 items-center justify-center bg-[#f5f7f6]">
                     <ImageIcon className="h-8 w-8 text-[#6b8b86]" />
                   </div>
                   <div className="p-5">
                     <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#00b8a8]">
                       {item.type}
                     </span>
-                    <h3 className="mt-2 font-semibold leading-snug text-[#0a1a1a]">
+                    <h3 className="mt-2 font-semibold leading-snug text-[#101614]">
                       {item.title}
                     </h3>
                   </div>
@@ -58,15 +58,15 @@ export default function ResourcesPage() {
         </section>
 
         <section className="px-4 pb-24 sm:px-6">
-          <div className="brand-gradient mx-auto max-w-[1200px] rounded-3xl px-6 py-14 text-center sm:px-12">
-            <FileText className="mx-auto h-10 w-10 text-[#0a1a1a]" />
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#0a1a1a] sm:text-4xl">
+          <div className="tinted-panel mx-auto max-w-[1200px] px-6 py-14 text-center sm:px-12">
+            <FileText className="mx-auto h-10 w-10 text-[#00b8a8]" />
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#101614] sm:text-4xl">
               {leadMagnet.headline}
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-[#0a1a1a]/80">
+            <p className="mx-auto mt-3 max-w-xl text-[#4a5a55]">
               {leadMagnet.description}
             </p>
-            <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white/70 p-4 backdrop-blur-sm sm:p-5">
+            <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white/80 p-4 sm:p-5">
               <LeadForm
                 cta={leadMagnet.cta}
                 success={leadMagnet.success}

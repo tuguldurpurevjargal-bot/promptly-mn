@@ -23,10 +23,10 @@ export function LegalPage({
             <div className="mt-12 space-y-10">
               {sections.map((section) => (
                 <div key={section.heading}>
-                  <h2 className="text-lg font-semibold text-[#0a1a1a]">
+                  <h2 className="text-lg font-semibold text-[#101614]">
                     {section.heading}
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-[#40514e]">
+                  <p className="mt-3 text-sm leading-relaxed text-[#4a5a55]">
                     {section.body.startsWith("[") ? (
                       <PlaceholderTag value={section.body} />
                     ) : (

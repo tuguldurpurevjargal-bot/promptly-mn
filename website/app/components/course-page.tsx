@@ -11,7 +11,7 @@ import { courses, howItWorks, registration, waitlist } from "@/app/data/content"
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-1 rounded-xl border border-[#e6eceb] bg-[#f4f7f6] px-4 py-3">
+    <div className="flex flex-col gap-1 rounded-xl border border-[#e5ebe8] bg-[#f5f7f6] px-4 py-3">
       <span className="text-xs font-semibold uppercase tracking-[0.1em] text-[#6b8b86]">
         {label}
       </span>
@@ -32,16 +32,16 @@ export function CoursePage({ data }: { data: CoursePageData }) {
             <div className="mx-auto max-w-[800px] text-center">
               <Link
                 href="/courses"
-                className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#0a1a1a]"
+                className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#101614]"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Бүх сургалтууд
               </Link>
               <p className="kicker mt-8">{data.levelLabel}</p>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#0a1a1a] sm:text-5xl">
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#101614] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#40514e]">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#4a5a55]">
                 {data.description}
               </p>
 
@@ -49,7 +49,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
                 {data.modules.map((topic) => (
                   <li
                     key={topic}
-                    className="flex items-center gap-2 rounded-xl border border-[#e6eceb] bg-white px-4 py-3 text-sm text-[#0a1a1a]"
+                    className="flex items-center gap-2 rounded-xl border border-[#e5ebe8] bg-white px-4 py-3 text-sm text-[#101614]"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-[#00e5d4]" />
                     {topic}
@@ -58,10 +58,10 @@ export function CoursePage({ data }: { data: CoursePageData }) {
               </ul>
 
               <div className="card mx-auto mt-12 max-w-xl p-6 sm:p-10">
-                <h2 className="text-xl font-semibold text-[#0a1a1a]">
+                <h2 className="text-xl font-semibold text-[#101614]">
                   {waitlist.title}
                 </h2>
-                <p className="mt-2 text-sm text-[#40514e]">{waitlist.description}</p>
+                <p className="mt-2 text-sm text-[#4a5a55]">{waitlist.description}</p>
                 <div className="mt-6">
                   <WaitlistForm
                     emailPlaceholder={waitlist.emailPlaceholder}
@@ -91,7 +91,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
           <div className="mx-auto max-w-[1200px]">
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#0a1a1a]"
+              className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#101614]"
             >
               <ArrowLeft className="h-4 w-4" />
               Бүх сургалтууд
@@ -99,10 +99,10 @@ export function CoursePage({ data }: { data: CoursePageData }) {
             <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
               <div>
                 <p className="kicker">{data.levelLabel}</p>
-                <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-[-0.02em] text-[#0a1a1a] sm:text-5xl">
+                <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-[-0.02em] text-[#101614] sm:text-5xl">
                   {data.headline}
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#40514e]">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#4a5a55]">
                   {data.description}
                 </p>
                 <div className="mt-8">
@@ -122,14 +122,14 @@ export function CoursePage({ data }: { data: CoursePageData }) {
         </section>
 
         {/* Who it's for */}
-        <section className="bg-[#f4f7f6] px-4 py-20 sm:px-6">
+        <section className="bg-[#f5f7f6] px-4 py-20 sm:px-6">
           <div className="mx-auto max-w-[1200px]">
             <SectionHeading title="Энэ сургалт хэнд зориулагдсан бэ?" align="left" />
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.bestFor.map((item) => (
                 <div key={item} className="card flex items-start gap-3 p-5">
                   <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#00b8a8]" />
-                  <span className="text-sm leading-relaxed text-[#0a1a1a]">{item}</span>
+                  <span className="text-sm leading-relaxed text-[#101614]">{item}</span>
                 </div>
               ))}
             </div>
@@ -142,9 +142,9 @@ export function CoursePage({ data }: { data: CoursePageData }) {
             <SectionHeading title="Сургалтын үр дүн" align="left" />
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {data.outcomes.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-xl border border-[#e6eceb] bg-white p-5">
+                <div key={item} className="flex items-start gap-3 rounded-xl border border-[#e5ebe8] bg-white p-5">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#00b8a8]" />
-                  <span className="text-sm leading-relaxed text-[#0a1a1a]">{item}</span>
+                  <span className="text-sm leading-relaxed text-[#101614]">{item}</span>
                 </div>
               ))}
             </div>
@@ -152,7 +152,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
         </section>
 
         {/* Curriculum */}
-        <section className="bg-[#f4f7f6] px-4 py-20 sm:px-6">
+        <section className="bg-[#f5f7f6] px-4 py-20 sm:px-6">
           <div className="mx-auto max-w-[800px]">
             <SectionHeading title="Дэлгэрэнгүй хөтөлбөр" />
             <div className="card mt-10 p-6 sm:p-10">
@@ -160,7 +160,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
                 {data.modules.map((module) => (
                   <li key={module} className="flex items-start gap-3">
                     <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#00b8a8]" />
-                    <span className="text-[#0a1a1a]">{module}</span>
+                    <span className="text-[#101614]">{module}</span>
                   </li>
                 ))}
               </ul>
@@ -172,7 +172,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
         <section className="px-4 py-20 sm:px-6">
           <div className="mx-auto grid max-w-[1200px] gap-6 lg:grid-cols-2">
             <div className="card p-6 sm:p-10">
-              <h2 className="text-xl font-semibold text-[#0a1a1a]">
+              <h2 className="text-xl font-semibold text-[#101614]">
                 Сургалтын хэлбэр ба хуваарь
               </h2>
               <div className="mt-6 space-y-4">
@@ -185,7 +185,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
               </div>
             </div>
             <div className="card p-6 sm:p-10">
-              <h2 className="text-xl font-semibold text-[#0a1a1a]">
+              <h2 className="text-xl font-semibold text-[#101614]">
                 Сургалтад юу багтдах вэ?
               </h2>
               <ul className="mt-6 space-y-3">
@@ -195,7 +195,7 @@ export function CoursePage({ data }: { data: CoursePageData }) {
                   "Хэрэгжүүлэх материал",
                   "Community-д нэгдэх эрх",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-[#40514e]">
+                  <li key={item} className="flex items-center gap-2 text-sm text-[#4a5a55]">
                     <FileText className="h-4 w-4 text-[#00b8a8]" />
                     {item}
                   </li>
@@ -206,16 +206,16 @@ export function CoursePage({ data }: { data: CoursePageData }) {
         </section>
 
         {/* Instructor */}
-        <section className="bg-[#f4f7f6] px-4 py-20 sm:px-6">
+        <section className="bg-[#f5f7f6] px-4 py-20 sm:px-6">
           <div className="mx-auto max-w-[800px]">
             <SectionHeading title="Багш" />
             <div className="card mt-10 flex items-start gap-5 p-6 sm:p-10">
-              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-[#f4f7f6]">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-[#f5f7f6]">
                 <User className="h-8 w-8 text-[#6b8b86]" />
               </div>
               <div>
                 <PlaceholderTag value="[INSTRUCTOR_INFORMATION]" />
-                <p className="mt-3 text-sm leading-relaxed text-[#40514e]">
+                <p className="mt-3 text-sm leading-relaxed text-[#4a5a55]">
                   Багшийн нэр, туршлага, мэргэжлийн мэдээллийг сургалт нээгдэх үед тодорхой
                   танилцуулна.
                 </p>

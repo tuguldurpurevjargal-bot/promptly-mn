@@ -14,15 +14,15 @@ export function CurriculumTabs({
 
   return (
     <div>
-      <div className="mx-auto flex w-fit rounded-full border border-[#e6eceb] bg-[#f4f7f6] p-1">
+      <div className="mx-auto flex w-fit rounded-full border border-[#e5ebe8] bg-[#f5f7f6] p-1">
         {tabs.map((t, i) => (
           <button
             key={t.label}
             onClick={() => setActive(i)}
             className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-colors ${
               active === i
-                ? "bg-white text-[#0a1a1a] shadow-sm"
-                : "text-[#6b8b86] hover:text-[#0a1a1a]"
+                ? "bg-white text-[#101614] shadow-sm"
+                : "text-[#6b8b86] hover:text-[#101614]"
             }`}
             aria-pressed={active === i}
           >
@@ -36,11 +36,11 @@ export function CurriculumTabs({
           {tab.modules.map((module) => (
             <li key={module} className="flex items-start gap-3">
               <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#00b8a8]" />
-              <span className="text-[#0a1a1a]">{module}</span>
+              <span className="text-[#101614]">{module}</span>
             </li>
           ))}
         </ul>
-        <div className="mt-8 border-t border-[#e6eceb] pt-6">
+        <div className="mt-8 border-t border-[#e5ebe8] pt-6">
           <Link href={tab.target} className="btn-primary">
             {tab.ctaLabel}
           </Link>

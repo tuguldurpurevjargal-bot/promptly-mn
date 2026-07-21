@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import { LanguageProvider } from "./i18n/context";
@@ -7,7 +7,13 @@ import { LanguageProvider } from "./i18n/context";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +43,7 @@ export default function RootLayout({
     <html
       lang="mn"
       suppressHydrationWarning
-      className={`${inter.variable} scroll-smooth antialiased`}
+      className={`${inter.variable} ${manrope.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { registration } from "@/app/data/content";
 
 const inputClass =
-  "w-full rounded-xl border border-[#e6eceb] bg-white px-4 py-3 text-sm text-[#0a1a1a] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]";
+  "w-full rounded-xl border border-[#e5ebe8] bg-white px-4 py-3 text-sm text-[#101614] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]";
 
 export function RegistrationForm({
   defaultCourse,
@@ -52,8 +52,8 @@ export function RegistrationForm({
       <div className="flex items-start gap-3 rounded-2xl border border-[#00b8a8]/30 bg-[#00e5d4]/10 p-6">
         <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#00b8a8]" />
         <div>
-          <p className="font-semibold text-[#0a1a1a]">{registration.success}</p>
-          <p className="mt-1 text-sm text-[#40514e]">
+          <p className="font-semibold text-[#101614]">{registration.success}</p>
+          <p className="mt-1 text-sm text-[#4a5a55]">
             Бүртгэл: {form.name} — {form.course}
           </p>
         </div>
@@ -64,7 +64,7 @@ export function RegistrationForm({
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2" noValidate>
       <div className="sm:col-span-2">
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.name} *
         </label>
         <input
@@ -77,7 +77,7 @@ export function RegistrationForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.email} *
         </label>
         <input
@@ -90,7 +90,7 @@ export function RegistrationForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.phone}
         </label>
         <input
@@ -103,7 +103,7 @@ export function RegistrationForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.course} *
         </label>
         <select value={form.course} onChange={set("course")} className={inputClass}>
@@ -117,7 +117,7 @@ export function RegistrationForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.level}
         </label>
         <select value={form.level} onChange={set("level")} className={inputClass}>
@@ -131,7 +131,7 @@ export function RegistrationForm({
       </div>
 
       <div className="sm:col-span-2">
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {registration.fields.expectation}
         </label>
         <textarea

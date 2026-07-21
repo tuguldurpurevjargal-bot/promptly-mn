@@ -13,11 +13,11 @@ export function SectionHeading({
   return (
     <div className={`max-w-2xl ${alignClass}`}>
       {kicker && <p className="kicker">{kicker}</p>}
-      <h2 className="mt-3 text-3xl font-semibold leading-[1.15] tracking-[-0.02em] text-[#0a1a1a] sm:text-4xl">
+      <h2 className="mt-3 text-3xl font-bold leading-[1.15] tracking-[-0.02em] text-[#101614] sm:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-[#40514e] sm:text-lg">
+        <p className="mt-4 text-base leading-relaxed text-[#4a5a55] sm:text-lg">
           {description}
         </p>
       )}

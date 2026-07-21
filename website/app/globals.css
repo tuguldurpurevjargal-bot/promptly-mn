@@ -3,20 +3,22 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-ink: #0a1a1a;
-  --color-ink-soft: #40514e;
+  --color-ink: #101614;
+  --color-ink-soft: #4a5a55;
   --color-mist: #6b8b86;
-  --color-line: #e6eceb;
-  --color-cloud: #f4f7f6;
+  --color-line: #e5ebe8;
+  --color-cloud: #f5f7f6;
+  --color-teal: #00b8a8;
+  --color-teal-soft: #e0faf5;
   --color-accent-start: #00e5d4;
   --color-accent-end: #4fffb0;
-  --color-accent-deep: #00b8a8;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #40514e;
+  --foreground: #4a5a55;
 }
 
 body {
@@ -28,13 +30,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 ::selection {
-  background: rgba(0, 229, 212, 0.25);
-  color: #0a1a1a;
+  background: rgba(0, 184, 168, 0.2);
+  color: #101614;
 }
 
 :focus-visible {
@@ -42,8 +48,8 @@ html {
   outline-offset: 2px;
 }
 
-.brand-gradient {
-  background: linear-gradient(135deg, #00e5d4, #4fffb0);
+.font-display {
+  font-family: var(--font-display);
 }
 
 .brand-gradient-text {
@@ -55,10 +61,11 @@ html {
 
 .kicker {
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #00b8a8;
+  font-family: var(--font-display);
 }
 
 .btn-primary {
@@ -67,17 +74,18 @@ html {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #00e5d4, #4fffb0);
-  color: #0a1a1a;
+  background: #101614;
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.875rem;
   padding: 0.875rem 1.75rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0, 229, 212, 0.35);
+  background: #1d2a26;
+  box-shadow: 0 8px 24px rgba(16, 22, 20, 0.18);
 }
 
 .btn-secondary {
@@ -86,25 +94,41 @@ html {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  border: 1px solid #e6eceb;
+  border: 1px solid #e5ebe8;
   background: #ffffff;
-  color: #0a1a1a;
+  color: #101614;
   font-weight: 600;
   font-size: 0.875rem;
   padding: 0.875rem 1.75rem;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
 .btn-secondary:hover {
   border-color: #00b8a8;
-  background: rgba(0, 229, 212, 0.06);
+  color: #00b8a8;
+  background: #e0faf5;
 }
 
 .card {
   background: #ffffff;
-  border: 1px solid #e6eceb;
+  border: 1px solid #e5ebe8;
   border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(10, 26, 26, 0.04);
+}
+
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: rgba(0, 184, 168, 0.35);
+  box-shadow: 0 8px 24px rgba(16, 22, 20, 0.06);
+  transform: translateY(-2px);
+}
+
+.tinted-panel {
+  background: #e0faf5;
+  border: 1px solid rgba(0, 184, 168, 0.2);
+  border-radius: 1.5rem;
 }
 
 .placeholder-tag {
@@ -114,7 +138,7 @@ html {
   padding: 0.125rem 0.5rem;
   font-size: 0.75rem;
   color: #6b8b86;
-  background: #f4f7f6;
+  background: #f5f7f6;
 }
 
 @media (prefers-reduced-motion: reduce) {

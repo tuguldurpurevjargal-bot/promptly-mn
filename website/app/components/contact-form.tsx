@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { contact } from "@/app/data/content";
 
 const inputClass =
-  "w-full rounded-xl border border-[#e6eceb] bg-white px-4 py-3 text-sm text-[#0a1a1a] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]";
+  "w-full rounded-xl border border-[#e5ebe8] bg-white px-4 py-3 text-sm text-[#101614] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]";
 
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -34,7 +34,7 @@ export function ContactForm() {
     return (
       <div className="flex items-center gap-3 rounded-2xl border border-[#00b8a8]/30 bg-[#00e5d4]/10 p-6">
         <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-[#00b8a8]" />
-        <p className="font-medium text-[#0a1a1a]">{contact.form.success}</p>
+        <p className="font-medium text-[#101614]">{contact.form.success}</p>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4" noValidate>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {contact.form.name} *
         </label>
         <input
@@ -53,7 +53,7 @@ export function ContactForm() {
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {contact.form.email} *
         </label>
         <input
@@ -64,7 +64,7 @@ export function ContactForm() {
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#0a1a1a]">
+        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
           {contact.form.message} *
         </label>
         <textarea

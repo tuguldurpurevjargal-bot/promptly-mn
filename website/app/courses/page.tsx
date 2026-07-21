@@ -41,7 +41,7 @@ export default function CoursesPage() {
           </div>
         </section>
 
-        <section className="bg-[#f4f7f6] px-4 py-20 sm:px-6">
+        <section className="bg-[#f5f7f6] px-4 py-20 sm:px-6">
           <div className="mx-auto max-w-[1200px]">
             <SectionHeading title="Сургалтын хөтөлбөр" />
             <div className="mt-12">

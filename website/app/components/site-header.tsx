@@ -20,7 +20,7 @@ export function SiteHeader() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 border-b bg-white/90 backdrop-blur-xl transition-all duration-300 ${
-        isScrolled ? "border-[#e6eceb]" : "border-transparent"
+        isScrolled ? "border-[#e5ebe8]" : "border-transparent"
       }`}
     >
       <div
@@ -37,7 +37,7 @@ export function SiteHeader() {
             className="h-8 w-8"
             priority
           />
-          <span className="text-lg font-semibold tracking-tight text-[#0a1a1a]">
+          <span className="text-lg font-semibold tracking-tight text-[#101614]">
             Promptly
           </span>
         </Link>
@@ -47,7 +47,7 @@ export function SiteHeader() {
             <Link
               key={item.label}
               href={item.target}
-              className="text-sm font-medium text-[#40514e] transition-colors hover:text-[#0a1a1a]"
+              className="text-sm font-medium text-[#4a5a55] transition-colors hover:text-[#101614]"
             >
               {item.label}
             </Link>
@@ -62,7 +62,7 @@ export function SiteHeader() {
 
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e6eceb] bg-white text-[#0a1a1a] lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e5ebe8] bg-white text-[#101614] lg:hidden"
           aria-label={isMenuOpen ? "Цэс хаах" : "Цэс нээх"}
           aria-expanded={isMenuOpen}
         >
@@ -71,7 +71,7 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={`overflow-hidden border-b border-[#e6eceb] bg-white transition-all duration-300 ease-in-out lg:hidden ${
+        className={`overflow-hidden border-b border-[#e5ebe8] bg-white transition-all duration-300 ease-in-out lg:hidden ${
           isMenuOpen ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -81,7 +81,7 @@ export function SiteHeader() {
               key={item.label}
               href={item.target}
               onClick={() => setIsMenuOpen(false)}
-              className="rounded-lg px-4 py-3 text-base font-medium text-[#0a1a1a] transition-colors hover:bg-[#f4f7f6]"
+              className="rounded-lg px-4 py-3 text-base font-medium text-[#101614] transition-colors hover:bg-[#f5f7f6]"
             >
               {item.label}
             </Link>
