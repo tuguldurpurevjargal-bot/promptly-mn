@@ -7,13 +7,25 @@ import { LanguageProvider } from "./i18n/context";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Promptly — AI Education for Mongolia",
+  metadataBase: new URL("https://website-rho-wheat-79.vercel.app"),
+  title: {
+    default: "Promptly — Хүн бүрт AI | Монгол хэл дээрх практик AI сургалт",
+    template: "%s | Promptly",
+  },
   description:
-    "Make artificial intelligence practical, understandable, and accessible for everyone through education, tools, and community.",
+    "AI-г ойлгож, зөв ашиглан өдөр тутмын ажил, бүтээмж болон бүтээлч үйл явцаа сайжруулах практик сургалт. Beginner болон Intermediate түвшин.",
+  openGraph: {
+    title: "Promptly — Хүн бүрт AI",
+    description:
+      "Монгол хэл дээрх практик AI сургалт. AI-г ойлгож, зөв ашиглан ажил, бүтээмжээ сайжруулаарай.",
+    type: "website",
+    locale: "mn_MN",
+    siteName: "Promptly",
+  },
 };
 
 export default function RootLayout({
