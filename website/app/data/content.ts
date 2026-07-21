@@ -476,6 +476,7 @@ export const footerCols = [
     links: [
       { label: "Бидний тухай", target: "/about" },
       { label: "Контент", target: "/resources" },
+      { label: "AI Literacy тест", target: "/test" },
       { label: "Newsletter", target: "/#free-resource" },
       { label: "Холбоо барих", target: "/contact" },
     ],

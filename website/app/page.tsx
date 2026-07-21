@@ -148,6 +148,27 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Quiz teaser */}
+        <section className="px-4 py-20 sm:px-6">
+          <div className="card card-hover mx-auto flex max-w-[1200px] flex-col items-start gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-12">
+            <div className="max-w-xl">
+              <p className="kicker">AI Literacy тест</p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#101614] sm:text-3xl">
+                Түвшнээ мэдэхгүй байна уу?
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#4a5a55]">
+                11 асуулт, 3 минут — AI хэрэглээний түвшин, давуу тал болон хөгжүүлэх
+                боломжоо тодорхойлж, танд тохирох сургалтыг олоорой. Үр дүн нь ерөнхий
+                чиглэл үзүүлэх self-assessment юм.
+              </p>
+            </div>
+            <Link href="/test" className="btn-primary whitespace-nowrap">
+              Тест эхлүүлэх
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
         {/* Outcomes */}
         <section className="px-4 py-20 sm:px-6">
           <div className="mx-auto max-w-[1200px]">
