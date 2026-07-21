@@ -1,0 +1,273 @@
+/* Boost (abyssal mission control) theme — scoped to .boost */
+
+.boost {
+  --b-abyss: #002025;
+  --b-kelp: #05333a;
+  --b-reef: #244348;
+  --b-tide: #455c60;
+  --b-storm: #7d8f92;
+  --b-mist: #9eaeb0;
+  --b-foam: #b7c6c9;
+  --b-bone: #fffffa;
+  --b-lime: #79fa4b;
+  --b-pale-lime: #a4ed8a;
+  --b-volt-dark: #0b3222;
+  --b-gradient: linear-gradient(100.7deg, #30d7f1 8.74%, #79fa4b 92.06%);
+
+  background: var(--b-abyss);
+  color: var(--b-bone);
+  font-family: var(--font-boost), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+}
+
+.boost ::selection {
+  background: rgba(121, 250, 75, 0.25);
+  color: var(--b-bone);
+}
+
+/* Eyebrow label */
+.boost .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--b-lime);
+}
+
+.boost .eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--b-lime);
+  flex-shrink: 0;
+}
+
+/* Lime underline accent for display keywords */
+.boost .lime-underline {
+  box-shadow: inset 0 -0.1em 0 0 var(--b-lime);
+}
+
+/* Gradient pill CTA — the one primary action */
+.boost .btn-primary {
+  background: var(--b-gradient);
+  color: var(--b-bone);
+  border: none;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 12px 24px;
+  box-shadow: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.boost .btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: none;
+  background: var(--b-gradient);
+  color: var(--b-bone);
+}
+
+/* Ghost bone outline button */
+.boost .btn-secondary {
+  background: transparent;
+  border: 1px solid var(--b-bone);
+  color: var(--b-bone);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 22px;
+  box-shadow: none;
+  transition: opacity 0.2s ease;
+}
+
+.boost .btn-secondary:hover {
+  opacity: 0.75;
+  background: transparent;
+  border-color: var(--b-bone);
+  color: var(--b-bone);
+}
+
+/* Ghost pale-lime outline button */
+.boost .btn-lime-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--b-pale-lime);
+  color: var(--b-pale-lime);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 22px;
+  transition: opacity 0.2s ease;
+}
+
+.boost .btn-lime-outline:hover {
+  opacity: 0.75;
+}
+
+/* Cards → slate reef glass, 30px radius */
+.boost .card {
+  background: rgba(36, 67, 72, 0.5);
+  border: 1px solid var(--b-reef);
+  border-radius: 30px;
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+}
+
+.boost .card-hover {
+  transition: border-color 0.2s ease;
+}
+
+.boost .card-hover:hover {
+  border-color: var(--b-tide);
+  box-shadow: none;
+  transform: none;
+}
+
+/* Deep kelp interior surface */
+.boost .surface-deep {
+  background: var(--b-kelp);
+  border-radius: 30px;
+  border: 1px solid var(--b-reef);
+}
+
+/* Kicker → eyebrow */
+.boost .kicker {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--b-lime);
+}
+
+/* Placeholder tags */
+.boost .placeholder-tag {
+  border: 1px dashed var(--b-tide);
+  background: rgba(36, 67, 72, 0.4);
+  color: var(--b-mist);
+  border-radius: 10px;
+}
+
+/* Form inputs → dark glass pills */
+.boost input[type="text"],
+.boost input[type="email"],
+.boost input[type="tel"],
+.boost select,
+.boost textarea {
+  border-radius: 999px !important;
+  border: 1px solid var(--b-reef) !important;
+  background: rgba(0, 32, 37, 0.6) !important;
+  color: var(--b-bone) !important;
+}
+
+.boost textarea {
+  border-radius: 16px !important;
+}
+
+.boost input::placeholder,
+.boost textarea::placeholder {
+  color: var(--b-storm) !important;
+}
+
+.boost input:focus,
+.boost select:focus,
+.boost textarea:focus {
+  outline: none !important;
+  border-color: var(--b-lime) !important;
+}
+
+/* Text color remaps */
+.boost .text-\[\#101614\],
+.boost .text-\[\#0a1a1a\] {
+  color: var(--b-bone) !important;
+}
+
+.boost .text-\[\#4a5a55\],
+.boost .text-\[\#40514e\] {
+  color: var(--b-storm) !important;
+}
+
+.boost .text-\[\#6b8b86\] {
+  color: var(--b-mist) !important;
+}
+
+.boost .text-\[\#00b8a8\] {
+  color: var(--b-lime) !important;
+}
+
+/* Accent fills → lime */
+.boost .bg-\[\#00e5d4\],
+.boost .bg-\[\#00B8A8\],
+.boost .bg-\[\#cbfffc\] {
+  background-color: var(--b-lime) !important;
+}
+
+/* Cloud/light surfaces → deep kelp */
+.boost .bg-\[\#f5f7f6\],
+.boost .bg-\[\#f4f7f6\] {
+  background-color: rgba(5, 51, 58, 0.5) !important;
+}
+
+.boost .bg-white {
+  background-color: rgba(36, 67, 72, 0.5) !important;
+}
+
+/* Borders */
+.boost .border-\[\#e5ebe8\],
+.boost .border-\[\#e6eceb\] {
+  border-color: var(--b-reef) !important;
+}
+
+.boost .divide-\[\#e5ebe8\] > * + *,
+.boost .divide-\[\#e6eceb\] > * + * {
+  border-color: var(--b-reef) !important;
+}
+
+/* Selected-option tint in quiz/forms */
+.boost .bg-\[\#e0faf5\] {
+  background-color: rgba(121, 250, 75, 0.12) !important;
+}
+
+/* Reveal animation (reuses v2 Reveal component classes) */
+.boost .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.boost .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boost .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Ambient float for the hero product card */
+@keyframes b-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .boost .anim-float {
+    animation: b-float 7s ease-in-out infinite;
+  }
+  .boost .anim-float-slow {
+    animation: b-float 10s ease-in-out 1.5s infinite;
+  }
+}

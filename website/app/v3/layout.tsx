@@ -1,14 +1,16 @@
-import { Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import "./boost.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geistmono",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-boost",
+  subsets: ["latin", "cyrillic"],
+  weight: ["300", "400", "500", "600"],
 });
 
-export default function V2Layout({
+export default function V3Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className={geistMono.variable}>{children}</div>;
+  return <div className={`boost ${inter.variable}`}>{children}</div>;
 }

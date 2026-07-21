@@ -1,386 +1,346 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, Terminal } from "lucide-react";
-import { useLanguage } from "@/app/i18n/context";
-import { LanguageToggle } from "@/app/components/language-toggle";
-import { ThemeToggle } from "@/app/components/theme-toggle";
-import { DataStream } from "@/app/components/data-stream";
-import { VersionSwitcher } from "@/app/components/version-switcher";
+import type { Metadata } from "next";
+import {
+  ArrowRight,
+  Check,
+  ClipboardList,
+  Clock,
+  FileText,
+  GraduationCap,
+  Layers,
+  Rocket,
+  Sparkles,
+} from "lucide-react";
+import { BoostHeader } from "./components/boost-header";
+import { BoostFooter } from "./components/boost-footer";
+import { ProductVisual } from "./components/product-visual";
+import { TiltedTiles } from "./components/tilted-tiles";
+import { Reveal } from "@/app/v2/components/reveal";
+import { FaqAccordion } from "@/app/components/faq-accordion";
+import { LeadForm } from "@/app/components/lead-form";
+import {
+  courses,
+  faq,
+  finalCta,
+  hero,
+  howItWorks,
+  leadMagnet,
+  whyPromptly,
+} from "@/app/data/content";
 
-const platforms = [
-  "Facebook",
-  "YouTube Shorts",
-  "Instagram",
-  "Threads",
-  "LinkedIn",
-  "YouTube Longform",
-];
+export const metadata: Metadata = {
+  title: "Promptly — Хүн бүрт AI (v3)",
+};
 
-const audiences = [
-  { key: "individuals" as const },
-  { key: "teams" as const },
-  { key: "businesses" as const },
-];
+const levelIcons = {
+  beginner: <GraduationCap className="h-5 w-5" />,
+  intermediate: <Layers className="h-5 w-5" />,
+  expert: <Rocket className="h-5 w-5" />,
+};
 
-const courses = [
-  { key: "beginner" as const, cmd: "enroll --level=beginner" },
-  { key: "intermediate" as const, cmd: "enroll --level=intermediate" },
-  { key: "advanced" as const, cmd: "enroll --level=advanced" },
-];
-
-export default function HomeV2() {
-  const { t } = useLanguage();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navLinks = [
-    { href: "#why", label: t.nav.why },
-    { href: "#path", label: t.nav.path },
-    { href: "#platform", label: t.nav.platform },
-    { href: "#contact", label: t.nav.contact },
-  ];
+export default function BoostHomePage() {
+  const availableCourses = courses.filter((c) => c.status === "available");
+  const expertCourse = courses.find((c) => c.status === "coming_soon")!;
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-black text-white">
-      {/* Neon Header */}
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#303236] bg-black/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6">
-          <Link href="/v3" className="flex items-center gap-2.5">
-            <Image
-              src="/logo.svg"
-              alt="Promptly"
-              width={28}
-              height={28}
-              className="h-7 w-7"
-              priority
-            />
-            <span className="text-base font-medium tracking-tight text-white">
-              Promptly
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-[#797d86] transition-colors hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="hidden items-center gap-3 md:flex">
-            <LanguageToggle />
-            <ThemeToggle />
-            <Link
-              href="#contact"
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
-            >
-              {t.nav.cta}
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-2 md:hidden">
-            <LanguageToggle />
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-md border border-[#303236] bg-[#151617] text-white"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={`overflow-hidden border-b border-[#303236] bg-black transition-all duration-300 ease-in-out md:hidden ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-md px-4 py-3 text-sm text-[#797d86] transition-colors hover:bg-[#151617] hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-2 flex items-center justify-between rounded-md bg-[#151617] px-4 py-3">
-              <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-                theme
-              </span>
-              <ThemeToggle />
-            </div>
-            <Link
-              href="#contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-2 rounded-full bg-white px-4 py-3 text-center text-sm font-medium text-[#151617]"
-            >
-              {t.nav.cta}
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-[#002025]">
+      <BoostHeader />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-16 sm:px-6">
-          <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#34d59a]" />
-            {t.hero.badge}
-          </p>
-
-          <h1 className="mt-8 max-w-4xl text-center text-[clamp(2.75rem,8vw,5rem)] font-medium leading-[1] tracking-[-3.2px] text-white">
-            {t.hero.headline}{" "}
-            <span className="text-[#34d59a]">{t.hero.headlineHighlight}</span>
-          </h1>
-
-          <p className="mt-8 max-w-xl text-center text-base leading-[1.5] tracking-[-0.43px] text-[#797d86] md:text-lg">
-            {t.hero.subheadline}
-          </p>
-
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-            <Link
-              href="#contact"
-              className="rounded-full bg-white px-7 py-3 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
-            >
-              {t.hero.ctaPrimary}
-            </Link>
-            <Link
-              href="#path"
-              className="rounded-full border border-[#303236] px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/40"
-            >
-              {t.hero.ctaSecondary}
-            </Link>
-          </div>
-
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 opacity-80">
-            <DataStream />
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="px-4 py-24 sm:px-6">
-          <div className="mx-auto max-w-[1200px]">
-            <p className="text-center font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.stats.label}
-            </p>
-            <div className="mt-12 grid grid-cols-3 gap-6">
-              {t.stats.items.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-[family-name:var(--font-geistmono)] text-[clamp(2rem,6vw,4rem)] font-medium leading-none text-[#34d59a]">
-                    {stat.value}
-                  </div>
-                  <div className="mt-3 font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-wider text-[#797d86]">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Mission */}
-        <section id="why" className="px-4 py-24 sm:px-6 md:py-32">
-          <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-2 md:gap-20">
+        {/* Hero — 2-col split with floating product card */}
+        <section className="px-5 pb-24 pt-36 sm:pt-44">
+          <div className="mx-auto grid max-w-[1200px] items-center gap-16 lg:grid-cols-2">
             <div>
-              <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-                {t.mission.label}
+              <p className="eyebrow">{hero.eyebrow}</p>
+              <h1 className="mt-6 text-[clamp(3.5rem,9vw,7.5rem)] font-light leading-[0.9] tracking-[-0.04em] text-[#fffffa]">
+                Хүн бүрт{" "}
+                <span className="lime-underline">AI.</span>
+              </h1>
+              <p className="mt-8 max-w-md text-lg leading-[1.45] text-[#7d8f92]">
+                {hero.description}
               </p>
-              <h2 className="mt-4 text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-                {t.mission.title}
-              </h2>
-              <p className="mt-6 max-w-[520px] text-base leading-[1.5] tracking-[-0.43px] text-[#797d86]">
-                {t.mission.description}
-              </p>
+
+              <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+                {hero.supportingPoints.map((point) => (
+                  <li key={point} className="flex items-center gap-2 text-sm text-[#9eaeb0]">
+                    <Check className="h-4 w-4 text-[#79fa4b]" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link href="/courses" className="btn-primary">
+                  {hero.primaryCta.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="#courses" className="btn-secondary">
+                  {hero.secondaryCta.label}
+                </Link>
+              </div>
             </div>
 
-            <ul className="flex flex-col justify-center gap-6">
-              {audiences.map((audience) => {
-                const data = t.audiences[audience.key];
-                return (
-                  <li key={audience.key} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#34d59a]" />
-                    <div>
-                      <h3 className="text-lg font-medium leading-[1.38] tracking-[-0.36px] text-white">
-                        {data.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-[1.5] tracking-[-0.7px] text-[#797d86]">
-                        {data.desc}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="hidden lg:block">
+              <ProductVisual />
+            </div>
           </div>
         </section>
 
-        {/* Courses — terminal cards */}
-        <section id="path" className="px-4 py-24 sm:px-6 md:py-32">
+        {/* Quiz band */}
+        <section className="px-5 py-24">
           <div className="mx-auto max-w-[1200px]">
-            <p className="text-center font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.path.label}
-            </p>
-            <h2 className="mx-auto mt-4 max-w-3xl text-center text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.path.title}
-            </h2>
-
-            <div className="mt-14 grid gap-4 md:grid-cols-3">
-              {courses.map((course) => {
-                const data = t.path[course.key];
-                const isAdvanced = course.key === "advanced";
-                return (
-                  <article
-                    key={course.key}
-                    className="flex flex-col rounded-md bg-[#151617] p-6"
-                  >
-                    <div className="flex items-center gap-2 border-b border-[#303236] pb-4">
-                      <Terminal className="h-3.5 w-3.5 text-[#34d59a]" />
-                      <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-                        promptly {course.cmd}
+            <Reveal>
+              <div className="relative overflow-hidden rounded-[30px] border border-[#244348] p-8 sm:p-12">
+                <div className="grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+                  <div>
+                    <p className="eyebrow">AI Literacy тест</p>
+                    <h2 className="mt-4 text-3xl font-light leading-[1.1] tracking-[-0.02em] text-[#fffffa] sm:text-4xl">
+                      Түвшнээ тодорхойлж,{" "}
+                      <span className="lime-underline">тохирох сургалтаа</span>{" "}
+                      ол.
+                    </h2>
+                    <p className="mt-4 max-w-lg text-base text-[#7d8f92]">
+                      AI хэрэглээний түвшин, давуу тал болон хөгжүүлэх боломжоо ойролцоогоор
+                      тодорхойлно.
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-start gap-4 md:items-end">
+                    <div className="flex gap-2.5">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244348] bg-[#002025] px-4 py-1.5 text-sm text-[#9eaeb0]">
+                        <ClipboardList className="h-4 w-4 text-[#79fa4b]" />
+                        11 асуулт
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244348] bg-[#002025] px-4 py-1.5 text-sm text-[#9eaeb0]">
+                        <Clock className="h-4 w-4 text-[#79fa4b]" />
+                        3 минут
                       </span>
                     </div>
+                    <Link href="/test" className="btn-lime-outline">
+                      Тест эхлүүлэх
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#30d7f1] to-[#79fa4b]" />
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
-                    <div className="mt-4 flex items-center gap-2">
-                      <h3 className="font-[family-name:var(--font-geistmono)] text-base font-medium text-white">
-                        {data.level}
-                      </h3>
-                      {isAdvanced && (
-                        <span className="font-[family-name:var(--font-geistmono)] text-xs text-[#ff3621]">
-                          [soon]
-                        </span>
-                      )}
+        {/* Courses */}
+        <section id="courses" className="px-5 py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <p className="eyebrow">Сургалтууд</p>
+              <h2 className="mt-4 max-w-3xl text-5xl font-light leading-[1] tracking-[-0.03em] text-[#fffffa] sm:text-6xl">
+                Танд аль сургалт{" "}
+                <span className="lime-underline">тохирох</span>{" "}
+                вэ?
+              </h2>
+            </Reveal>
+
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+              {availableCourses.map((course, index) => (
+                <Reveal key={course.slug} delay={index * 150}>
+                  <article className="card card-hover flex h-full flex-col p-8 sm:p-10">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#0b3222] to-[#1a5c35] text-[#79fa4b]">
+                        {levelIcons[course.slug as keyof typeof levelIcons]}
+                      </div>
+                      <span className="text-xs font-medium uppercase tracking-[0.35em] text-[#79fa4b]">
+                        {course.slug === "beginner" ? "Анхан шат" : "Дунд шат"}
+                      </span>
                     </div>
-
-                    <p className="mt-3 font-[family-name:var(--font-geistmono)] text-sm leading-[1.65] tracking-[-0.7px] text-[#797d86]">
-                      {data.description}
+                    <h3 className="mt-5 text-3xl font-light tracking-[-0.02em] text-[#fffffa]">
+                      {course.name}
+                    </h3>
+                    <p className="mt-2 text-base font-medium text-[#b7c6c9]">{course.tagline}</p>
+                    <p className="mt-3 flex-1 text-sm leading-[1.45] text-[#7d8f92]">
+                      {course.description}
                     </p>
 
-                    <ul className="mt-4 flex-1 space-y-2">
-                      {data.topics.map((topic) => (
-                        <li
-                          key={topic}
-                          className="font-[family-name:var(--font-geistmono)] text-xs leading-[1.65] tracking-[-0.7px] text-[#34d59a]"
-                        >
-                          <span className="text-[#797d86]">{"> "}</span>
+                    <ul className="mt-6 space-y-2 border-t border-[#244348] pt-6">
+                      {course.topics.map((topic) => (
+                        <li key={topic} className="flex items-center gap-2.5 text-sm text-[#9eaeb0]">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#79fa4b]" />
                           {topic}
                         </li>
                       ))}
                     </ul>
 
-                    <button
-                      disabled={isAdvanced}
-                      className={`mt-6 w-full rounded-full py-2.5 text-sm font-medium transition-transform ${
-                        !isAdvanced
-                          ? "bg-white text-[#151617] hover:scale-[1.02]"
-                          : "cursor-not-allowed border border-[#303236] text-[#797d86]"
-                      }`}
+                    <Link
+                      href={course.cta.target}
+                      className={`mt-8 w-full justify-center ${index === 0 ? "btn-primary" : "btn-secondary"}`}
                     >
-                      {!isAdvanced ? data.cta : data.soon}
-                    </button>
+                      {course.cta.label}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
                   </article>
-                );
-              })}
+                </Reveal>
+              ))}
             </div>
+
+            {/* Expert teaser */}
+            <Reveal delay={200}>
+              <div className="card mt-6 flex flex-col items-start gap-4 p-8 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#0b3222] to-[#1a5c35] text-[#79fa4b]">
+                    <Rocket className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-xl font-light text-[#fffffa]">{expertCourse.name}</h3>
+                      <span className="rounded-full border border-[#244348] px-3 py-1 text-xs text-[#7d8f92]">
+                        Удахгүй
+                      </span>
+                    </div>
+                    <p className="mt-2 max-w-xl text-sm text-[#7d8f92]">
+                      {expertCourse.description}
+                    </p>
+                  </div>
+                </div>
+                <Link href={expertCourse.cta.target} className="btn-lime-outline whitespace-nowrap">
+                  {expertCourse.cta.label}
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* Platforms — logo bar */}
-        <section id="platform" className="px-4 py-24 sm:px-6">
-          <div className="mx-auto max-w-[1200px] text-center">
-            <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.platform.label}
-            </p>
-            <h2 className="mx-auto mt-4 max-w-2xl text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.platform.title}
-            </h2>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-              {platforms.map((name) => (
-                <span
-                  key={name}
-                  className="text-sm font-medium text-[#797d86] transition-colors hover:text-white"
-                >
-                  {name}
-                </span>
+        {/* Why Promptly — 50/50 with tilted tiles */}
+        <section id="why-promptly" className="px-5 py-24">
+          <div className="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-2">
+            <div>
+              <Reveal>
+                <p className="eyebrow">Яагаад Promptly</p>
+                <h2 className="mt-4 text-5xl font-light leading-[1] tracking-[-0.03em] text-[#fffffa] sm:text-6xl">
+                  Tool биш,{" "}
+                  <span className="lime-underline">чадвар.</span>
+                </h2>
+              </Reveal>
+              <div className="mt-12 space-y-8">
+                {whyPromptly.items.map((item, index) => (
+                  <Reveal key={item.title} delay={index * 100}>
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#0b3222] to-[#1a5c35] text-[#79fa4b]">
+                        <Sparkles className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium text-[#fffffa]">{item.title}</h3>
+                        <p className="mt-1.5 text-sm leading-[1.45] text-[#7d8f92]">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+            <Reveal delay={150}>
+              <TiltedTiles />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section className="px-5 py-24">
+          <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1fr_1.3fr]">
+            <Reveal>
+              <p className="eyebrow">Хэрхэн ажилладаг</p>
+              <h2 className="mt-4 text-5xl font-light leading-[1] tracking-[-0.03em] text-[#fffffa] sm:text-6xl">
+                Сургалт хэрхэн{" "}
+                <span className="lime-underline">явагдах</span>{" "}
+                вэ?
+              </h2>
+            </Reveal>
+            <div>
+              {howItWorks.steps.map((step, index) => (
+                <Reveal key={step.number} delay={index * 80}>
+                  <div className="flex gap-6 border-b border-[#244348] py-6 first:border-t">
+                    <span className="text-2xl font-light text-[#79fa4b]">{step.number}</span>
+                    <div>
+                      <h3 className="text-lg font-medium text-[#fffffa]">{step.title}</h3>
+                      <p className="mt-1 text-sm leading-[1.45] text-[#7d8f92]">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Newsletter */}
-        <section id="contact" className="px-4 py-24 sm:px-6 md:py-32">
-          <div className="mx-auto max-w-[720px] rounded-md bg-[#151617] p-8 text-center sm:p-14">
-            <p className="font-[family-name:var(--font-geistmono)] text-xs uppercase tracking-widest text-[#797d86]">
-              {t.newsletter.label}
-            </p>
-            <h2 className="mt-4 text-[clamp(2rem,4.5vw,3rem)] font-medium leading-[1.13] tracking-[-1.2px] text-white">
-              {t.newsletter.title}
+        {/* Lead magnet */}
+        <section id="free-resource" className="px-5 py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <Reveal>
+              <div className="surface-deep px-6 py-14 text-center sm:px-12 sm:py-16">
+                <FileText className="mx-auto h-9 w-9 text-[#79fa4b]" />
+                <h2 className="mt-5 text-4xl font-light leading-[1.05] tracking-[-0.03em] text-[#fffffa] sm:text-5xl">
+                  {leadMagnet.headline}
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-base text-[#7d8f92]">
+                  {leadMagnet.description}
+                </p>
+                <div className="mx-auto mt-9 max-w-2xl">
+                  <LeadForm
+                    cta={leadMagnet.cta}
+                    success={leadMagnet.success}
+                    namePlaceholder={leadMagnet.namePlaceholder}
+                    emailPlaceholder={leadMagnet.emailPlaceholder}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="px-5 py-24">
+          <div className="mx-auto max-w-[900px]">
+            <Reveal>
+              <p className="eyebrow">FAQ</p>
+              <h2 className="mt-4 text-5xl font-light leading-[1] tracking-[-0.03em] text-[#fffffa] sm:text-6xl">
+                Түгээмэл{" "}
+                <span className="lime-underline">асуултууд</span>
+              </h2>
+            </Reveal>
+            <div className="mt-12">
+              <FaqAccordion items={faq.items} />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="px-5 pb-28 pt-8">
+          <div className="mx-auto max-w-[1200px] rounded-[30px] border border-[#244348] px-6 py-16 text-center sm:px-12">
+            <h2 className="mx-auto max-w-3xl text-4xl font-light leading-[1.05] tracking-[-0.03em] text-[#fffffa] sm:text-5xl">
+              AI-г зүгээр сонирхохоо болиод,{" "}
+              <span className="lime-underline">ашиглаж</span>{" "}
+              эхлэхэд бэлэн үү?
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-[1.5] tracking-[-0.7px] text-[#797d86]">
-              {t.newsletter.description}
-            </p>
-            <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder={t.newsletter.placeholder}
-                className="flex-1 rounded-md border border-[#303236] bg-black px-5 py-3 font-[family-name:var(--font-geistmono)] text-sm text-white outline-none transition-colors placeholder:text-[#797d86] focus:border-[#34d59a]/60"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-white px-7 py-3 text-sm font-medium text-[#151617] transition-transform hover:scale-105"
-              >
-                {t.newsletter.cta}
-              </button>
-            </form>
-            <p className="mt-5 font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-              {t.newsletter.disclaimer}
-            </p>
+            <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href={finalCta.primaryCta.target} className="btn-primary">
+                {finalCta.primaryCta.label}
+              </Link>
+              <Link href={finalCta.secondaryCta.target} className="btn-secondary">
+                {finalCta.secondaryCta.label}
+              </Link>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[#303236] px-4 py-10 sm:px-6">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <div className="flex items-center gap-2.5">
-            <Image
-              src="/logo.svg"
-              alt="Promptly"
-              width={24}
-              height={24}
-              className="h-6 w-6"
-            />
-            <span className="text-sm font-medium text-white">Promptly</span>
-          </div>
+      <BoostFooter />
 
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {platforms.map((name) => (
-              <Link
-                key={name}
-                href="#"
-                className="text-xs text-[#797d86] transition-colors hover:text-white"
-              >
-                {name}
-              </Link>
-            ))}
-          </div>
-
-          <p className="font-[family-name:var(--font-geistmono)] text-xs text-[#797d86]">
-            {t.footer.rights}
-          </p>
-        </div>
-      </footer>
-
-      <VersionSwitcher to="/" label="v1" variant="neon" />
+      {/* Version switcher */}
+      <Link
+        href="/"
+        className="fixed bottom-6 right-6 z-[60] rounded-full border border-[#455c60] bg-[#002025]/80 px-5 py-2.5 text-xs font-medium text-[#b7c6c9] backdrop-blur-xl transition-opacity hover:opacity-75"
+      >
+        v1 →
+      </Link>
     </div>
   );
 }
