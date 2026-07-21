@@ -95,6 +95,14 @@ export const translations = {
       cta: "Бүртгүүлэх",
       disclaimer: "Spam авахгүй. Бүртгэлээ хүссэн үедээ цуцлана.",
     },
+    stats: {
+      label: "Үзүүлэлтүүд",
+      items: [
+        { value: "3", label: "Түвшний сургалт" },
+        { value: "100+", label: "Үнэгүй контент" },
+        { value: "7", label: "Алхмууд" },
+      ],
+    },
     footer: {
       rights: "© 2026 Promptly. Бүх эрх хуулиар хамгаалагдсан.",
     },
@@ -187,6 +195,14 @@ export const translations = {
       placeholder: "Email address",
       cta: "Subscribe",
       disclaimer: "No spam. Unsubscribe anytime.",
+    },
+    stats: {
+      label: "By the numbers",
+      items: [
+        { value: "3", label: "Course levels" },
+        { value: "100+", label: "Free content" },
+        { value: "7", label: "Growth steps" },
+      ],
     },
     footer: {
       rights: "© 2026 Promptly. All rights reserved.",

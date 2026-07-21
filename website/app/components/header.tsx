@@ -22,9 +22,9 @@ export function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#00E5D4]/15 bg-white/90 backdrop-blur-xl dark:border-white/10 dark:bg-[#071414]/90">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-[#012624]/80 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-4 sm:px-10">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.svg"
             alt="Promptly"
@@ -33,30 +33,23 @@ export function Header() {
             className="h-8 w-8"
             priority
           />
-          <span className="font-[family-name:var(--font-arimo)] text-lg font-semibold tracking-tight text-[#0a1a1a] dark:text-white">
+          <span className="text-lg font-medium tracking-tight text-white">
             Promptly
           </span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm text-[#5C6B6B] transition-colors hover:text-[#0a1a1a] dark:text-white/70 dark:hover:text-white"
-            >
+            <Link key={link.href} href={link.href} className="nav-ghost-link">
               {t.nav[link.labelKey]}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           <LanguageToggle />
           <ThemeToggle />
-          <Link
-            href="#contact"
-            className="rounded-full bg-[#0a1a1a] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-[#071414]"
-          >
+          <Link href="#contact" className="aurora-btn px-5 py-2.5">
             {t.nav.cta}
           </Link>
         </div>
@@ -65,7 +58,7 @@ export function Header() {
           <LanguageToggle />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0a1a1a]/10 bg-[#0a1a1a]/5 text-[#0a1a1a] dark:border-white/10 dark:bg-white/5 dark:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
           >
@@ -75,7 +68,7 @@ export function Header() {
       </div>
 
       <div
-        className={`overflow-hidden border-b border-[#00E5D4]/15 bg-white transition-all duration-300 ease-in-out dark:border-white/10 dark:bg-[#071414] md:hidden ${
+        className={`overflow-hidden border-b border-white/5 bg-[#011d1c] transition-all duration-300 ease-in-out md:hidden ${
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -85,14 +78,13 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={closeMenu}
-              className="rounded-lg px-4 py-3 text-base font-medium text-[#0a1a1a] transition-colors hover:bg-[#00E5D4]/10 dark:text-white dark:hover:bg-white/10"
+              className="rounded-md px-4 py-3 text-sm font-medium uppercase tracking-[0.12em] text-[#bbc7c6] transition-colors hover:bg-white/5 hover:text-white"
             >
               {t.nav[link.labelKey]}
             </Link>
           ))}
-          <div className="mt-2 flex items-center justify-between rounded-lg bg-[#00E5D4]/5 px-4 py-3 dark:bg-white/5"
-          >
-            <span className="text-sm text-[#5C6B6B] dark:text-white/70">
+          <div className="mt-2 flex items-center justify-between rounded-md bg-white/5 px-4 py-3">
+            <span className="text-xs uppercase tracking-[0.12em] text-[#bbc7c6]">
               Theme
             </span>
             <ThemeToggle />
@@ -100,7 +92,7 @@ export function Header() {
           <Link
             href="#contact"
             onClick={closeMenu}
-            className="mt-2 rounded-full bg-[#0a1a1a] px-4 py-3 text-center text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-[#071414]"
+            className="aurora-btn mt-2 px-4 py-3 text-center"
           >
             {t.nav.cta}
           </Link>

@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { Arimo, Roboto } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import { LanguageProvider } from "./i18n/context";
 
-const arimo = Arimo({
-  variable: "--font-arimo",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -31,13 +25,11 @@ export default function RootLayout({
     <html
       lang="mn"
       suppressHydrationWarning
-      className={`${arimo.variable} ${roboto.variable} scroll-smooth antialiased`}
+      className={`${inter.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-[#0a1a1a] dark:bg-[#071414] dark:text-white">
+      <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
+          <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
