@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function TestPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-[#002025]">
       <SiteHeader />
 
       <main className="flex-1">
@@ -21,7 +21,7 @@ export default function TestPage() {
           <div className="mx-auto max-w-[1200px]">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-[#6b8b86] transition-colors hover:text-[#101614]"
+              className="inline-flex items-center gap-2 text-sm text-[#9eaeb0] transition-colors hover:text-[#fffffa]"
             >
               <ArrowLeft className="h-4 w-4" />
               Нүүр хуудас

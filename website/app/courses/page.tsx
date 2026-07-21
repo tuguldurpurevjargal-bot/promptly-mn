@@ -19,7 +19,7 @@ export default function CoursesPage() {
   const expertCourse = courses.find((c) => c.status === "coming_soon")!;
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-[#002025]">
       <SiteHeader />
 
       <main className="flex-1">

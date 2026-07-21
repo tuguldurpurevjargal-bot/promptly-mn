@@ -181,7 +181,12 @@ export function QuizApp() {
                       isSelected ? "border-[#00b8a8] bg-[#00b8a8]" : "border-[#c3d2cf]"
                     }`}
                   >
-                    {isSelected && <span className="h-2 w-2 rounded-full bg-white" />}
+                    {isSelected && (
+                      <span
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: "#fffffa" }}
+                      />
+                    )}
                   </span>
                   <span className="text-sm leading-relaxed text-[#101614] sm:text-base">
                     {opt.label}

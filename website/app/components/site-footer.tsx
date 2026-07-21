@@ -1,31 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { footerCols, site } from "@/app/data/content";
+import { footerCols } from "@/app/data/content";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#e5ebe8] bg-[#f5f7f6]">
-      <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <Image
-                src="/logo.svg"
-                alt="Promptly лого"
-                width={28}
-                height={28}
-                className="h-7 w-7"
-              />
-              <span className="text-lg font-semibold text-[#101614]">Promptly</span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#6b8b86]">
-              {site.mission}
-            </p>
-          </div>
+    <footer className="border-t border-[#244348]">
+      <div className="mx-auto max-w-[1200px] px-5 py-20">
+        <p className="max-w-2xl text-3xl font-light leading-[1.1] tracking-[-0.02em] text-[#fffffa] sm:text-4xl">
+          Хүн бүрт <span className="lime-underline">AI.</span>
+        </p>
 
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {footerCols.map((col) => (
             <div key={col.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-[#6b8b86]">
+              <h3 className="text-xs font-medium uppercase tracking-[0.35em] text-[#79fa4b]">
                 {col.title}
               </h3>
               <ul className="mt-4 space-y-2.5">
@@ -33,7 +21,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.target}
-                      className="text-sm text-[#4a5a55] transition-colors hover:text-[#101614]"
+                      className="text-sm text-[#9eaeb0] transition-colors hover:text-[#fffffa]"
                     >
                       {link.label}
                     </Link>
@@ -44,10 +32,12 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-[#e5ebe8] pt-8">
-          <p className="text-sm text-[#6b8b86]">
-            © 2026 Promptly. All rights reserved.
-          </p>
+        <div className="mt-14 flex items-center justify-between border-t border-[#244348] pt-8">
+          <div className="flex items-center gap-2">
+            <Image src="/logo.svg" alt="Promptly лого" width={22} height={22} className="h-5 w-5" />
+            <span className="text-sm font-medium text-[#fffffa]">Promptly</span>
+          </div>
+          <p className="text-xs text-[#7d8f92]">© 2026 Promptly. All rights reserved.</p>
         </div>
       </div>
     </footer>

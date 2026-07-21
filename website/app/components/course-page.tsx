@@ -25,7 +25,7 @@ export function CoursePage({ data, bare = false, basePath = "" }: { data: Course
 
   if (data.waitlist) {
     return (
-      <div className="flex min-h-screen flex-col bg-white">
+      <div className="flex min-h-screen flex-col bg-[#002025]">
         {!bare && <SiteHeader />}
         <main className="flex-1">
           <section className="px-4 pb-24 pt-32 sm:px-6 sm:pt-40">
@@ -79,7 +79,7 @@ export function CoursePage({ data, bare = false, basePath = "" }: { data: Course
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-[#002025]">
       {!bare && <SiteHeader />}
       <main className="flex-1">
         {/* Course hero */}

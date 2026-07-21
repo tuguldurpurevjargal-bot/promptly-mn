@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-[#002025]">
       <SiteHeader />
 
       <main className="flex-1">

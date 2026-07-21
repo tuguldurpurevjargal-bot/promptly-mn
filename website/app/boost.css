@@ -16,10 +16,19 @@
 
   background: var(--b-abyss);
   color: var(--b-bone);
-  font-family: var(--font-boost), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.45;
   letter-spacing: -0.01em;
   min-height: 100vh;
+}
+
+.boost h1,
+.boost h2,
+.boost h3,
+.boost h4,
+.boost h5,
+.boost h6 {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 .boost ::selection {
@@ -235,6 +244,30 @@
 /* Selected-option tint in quiz/forms */
 .boost .bg-\[\#e0faf5\] {
   background-color: rgba(121, 250, 75, 0.12) !important;
+}
+
+/* Quiz-specific remaps */
+.boost .bg-\[\#e5ebe8\] {
+  background-color: var(--b-reef) !important;
+}
+
+.boost .bg-\[\#00b8a8\] {
+  background-color: var(--b-lime) !important;
+}
+
+.boost .border-\[\#00b8a8\] {
+  border-color: var(--b-lime) !important;
+}
+
+.boost .border-\[\#c3d2cf\] {
+  border-color: var(--b-tide) !important;
+}
+
+/* Lead magnet tinted panel → deep kelp */
+.boost .tinted-panel {
+  background: var(--b-kelp);
+  border: 1px solid var(--b-reef);
+  border-radius: 30px;
 }
 
 /* Reveal animation (reuses v2 Reveal component classes) */

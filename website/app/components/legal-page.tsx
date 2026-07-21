@@ -14,7 +14,7 @@ export function LegalPage({
   sections: { heading: string; body: string }[];
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-[#002025]">
       <SiteHeader />
       <main className="flex-1">
         <section className="px-4 pb-24 pt-32 sm:px-6 sm:pt-40">
