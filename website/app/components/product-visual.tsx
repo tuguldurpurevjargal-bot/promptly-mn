@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { GraduationCap, Layers, Rocket, Sparkles } from "lucide-react";
+import { useLanguage } from "@/app/i18n/context";
 
 function IconBadge({ children }: { children: React.ReactNode }) {
   return (
@@ -10,6 +13,9 @@ function IconBadge({ children }: { children: React.ReactNode }) {
 }
 
 export function ProductVisual() {
+  const { locale } = useLanguage();
+  const mn = locale === "mn";
+
   const tags = [
     { label: "Beginner", icon: <GraduationCap className="h-5 w-5" /> },
     { label: "Intermediate", icon: <Layers className="h-5 w-5" /> },
@@ -22,7 +28,6 @@ export function ProductVisual() {
         className="rounded-[30px] border border-[#244348] bg-[rgba(36,67,72,0.5)] p-6 backdrop-blur-md sm:p-8"
         style={{ boxShadow: "0 0 60px rgba(0, 32, 37, 0.4)" }}
       >
-        {/* Category tags */}
         <div className="space-y-2.5">
           {tags.map((tag) => (
             <div
@@ -35,19 +40,21 @@ export function ProductVisual() {
           ))}
         </div>
 
-        {/* Active card */}
         <div className="mt-5 rounded-[16px] border border-[#244348] bg-[#05333a] p-5">
           <div className="flex items-center gap-3">
             <IconBadge>
               <Sparkles className="h-5 w-5" />
             </IconBadge>
             <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-[#79fa4b]">Таны түвшин</p>
-              <p className="mt-0.5 text-base font-medium text-[#fffffa]">Тодорхойлъё</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-[#79fa4b]">
+                {mn ? "Таны түвшин" : "Your level"}
+              </p>
+              <p className="mt-0.5 text-base font-medium text-[#fffffa]">
+                {mn ? "Тодорхойлъё" : "Let's find it"}
+              </p>
             </div>
           </div>
 
-          {/* Gradient placeholder bars */}
           <div className="mt-5 space-y-2">
             <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#30d7f1] to-[#79fa4b] opacity-60" />
             <div className="h-2 w-3/4 rounded-full bg-gradient-to-r from-[#30d7f1] to-[#79fa4b] opacity-35" />
@@ -61,7 +68,7 @@ export function ProductVisual() {
               background: "linear-gradient(277.33deg, #fce344 -2.48%, #79fa4b 47.21%, #30d7f1 93.62%)",
             }}
           >
-            Тест өгөх
+            {mn ? "Тест өгөх" : "Take the test"}
           </Link>
         </div>
       </div>

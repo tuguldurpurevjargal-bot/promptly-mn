@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./boost.css";
+import "./light.css";
+import { ClientProviders } from "./components/client-providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,9 +37,12 @@ export default function RootLayout({
   return (
     <html
       lang="mn"
+      suppressHydrationWarning
       className={`${inter.variable} scroll-smooth antialiased`}
     >
-      <body className="boost min-h-full flex flex-col">{children}</body>
+      <body className="boost min-h-full flex flex-col">
+        <ClientProviders>{children}</ClientProviders>
+      </body>
     </html>
   );
 }

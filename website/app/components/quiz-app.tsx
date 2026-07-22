@@ -12,16 +12,8 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react";
-import {
-  dimensions,
-  dimensionFeedback,
-  questions,
-  quizMeta,
-  ratingBands,
-  resultLevels,
-  type QuizOption,
-  type QuizQuestion,
-} from "@/app/data/quiz";
+import { useLanguage } from "@/app/i18n/context";
+import type { QuizOption, QuizQuestion } from "@/app/data/quiz";
 
 type Stage = "intro" | "quiz" | "results";
 
@@ -38,11 +30,46 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
-function bandFor(pct: number) {
-  return ratingBands.find((b) => pct >= b.min && pct <= b.max) ?? ratingBands[0];
-}
+const ui = {
+  mn: {
+    start: "Тест эхлүүлэх",
+    question: "Асуулт",
+    previous: "Өмнөх",
+    next: "Дараах",
+    seeResults: "Үр дүн харах",
+    yourResult: "Таны үр дүн",
+    breakdown: "Чиглэл бүрийн задаргаа",
+    strengths: "Давуу тал",
+    growth: "Хөгжүүлэх боломж",
+    nextSteps: "Танд тохирох дараагийн алхам",
+    recommendedCourse: "Санал болгох сургалт",
+    restart: "Дахин тестлэх",
+    questionsChip: "асуулт",
+    minutesChip: "минут",
+  },
+  en: {
+    start: "Start the test",
+    question: "Question",
+    previous: "Previous",
+    next: "Next",
+    seeResults: "See results",
+    yourResult: "Your result",
+    breakdown: "Breakdown by dimension",
+    strengths: "Strengths",
+    growth: "Growth opportunities",
+    nextSteps: "Your next steps",
+    recommendedCourse: "Recommended course",
+    restart: "Retake the test",
+    questionsChip: "questions",
+    minutesChip: "minutes",
+  },
+};
 
 export function QuizApp() {
+  const { quiz, locale } = useLanguage();
+  const L = ui[locale];
+  const { questions, quizMeta, ratingBands, resultLevels, dimensions, dimensionFeedback } = quiz;
+
   const [stage, setStage] = useState<Stage>("intro");
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -70,6 +97,9 @@ export function QuizApp() {
       perDimension[q.dimension] = (perDimension[q.dimension] ?? 0) + score;
     });
 
+    const bandFor = (pct: number) =>
+      ratingBands.find((b) => pct >= b.min && pct <= b.max) ?? ratingBands[0];
+
     const dimResults = dimensions.map((d) => {
       const earned = perDimension[d.id] ?? 0;
       const pct = Math.round((earned / d.maximumScore) * 100);
@@ -94,46 +124,44 @@ export function QuizApp() {
     const growth = [...dimResults].sort((a, b) => a.pct - b.pct).slice(0, 2);
 
     return { total, dimResults, level, strengths, growth };
-  }, [stage, answers]);
+  }, [stage, answers, questions, dimensions, ratingBands, resultLevels, dimensionFeedback]);
 
   const finish = () => setStage("results");
 
-  /* ---------- INTRO ---------- */
   if (stage === "intro") {
     return (
       <div className="card mx-auto max-w-2xl p-6 text-center sm:p-12">
-        <ClipboardList className="mx-auto h-10 w-10 text-[#00b8a8]" />
-        <h1 className="mt-5 text-3xl font-bold tracking-tight text-[#101614] sm:text-4xl">
+        <ClipboardList className="mx-auto h-10 w-10 text-[#79fa4b]" />
+        <h1 className="mt-5 text-3xl font-light tracking-tight text-[#fffffa] sm:text-4xl">
           {quizMeta.title}
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-[#4a5a55]">
+        <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-[#7d8f92]">
           {quizMeta.instructions}
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#e5ebe8] bg-[#f5f7f6] px-4 py-1.5 text-sm font-medium text-[#4a5a55]">
-            <ClipboardList className="h-4 w-4 text-[#00b8a8]" />
-            {quizMeta.questionCount} асуулт
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244348] bg-[#002025] px-4 py-1.5 text-sm font-medium text-[#9eaeb0]">
+            <ClipboardList className="h-4 w-4 text-[#79fa4b]" />
+            {quizMeta.questionCount} {L.questionsChip}
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#e5ebe8] bg-[#f5f7f6] px-4 py-1.5 text-sm font-medium text-[#4a5a55]">
-            <Clock className="h-4 w-4 text-[#00b8a8]" />
-            {quizMeta.durationMinutes} минут
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244348] bg-[#002025] px-4 py-1.5 text-sm font-medium text-[#9eaeb0]">
+            <Clock className="h-4 w-4 text-[#79fa4b]" />
+            {quizMeta.durationMinutes} {L.minutesChip}
           </span>
         </div>
 
-        <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-[#6b8b86]">
+        <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-[#9eaeb0]">
           {quizMeta.disclaimer}
         </p>
 
         <button onClick={start} className="btn-primary mt-8">
-          Тест эхлүүлэх
+          {L.start}
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>
     );
   }
 
-  /* ---------- QUIZ ---------- */
   if (stage === "quiz") {
     const q = shuffledQuestions[current];
     const selected = answers[q.id];
@@ -143,22 +171,22 @@ export function QuizApp() {
     return (
       <div className="mx-auto max-w-2xl">
         <div className="mb-6">
-          <div className="flex items-center justify-between text-sm font-medium text-[#4a5a55]">
+          <div className="flex items-center justify-between text-sm font-medium text-[#9eaeb0]">
             <span>
-              Асуулт {current + 1} / {shuffledQuestions.length}
+              {L.question} {current + 1} / {shuffledQuestions.length}
             </span>
             <span>{progress}%</span>
           </div>
-          <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#e5ebe8]">
+          <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#244348]">
             <div
-              className="h-full rounded-full bg-[#00b8a8] transition-all duration-300"
+              className="h-full rounded-full bg-[#79fa4b] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
         <div className="card p-6 sm:p-10">
-          <h2 className="text-xl font-semibold leading-snug text-[#101614] sm:text-2xl">
+          <h2 className="text-xl font-medium leading-snug text-[#fffffa] sm:text-2xl">
             {q.question}
           </h2>
 
@@ -171,14 +199,14 @@ export function QuizApp() {
                   onClick={() => setAnswers((prev) => ({ ...prev, [q.id]: opt.id }))}
                   className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-colors ${
                     isSelected
-                      ? "border-[#00b8a8] bg-[#e0faf5]"
-                      : "border-[#e5ebe8] bg-white hover:border-[#00b8a8]/50"
+                      ? "border-[#79fa4b] bg-[#79fa4b]/10"
+                      : "border-[#244348] bg-[rgba(36,67,72,0.5)] hover:border-[#79fa4b]/50"
                   }`}
                   aria-pressed={isSelected}
                 >
                   <span
                     className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                      isSelected ? "border-[#00b8a8] bg-[#00b8a8]" : "border-[#c3d2cf]"
+                      isSelected ? "border-[#79fa4b] bg-[#79fa4b]" : "border-[#455c60]"
                     }`}
                   >
                     {isSelected && (
@@ -188,7 +216,7 @@ export function QuizApp() {
                       />
                     )}
                   </span>
-                  <span className="text-sm leading-relaxed text-[#101614] sm:text-base">
+                  <span className="text-sm leading-relaxed text-[#fffffa] sm:text-base">
                     {opt.label}
                   </span>
                 </button>
@@ -204,7 +232,7 @@ export function QuizApp() {
             className="btn-secondary disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ArrowLeft className="h-4 w-4" />
-            Өмнөх
+            {L.previous}
           </button>
 
           {isLast ? (
@@ -213,7 +241,7 @@ export function QuizApp() {
               disabled={!selected}
               className="btn-primary disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Үр дүн харах
+              {L.seeResults}
               <ArrowRight className="h-4 w-4" />
             </button>
           ) : (
@@ -222,7 +250,7 @@ export function QuizApp() {
               disabled={!selected}
               className="btn-primary disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Дараах
+              {L.next}
               <ArrowRight className="h-4 w-4" />
             </button>
           )}
@@ -231,84 +259,80 @@ export function QuizApp() {
     );
   }
 
-  /* ---------- RESULTS ---------- */
   const r = results!;
   const { level } = r;
 
   return (
     <div className="mx-auto max-w-3xl">
-      {/* Level card */}
       <div className="card p-6 text-center sm:p-12">
-        <p className="kicker">Таны үр дүн</p>
-        <div className="mt-4 text-6xl font-bold tracking-tight text-[#101614] sm:text-7xl">
+        <p className="kicker">{L.yourResult}</p>
+        <div className="mt-4 text-6xl font-light tracking-tight text-[#fffffa] sm:text-7xl">
           {r.total}
-          <span className="text-2xl font-semibold text-[#6b8b86]">
+          <span className="text-2xl font-light text-[#7d8f92]">
             /{quizMeta.maximumScore}
           </span>
         </div>
-        <h2 className="mt-4 text-2xl font-bold text-[#00b8a8] sm:text-3xl">
+        <h2 className="mt-4 text-2xl font-medium text-[#79fa4b] sm:text-3xl">
           {level.title}
         </h2>
-        <p className="mt-1 text-sm font-medium text-[#4a5a55]">
+        <p className="mt-1 text-sm font-medium text-[#9eaeb0]">
           {level.mongolianTitle}
         </p>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#4a5a55]">
+        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#7d8f92]">
           {level.summary}
         </p>
-        <p className="mx-auto mt-4 max-w-xl text-sm font-medium leading-relaxed text-[#101614]">
+        <p className="mx-auto mt-4 max-w-xl text-sm font-medium leading-relaxed text-[#fffffa]">
           {level.encouragingStatement}
         </p>
         {level.accuracyNote && (
-          <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed text-[#6b8b86]">
+          <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed text-[#9eaeb0]">
             {level.accuracyNote}
           </p>
         )}
       </div>
 
-      {/* Dimension breakdown */}
       <div className="card mt-6 p-6 sm:p-10">
-        <h3 className="text-lg font-bold text-[#101614]">Чиглэл бүрийн задаргаа</h3>
+        <h3 className="text-lg font-semibold text-[#fffffa]">{L.breakdown}</h3>
         <div className="mt-6 space-y-6">
           {r.dimResults.map((d) => (
             <div key={d.id}>
               <div className="flex items-baseline justify-between gap-4">
-                <span className="text-sm font-semibold text-[#101614]">{d.label}</span>
-                <span className="text-sm font-medium text-[#4a5a55]">
+                <span className="text-sm font-semibold text-[#fffffa]">{d.label}</span>
+                <span className="text-sm font-medium text-[#9eaeb0]">
                   {d.earned}/{d.maximumScore} · {d.pct}%
                 </span>
               </div>
-              <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#e5ebe8]">
+              <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#244348]">
                 <div
-                  className="h-full rounded-full bg-[#00b8a8]"
+                  className="h-full rounded-full bg-[#79fa4b]"
                   style={{ width: `${d.pct}%` }}
                 />
               </div>
-              <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-[#00b8a8]">
+              <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-[#79fa4b]">
                 {d.bandLabel}
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-[#4a5a55]">{d.feedback}</p>
+              <p className="mt-1 text-sm leading-relaxed text-[#7d8f92]">{d.feedback}</p>
               {d.caveat && (
-                <p className="mt-1 text-xs italic text-[#6b8b86]">{d.caveat}</p>
+                <p className="mt-1 text-xs italic text-[#9eaeb0]">{d.caveat}</p>
               )}
             </div>
           ))}
         </div>
       </div>
 
-      {/* Strengths & growth */}
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <div className="card p-6">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-[#00b8a8]" />
-            <h3 className="font-bold text-[#101614]">Давуу тал</h3>
+            <CheckCircle2 className="h-5 w-5 text-[#79fa4b]" />
+            <h3 className="font-semibold text-[#fffffa]">{L.strengths}</h3>
           </div>
           <ul className="mt-4 space-y-3">
             {r.strengths.map((s) => (
               <li key={s.id}>
-                <p className="text-sm font-semibold text-[#101614]">
+                <p className="text-sm font-semibold text-[#fffffa]">
                   {s.label} · {s.pct}%
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-[#4a5a55]">{s.feedback}</p>
+                <p className="mt-1 text-sm leading-relaxed text-[#7d8f92]">{s.feedback}</p>
               </li>
             ))}
           </ul>
@@ -316,38 +340,37 @@ export function QuizApp() {
 
         <div className="card p-6">
           <div className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-[#00b8a8]" />
-            <h3 className="font-bold text-[#101614]">Хөгжүүлэх боломж</h3>
+            <TrendingUp className="h-5 w-5 text-[#79fa4b]" />
+            <h3 className="font-semibold text-[#fffffa]">{L.growth}</h3>
           </div>
           <ul className="mt-4 space-y-3">
             {r.growth.map((g) => (
               <li key={g.id}>
-                <p className="text-sm font-semibold text-[#101614]">{g.label}</p>
-                <p className="mt-1 text-sm leading-relaxed text-[#4a5a55]">{g.feedback}</p>
+                <p className="text-sm font-semibold text-[#fffffa]">{g.label}</p>
+                <p className="mt-1 text-sm leading-relaxed text-[#7d8f92]">{g.feedback}</p>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      {/* Next steps & CTA */}
       <div className="card mt-6 p-6 sm:p-10">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-[#00b8a8]" />
-          <h3 className="font-bold text-[#101614]">Танд тохирох дараагийн алхам</h3>
+          <Sparkles className="h-5 w-5 text-[#79fa4b]" />
+          <h3 className="font-semibold text-[#fffffa]">{L.nextSteps}</h3>
         </div>
         <ul className="mt-4 space-y-2">
           {level.nextSteps.map((step) => (
-            <li key={step} className="flex items-start gap-2 text-sm leading-relaxed text-[#4a5a55]">
-              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#00b8a8]" />
+            <li key={step} className="flex items-start gap-2 text-sm leading-relaxed text-[#7d8f92]">
+              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#79fa4b]" />
               {step}
             </li>
           ))}
         </ul>
 
-        <div className="mt-7 border-t border-[#e5ebe8] pt-6">
-          <p className="text-sm font-semibold text-[#101614]">
-            Санал болгох сургалт: <span className="text-[#00b8a8]">{level.recommendedCourse}</span>
+        <div className="mt-7 border-t border-[#244348] pt-6">
+          <p className="text-sm font-semibold text-[#fffffa]">
+            {L.recommendedCourse}: <span className="text-[#79fa4b]">{level.recommendedCourse}</span>
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Link href={level.primaryCta.target} className="btn-primary">
@@ -363,14 +386,14 @@ export function QuizApp() {
         </div>
       </div>
 
-      <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-relaxed text-[#6b8b86]">
+      <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-relaxed text-[#9eaeb0]">
         {quizMeta.resultDisclaimer}
       </p>
 
       <div className="mt-6 text-center">
         <button onClick={start} className="btn-secondary">
           <RotateCcw className="h-4 w-4" />
-          Дахин тестлэх
+          {L.restart}
         </button>
       </div>
     </div>

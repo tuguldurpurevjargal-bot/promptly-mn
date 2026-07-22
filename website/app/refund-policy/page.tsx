@@ -7,28 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function RefundPolicyPage() {
-  return (
-    <LegalPage
-      title="Буцан олголтын бодлого"
-      description="Сургалтын төлбөрийг буцаан олгох нөхцөл ба процесс."
-      sections={[
-        {
-          heading: "Буцан олголт авах нөхцөл",
-          body: "[REFUND_ELIGIBILITY]",
-        },
-        {
-          heading: "Буцан олголтын хугацаа",
-          body: "[REFUND_TIMEFRAME]",
-        },
-        {
-          heading: "Хүсэлт гаргах процесс",
-          body: "[REFUND_PROCESS]",
-        },
-        {
-          heading: "Холбоо барих",
-          body: "[CONTACT_EMAIL]",
-        },
-      ]}
-    />
-  );
+  return <LegalPage page="refund" />;
 }

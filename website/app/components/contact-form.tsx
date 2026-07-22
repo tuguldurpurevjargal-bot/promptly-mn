@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { contact } from "@/app/data/content";
+import { useLanguage } from "@/app/i18n/context";
 
 const inputClass =
-  "w-full rounded-xl border border-[#e5ebe8] bg-white px-4 py-3 text-sm text-[#101614] outline-none transition-colors placeholder:text-[#6b8b86] focus:border-[#00b8a8]";
+  "w-full rounded-xl border border-[#244348] bg-[rgba(0,32,37,0.6)] px-4 py-3 text-sm text-[#fffffa] outline-none transition-colors placeholder:text-[#7d8f92] focus:border-[#79fa4b]";
 
 export function ContactForm() {
+  const { t, locale } = useLanguage();
+  const mn = locale === "mn";
+
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
@@ -15,15 +18,15 @@ export function ContactForm() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim()) {
-      setError("Нэрээ оруулна уу.");
+      setError(mn ? "Нэрээ оруулна уу." : "Please enter your name.");
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      setError("Зөв и-мэйл хаяг оруулна уу.");
+      setError(mn ? "Зөв и-мэйл хаяг оруулна уу." : "Please enter a valid email address.");
       return;
     }
     if (!form.message.trim()) {
-      setError("Зурвасаа бичнэ үү.");
+      setError(mn ? "Зурвасаа бичнэ үү." : "Please write your message.");
       return;
     }
     setError("");
@@ -32,9 +35,9 @@ export function ContactForm() {
 
   if (done) {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-[#00b8a8]/30 bg-[#00e5d4]/10 p-6">
-        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-[#00b8a8]" />
-        <p className="font-medium text-[#101614]">{contact.form.success}</p>
+      <div className="flex items-center gap-3 rounded-2xl border border-[#79fa4b]/30 bg-[#79fa4b]/10 p-6">
+        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-[#79fa4b]" />
+        <p className="font-medium text-[#fffffa]">{t.contact.form.success}</p>
       </div>
     );
   }
@@ -42,8 +45,8 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4" noValidate>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
-          {contact.form.name} *
+        <label className="mb-1.5 block text-sm font-medium text-[#fffffa]">
+          {t.contact.form.name} *
         </label>
         <input
           type="text"
@@ -53,8 +56,8 @@ export function ContactForm() {
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
-          {contact.form.email} *
+        <label className="mb-1.5 block text-sm font-medium text-[#fffffa]">
+          {t.contact.form.email} *
         </label>
         <input
           type="email"
@@ -64,8 +67,8 @@ export function ContactForm() {
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-[#101614]">
-          {contact.form.message} *
+        <label className="mb-1.5 block text-sm font-medium text-[#fffffa]">
+          {t.contact.form.message} *
         </label>
         <textarea
           value={form.message}
@@ -74,9 +77,9 @@ export function ContactForm() {
           className={`${inputClass} resize-none`}
         />
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <button type="submit" className="btn-primary w-full sm:w-auto">
-        {contact.form.submit}
+        {t.contact.form.submit}
       </button>
     </form>
   );

@@ -1,0 +1,175 @@
+/* Light mode for the Boost theme — triggered by .light on <html> (next-themes) */
+
+.light .boost {
+  background: #f4f8f7;
+  color: #0f1d20;
+}
+
+/* ---- Surfaces ---- */
+.light .bg-\[\#002025\] {
+  background-color: #f4f8f7 !important;
+}
+
+.light .bg-\[\#05333a\] {
+  background-color: #ffffff !important;
+}
+
+.light .bg-\[\#f5f7f6\] {
+  background-color: #eaf3f1 !important;
+}
+
+.light .card {
+  background: #ffffff;
+  border-color: #dfe9e6;
+}
+
+.light .surface-deep {
+  background: #eaf3f1;
+  border-color: #dfe9e6;
+}
+
+.light .tinted-panel {
+  background: #e0faf5;
+  border-color: rgba(0, 184, 168, 0.25);
+}
+
+.light .bg-white {
+  background-color: #ffffff !important;
+}
+
+.light .bg-\[\#244348\] {
+  background-color: #dfe9e6 !important;
+}
+
+/* ---- Text ---- */
+.light .text-\[\#fffffa\] {
+  color: #0f1d20 !important;
+}
+
+.light .text-\[\#7d8f92\] {
+  color: #4d6367 !important;
+}
+
+.light .text-\[\#9eaeb0\] {
+  color: #6a8287 !important;
+}
+
+.light .text-\[\#b7c6c9\] {
+  color: #4d6367 !important;
+}
+
+.light .text-\[\#54696c\],
+.light .text-\[\#455c60\] {
+  color: #6a8287 !important;
+}
+
+.light .text-\[\#79fa4b\] {
+  color: #00b8a8 !important;
+}
+
+.light ::selection {
+  background: rgba(0, 184, 168, 0.2);
+  color: #0f1d20;
+}
+
+/* ---- Accents ---- */
+.light .kicker {
+  color: #00b8a8;
+}
+
+.light .eyebrow {
+  color: #00b8a8;
+}
+
+.light .eyebrow::before {
+  background: #00b8a8;
+}
+
+/* ---- Borders ---- */
+.light .border-\[\#244348\] {
+  border-color: #dfe9e6 !important;
+}
+
+.light .border-\[\#455c60\] {
+  border-color: #b9ccc8 !important;
+}
+
+.light .divide-\[\#244348\] > * + * {
+  border-color: #dfe9e6 !important;
+}
+
+/* ---- Buttons ---- */
+.light .btn-secondary {
+  border-color: #0f1d20;
+  color: #0f1d20;
+}
+
+.light .btn-secondary:hover {
+  border-color: #00b8a8;
+  color: #00b8a8;
+  background: rgba(0, 184, 168, 0.06);
+  opacity: 1;
+}
+
+.light .btn-lime-outline {
+  border-color: #00b8a8;
+  color: #00b8a8;
+}
+
+.light .btn-lime-outline:hover {
+  background: rgba(0, 184, 168, 0.06);
+  opacity: 1;
+}
+
+/* ---- Header ---- */
+.light header {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ---- Forms ---- */
+.light input[type="text"],
+.light input[type="email"],
+.light input[type="tel"],
+.light select,
+.light textarea {
+  background: #ffffff !important;
+  border-color: #dfe9e6 !important;
+  color: #0f1d20 !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #7a9094 !important;
+}
+
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: #00b8a8 !important;
+}
+
+.light :focus-visible {
+  outline-color: #00b8a8;
+}
+
+/* ---- Placeholder tags ---- */
+.light .placeholder-tag {
+  border-color: #b9ccc8;
+  background: #eaf3f1;
+  color: #6a8287;
+}
+
+/* ---- Quiz states ---- */
+.light .bg-\[\#79fa4b\]\/10,
+.light .border-\[\#79fa4b\] {
+  border-color: #00b8a8 !important;
+}
+
+.light .hover\:border-\[\#79fa4b\]\/50:hover {
+  border-color: rgba(0, 184, 168, 0.5) !important;
+}
+
+/* ---- Footer ---- */
+.light footer {
+  border-color: #dfe9e6;
+}

@@ -5,7 +5,7 @@ export const site = {
     "AI-г ойлгож, зөв ашиглан өдөр тутмын ажил, бүтээмж болон бүтээлч үйл явцаа сайжруулах практик сургалт.",
   vision: "Монголын хамгийн итгэл даахуйц, практик AI боловсролын брэнд болох.",
   mission:
-    "Хиймэл оюуныг хүн бүрт ойлгомжтой, практик, хүртээмжтэй болгон боловсрол, хэрэгсэл болон community-ээр дамжуулан хүргэх.",
+    "Хиймэл оюуныг хүн бүрт ойлгомжтой, практик, хүртээмжтэй болгон боловсрол, хэрэгсэл болон нийгэмлэгээр дамжуулан хүргэх.",
 };
 
 export const nav = [
@@ -103,9 +103,9 @@ export const courses: Course[] = [
     ],
     topics: [
       "Advanced prompting",
-      "Context болон reusable prompt system",
-      "AI-assisted research",
-      "Productivity workflow",
+      "Context болон дахин ашиглах prompt систем",
+      "AI-аар дэмжүүлсэн судалгаа",
+      "Бүтээмжийн workflow",
       "Automation-ийн үндэс",
       "Баг болон бизнесийн хэрэглээ",
     ],
@@ -117,13 +117,13 @@ export const courses: Course[] = [
     status: "coming_soon",
     tagline: "AI систем бүтээж, оновчтой хэрэгжүүл.",
     description:
-      "AI систем, агент, optimization болон бизнесийн хэрэгжилтийн ахисан шатны сургалт.",
+      "AI систем, агент, оновчлолт болон бизнесийн хэрэгжилтийн ахисан шатны сургалт.",
     topics: [
-      "AI agents",
-      "System design",
+      "AI агентууд",
+      "Системийн дизайн",
       "Advanced automation",
-      "Optimization",
-      "Business implementation",
+      "Оновчлолт",
+      "Бизнесийн хэрэгжилт",
     ],
     cta: { label: "Хүлээлгийн жагсаалтад нэгдэх", target: "/courses/expert" },
   },
@@ -153,7 +153,7 @@ export const howItWorks = {
       number: "02",
       title: "Хичээлд оролцоно",
       description:
-        "Ойлгомжтой тайлбар, live demo болон практик жишээгээр суралцана.",
+        "Ойлгомжтой тайлбар, шууд үзүүлэн болон практик жишээгээр суралцана.",
     },
     {
       number: "03",
@@ -163,7 +163,7 @@ export const howItWorks = {
     {
       number: "04",
       title: "Материал авна",
-      description: "Prompt template, checklist болон хэрэгжүүлэх материал ашиглана.",
+      description: "Prompt загвар, шалгах жагсаалт болон хэрэгжүүлэх материал ашиглана.",
     },
     {
       number: "05",
@@ -192,7 +192,7 @@ export const curriculum = {
         "Module 02 — ChatGPT болон үндсэн хэрэгслүүд",
         "Module 03 — Prompt бичих суурь",
         "Module 04 — Судалгаа ба мэдээлэл боловсруулах",
-        "Module 05 — Контент, зураг болон presentation",
+        "Module 05 — Контент, зураг болон танилцуулга",
         "Module 06 — Өдөр тутмын AI workflow",
       ],
     },
@@ -202,11 +202,11 @@ export const curriculum = {
       ctaLabel: "Intermediate хөтөлбөрийг бүтнээр үзэх",
       modules: [
         "Module 01 — Context ба advanced prompting",
-        "Module 02 — Reusable prompt system",
-        "Module 03 — AI-assisted research",
-        "Module 04 — Content болон productivity workflow",
-        "Module 05 — Automation fundamentals",
-        "Module 06 — Personal AI operating system",
+        "Module 02 — Дахин ашиглах prompt систем",
+        "Module 03 — AI-аар дэмжүүлсэн судалгаа",
+        "Module 04 — Контент болон бүтээмжийн workflow",
+        "Module 05 — Automation-ийн үндэс",
+        "Module 06 — Хувийн AI ажиллагааны систем",
       ],
     },
   ],
@@ -241,7 +241,7 @@ export const whyPromptly = {
 export const founders = {
   headline: "Promptly-г хэн бүтээж байна вэ?",
   description:
-    "Promptly-г AI-г бодит ажил, маркетинг, бүтээлч үйлдвэрлэл болон productivity-д ашигладаг хоёр хүний баг хөгжүүлж байна.",
+    "Promptly-г AI-г бодит ажил, маркетинг, бүтээлч үйлдвэрлэл болон бүтээмжид ашигладаг хоёр хүний баг хөгжүүлж байна.",
   members: [
     {
       name: "[FOUNDER_1_NAME]",
@@ -261,9 +261,9 @@ export const founders = {
 export const leadMagnet = {
   headline: "AI-г эхлүүлэх 20 prompt",
   description:
-    "Имэйл, судалгаа, контент, төлөвлөгөө болон бүтээмжид зориулсан Монгол хэл дээрх үнэгүй starter pack.",
+    "Имэйл, судалгаа, контент, төлөвлөгөө болон бүтээмжид зориулсан Монгол хэл дээрх үнэгүй эхлэл багц.",
   cta: "Үнэгүй авах",
-  success: "Баярлалаа. Starter pack-ийг таны имэйл рүү илгээлээ.",
+  success: "Баярлалаа. Эхлэл багцыг таны имэйл рүү илгээлээ.",
   namePlaceholder: "Таны нэр",
   emailPlaceholder: "И-мэйл хаяг",
 };
@@ -271,9 +271,9 @@ export const leadMagnet = {
 export const resourcesPreview = {
   headline: "Promptly-оос үнэгүй суралцаарай.",
   items: [
-    { title: "AI гэж юу вэ?", type: "Reel or article" },
-    { title: "ChatGPT-ээс илүү сайн хариулт авах 3 арга", type: "Reel or carousel" },
-    { title: "Ажилдаа ашиглах 5 AI workflow", type: "Article or video" },
+    { title: "AI гэж юу вэ?", type: "Reel эсвэл нийтлэл" },
+    { title: "ChatGPT-ээс илүү сайн хариулт авах 3 арга", type: "Reel эсвэл carousel" },
+    { title: "Ажилдаа ашиглах 5 AI workflow", type: "Нийтлэл эсвэл видео" },
   ],
   primaryCta: { label: "Instagram дагах", target: "[INSTAGRAM_URL]" },
   secondaryCta: { label: "Бүх контент үзэх", target: "/resources" },
@@ -284,11 +284,11 @@ export const proof = {
   launchNote:
     "Promptly одоогоор эхний сургалтуудаа бэлтгэж байна. Бид хийсвэр сэтгэгдэл нэмэхгүй — эхний суралцагчдын бодит үр дүнг энд нийтэлнэ.",
   launchOptions: [
-    "Pilot class-ийн санал хүсэлт",
+    "Туршилтын ангийн санал хүсэлт",
     "Үнэгүй workshop-ийн оролцогчдын санал",
     "Өмнө ба дараахь ажлын жишээ",
-    "Бодит AI workflow-ийн demonstration",
-    "Үүсгэн байгуулагчийн case study",
+    "Бодит AI workflow-ийн үзүүлэн",
+    "Үүсгэн байгуулагчийн жишиг судалгаа",
   ],
 };
 
@@ -395,9 +395,9 @@ export const coursePages: Record<string, CoursePageData> = {
     ],
     outcomes: [
       "Advanced prompting арга техник эзэмшинэ",
-      "Reusable prompt system босгоно",
-      "AI-assisted research хийдэг болно",
-      "Productivity workflow-оо оновчтой болгоно",
+      "Дахин ашиглах prompt систем босгоно",
+      "AI-аар дэмжүүлсэн судалгаа хийдэг болно",
+      "Бүтээмжийн workflow-оо оновчтой болгоно",
       "Automation-ийн үндсийг хэрэгжүүлэх суурьтай болно",
     ],
     modules: curriculum.tabs[1].modules,
@@ -410,15 +410,15 @@ export const coursePages: Record<string, CoursePageData> = {
     name: "Promptly Expert",
     headline: "Promptly Expert удахгүй.",
     description:
-      "AI систем, агент, optimization болон бизнесийн хэрэгжилтийн ахисан шатны сургалт. Нээлтийн өдөр, үнэ болон бүртгэлийг удахгүй зарлана.",
+      "AI систем, агент, оновчлолт болон бизнесийн хэрэгжилтийн ахисан шатны сургалт. Нээлтийн өдөр, үнэ болон бүртгэлийг удахгүй зарлана.",
     bestFor: [],
     outcomes: [],
     modules: [
-      "AI agents",
-      "System design",
+      "AI агентууд",
+      "Системийн дизайн",
       "Advanced automation",
-      "Optimization",
-      "Business implementation",
+      "Оновчлолт",
+      "Бизнесийн хэрэгжилт",
     ],
     primaryCta: "Хүлээлгийн жагсаалтад нэгдэх",
     waitlist: true,
@@ -468,7 +468,7 @@ export const footerCols = [
     links: [
       { label: "Beginner", target: "/courses/beginner" },
       { label: "Intermediate", target: "/courses/intermediate" },
-      { label: "Expert — Coming soon", target: "/courses/expert" },
+      { label: "Expert — Удахгүй", target: "/courses/expert" },
     ],
   },
   {
@@ -506,3 +506,18 @@ export const socials = [
   { label: "YouTube", target: "[YOUTUBE_URL]" },
   { label: "LinkedIn", target: "[LINKEDIN_URL]" },
 ];
+
+export const legal = {
+  privacy: {
+    title: "Хувийн мэдээлэл хамгаалах бодлого",
+    description: "Promptly нь таны хувийн мэдээллийг хэрхэн цуглуулж, ашиглаж, хамгаалдаг талаар энд танилцуулна.",
+  },
+  terms: {
+    title: "Үйлчилгээний нөхцөл",
+    description: "Promptly-ийн вэбсайт болон сургалтыг ашиглах үндсэн нөхцөлүүд.",
+  },
+  refund: {
+    title: "Буцан олголтын бодлого",
+    description: "Сургалтын төлбөрийг буцаан олгох нөхцөл ба процесс.",
+  },
+};

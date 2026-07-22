@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CoursePage } from "@/app/components/course-page";
-import { coursePages } from "@/app/data/content";
 
 export const metadata: Metadata = {
   title: "Promptly Intermediate — AI-г ажлын системийн нэг хэсэг болго",
@@ -9,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function IntermediatePage() {
-  return <CoursePage data={coursePages.intermediate} />;
+  return <CoursePage slug="intermediate" />;
 }
